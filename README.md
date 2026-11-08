@@ -6,6 +6,8 @@ modo local, interpretabilidad con LIME contrastada con SHAP y la importancia por
 permutación, y evaluación estadística con 5 semillas. El resultado se entrega
 como un Jupyter Book ejecutable.
 
+**Libro publicado:** https://dtl-da.github.io/Proyecto-integrador-mlp-avazu/
+
 ## Estructura
 
 ```

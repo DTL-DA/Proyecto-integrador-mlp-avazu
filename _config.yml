@@ -15,7 +15,7 @@ latex:
   latex_engine: xelatex
 
 repository:
-  url: https://github.com/DTL-DA/proyecto-integrador-mlp-avazu
+  url: https://github.com/DTL-DA/Proyecto-integrador-mlp-avazu
   branch: main
 
 html:
