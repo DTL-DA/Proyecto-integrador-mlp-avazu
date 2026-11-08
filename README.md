@@ -47,6 +47,7 @@ python manifiesto_datos.py               # filas, tamaño y SHA-256 de cada part
 python eda.py                            # EDA -> artifacts/eda/
 python sklearn_pipeline.py               # SGD, HistGB y MLP, 3 tamaños x 5 semillas -> artifacts/sklearn/
 python spark_pipeline.py                 # LR, GBT y MLP de Spark x 5 semillas -> artifacts/spark/
+python spark_learning_curve.py           # curva de aprendizaje de Spark (30k, 100k y 300k filas)
 python stats_tests.py                    # DeLong, McNemar, TOST, agregados -> artifacts/stats/
 python benchmarking.py                   # escalamiento fuerte y débil, Amdahl, punto de cruce
 python stage_benchmark.py                # tiempos por etapa, memoria pico y Spark UI (máquina sin otra carga)
