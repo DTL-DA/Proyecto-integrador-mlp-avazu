@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Modelado con PySpark &#8212; Proyecto Integrador 2.12 — MLP para click en anuncios móviles</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/05_modelado_pyspark';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="6. Evaluación estadística" href="06_evaluacion_estadistica.html" />
+    <link rel="prev" title="4. Modelado con scikit-learn" href="04_modelado_sklearn.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Integrador 2.12 — MLP para click en anuncios móviles</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Proyecto Integrador 2.12: MLP para predecir clics en anuncios móviles
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ficha_datos_y_preguntas.html">1. Ficha de datos y preguntas de investigación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_protocolo_antifuga_y_preprocesamiento.html">3. Protocolo anti-fuga y preprocesamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modelado_sklearn.html">4. Modelado con scikit-learn</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Modelado con PySpark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_evaluacion_estadistica.html">6. Evaluación estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_benchmarking.html">7. Benchmarking computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interpretabilidad.html">8. Interpretabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_comparacion_resultados.html">9. Comparación de resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_reflexion_critica.html">10. Reflexión crítica y conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_anexo_reproducibilidad.html">11. Anexo de reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/DTL-DA/Proyecto-integrador-mlp-avazu" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/05_modelado_pyspark.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5. Modelado con PySpark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesion-y-pipeline">5.1 Sesión y pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-los-datos">Lectura de los datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-hiperparametros">5.2 Selección de hiperparámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-problemas-de-memoria-diagnosticados-y-resueltos">5.3 Tres problemas de memoria, diagnosticados y resueltos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">5.4 Resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-mlp-nativo-de-spark">5.5 Limitaciones del MLP nativo de Spark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelado-con-pyspark">
+<h1>5. Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h1>
+<p>Este capítulo entrena la regresión logística, el árbol potenciado y el MLP nativos de Spark MLlib <span class="bibtex-citation" id="id1">[<a class="reference internal" href="10_reflexion_critica.html#id24" title="Xiangrui Meng, Joseph Bradley, Burak Yavuz, Evan Sparks, Shivaram Venkataraman, Davies Liu, Jeremy Freeman, DB Tsai, Manish Amde, Sean Owen, Doris Xin, Reynold Xin, Michael J. Franklin, Reza Zadeh, Matei Zaharia, and Ameet Talwalkar. MLlib: machine learning in Apache Spark. Journal of Machine Learning Research, 17(34):1–7, 2016.">Meng <em>et al.</em>, 2016</a>, <a class="reference internal" href="10_reflexion_critica.html#id25" title="Matei Zaharia, Reynold S. Xin, Patrick Wendell, Tathagata Das, Michael Armbrust, Ankur Dave, Xiangrui Meng, Josh Rosen, Shivaram Venkataraman, Michael J. Franklin, Ali Ghodsi, Joseph Gonzalez, Scott Shenker, and Ion Stoica. Apache Spark: a unified engine for big data processing. Communications of the ACM, 59(11):56–65, 2016. doi:10.1145/2934664.">Zaharia <em>et al.</em>, 2016</a>]</span> en modo local, sin clúster. El propósito es medir qué ofrece Spark en esta máquina frente a scikit-learn, y documentar con evidencia las limitaciones que aparecieron, porque varias de ellas son en sí mismas un resultado del proyecto.</p>
+<section id="sesion-y-pipeline">
+<h2>5.1 Sesión y pipeline<a class="headerlink" href="#sesion-y-pipeline" title="Link to this heading">#</a></h2>
+<p>La sesión corre en <code class="docutils literal notranslate"><span class="pre">local[*]</span></code>, con el driver como único ejecutor y los 12 hilos de la máquina. Las particiones de <em>shuffle</em> se fijaron en 12 (una por hilo), la memoria del driver en 12 GB y las fracciones de memoria unificada en 0,8 para ejecución y almacenamiento, de las cuales 0,6 se reservan para caché. El host y la dirección de enlace se fijaron en <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>, porque sin eso la conexión por socket entre el driver y los procesos de Python se reinicia en Windows al ajustar cualquier pipeline.</p>
+<p>El pipeline sigue la composición literal que fija el enunciado: <code class="docutils literal notranslate"><span class="pre">FeatureHasher</span></code> sobre las 7 variables de alta cardinalidad, <code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> sobre las 5 de baja, <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> y <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (sección 3.5).</p>
+<section id="lectura-de-los-datos">
+<h3>Lectura de los datos<a class="headerlink" href="#lectura-de-los-datos" title="Link to this heading">#</a></h3>
+<p>El enunciado pide leer el CSV y convertirlo a Parquet particionado con SparkSession. En Windows, la biblioteca de Hadoop que Spark usa para listar directorios necesita los binarios nativos <code class="docutils literal notranslate"><span class="pre">winutils.exe</span></code> y <code class="docutils literal notranslate"><span class="pre">hadoop.dll</span></code>, que no forman parte de la distribución oficial de Spark y solo se consiguen como compilaciones de terceros. Sin ellos, <code class="docutils literal notranslate"><span class="pre">spark.read.parquet</span></code> sobre un directorio particionado falla con <code class="docutils literal notranslate"><span class="pre">UnsatisfiedLinkError</span></code> en <code class="docutils literal notranslate"><span class="pre">NativeIO$Windows.access0</span></code>. Por seguridad, esos binarios no se descargaron. La conversión a Parquet se hizo con DuckDB (capítulo 2) y, para Spark, cada partición se materializa con pyarrow como un único archivo plano que Spark lee directamente: un archivo, a diferencia de un directorio, no dispara el listado nativo.</p>
+</section>
+</section>
+<section id="seleccion-de-hiperparametros">
+<h2>5.2 Selección de hiperparámetros<a class="headerlink" href="#seleccion-de-hiperparametros" title="Link to this heading">#</a></h2>
+<p>El enunciado pide la búsqueda con <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> o <code class="docutils literal notranslate"><span class="pre">TrainValidationSplit</span></code>. Ninguno de los dos se usó, porque ambos dividen los datos de forma aleatoria internamente, lo que rompe la partición temporal. Cada combinación se evaluó contra el día 29, sobre una muestra de afinación formada por las primeras 1.000.000 de filas de los días 21 y 22, en el orden del archivo.</p>
+<p>La búsqueda se configuró sobre el espacio del enunciado. Para el MLP: capas <span class="math notranslate nohighlight">\([d, 10, 2]\)</span>, <span class="math notranslate nohighlight">\([d, 50, 2]\)</span>, <span class="math notranslate nohighlight">\([d, 100, 2]\)</span> y <span class="math notranslate nohighlight">\([d, 128, 64, 2]\)</span>, <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> 0,1 y 0,01, <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> 100 y 200 y <code class="docutils literal notranslate"><span class="pre">solver</span></code> l-bfgs y gd, con un muestreo de 8 de las 32 combinaciones. La regresión logística completó su búsqueda en unos 2 a 3 minutos por combinación. El árbol potenciado, en cambio, tardó unos 30 minutos en su primera combinación, y la segunda no había terminado tras más de 7 horas, con avisos repetidos de memoria insuficiente para la caché. Por eso la búsqueda se canceló antes de llegar al MLP: se canceló por el tiempo medido, no por falta de intento. Con el plazo de entrega, el árbol y el MLP usan un solo valor por eje, tomado del espacio declarado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Búsqueda</p></th>
+<th class="head"><p>Configuración final</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LogisticRegression</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">regParam</span></code> en {0, 0,01}, <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> = 50</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">regParam</span></code> = 0,01, <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> = 50</p></td>
+</tr>
+<tr class="row-odd"><td><p>GBTClassifier</p></td>
+<td><p>Cancelada (ver arriba)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">maxDepth</span></code> = 5, <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> = 10</p></td>
+</tr>
+<tr class="row-even"><td><p>MultilayerPerceptronClassifier</p></td>
+<td><p>Cancelada (ver arriba)</p></td>
+<td><p>capas <span class="math notranslate nohighlight">\([d, 100, 2]\)</span>, <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> = 100, <code class="docutils literal notranslate"><span class="pre">solver</span></code> = l-bfgs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La arquitectura <span class="math notranslate nohighlight">\([d, 100, 2]\)</span> es la intermedia de las cuatro del enunciado y <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> = 100 el menor de los dos valores. Se eligió <code class="docutils literal notranslate"><span class="pre">l-bfgs</span></code> <span class="bibtex-citation" id="id2">[<a class="reference internal" href="10_reflexion_critica.html#id27" title="Dong C. Liu and Jorge Nocedal. On the limited memory BFGS method for large scale optimization. Mathematical Programming, 45:503–528, 1989. doi:10.1007/BF01589116.">Liu and Nocedal, 1989</a>]</span> porque es el solver por defecto de Spark y converge en menos iteraciones que el descenso de gradiente; con él, el parámetro <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> no se usa, porque solo aplica al solver <code class="docutils literal notranslate"><span class="pre">gd</span></code>. No es un óptimo hallado por búsqueda: es una elección razonada y declarada por límite de tiempo.</p>
+</section>
+<section id="tres-problemas-de-memoria-diagnosticados-y-resueltos">
+<h2>5.3 Tres problemas de memoria, diagnosticados y resueltos<a class="headerlink" href="#tres-problemas-de-memoria-diagnosticados-y-resueltos" title="Link to this heading">#</a></h2>
+<p>El entrenamiento final pasó por tres fallas de memoria distintas. Se documentan porque cada una tiene una causa técnica precisa y explica los ajustes del pipeline final.</p>
+<p><strong>Regresión logística: sin problemas.</strong> Se entrenó sobre los 32.377.421 registros de entrenamiento completos, en unos 497 segundos por semilla.</p>
+<p><strong>Árbol potenciado: estadísticos por nodo sobre el espacio disperso.</strong> Con el vector completo, el entrenamiento generaba avisos crecientes de <code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">enough</span> <span class="pre">space</span> <span class="pre">to</span> <span class="pre">cache</span> <span class="pre">rdd</span> <span class="pre">in</span> <span class="pre">memory</span></code>, siempre sobre el mismo bloque, que llegó a reportar 7,5 GB calculados antes de fallar. Reducir la muestra de 32 millones a 1 millón de filas y las iteraciones de 30 a 10 no eliminó el aviso, lo que descarta el volumen y la profundidad del boosting como causa principal. La causa es la dimensión: el árbol construye histogramas por nodo para cada una de las 4.096 columnas del hashing. La corrección fue la misma que ya usaba scikit-learn con HistGB: entrenar el árbol solo con las 5 categóricas indexadas, sin el bloque disperso. Con eso, el árbol completó sus cinco semillas sin un solo aviso, en 3,6 minutos promedio cada una, sobre una muestra de 1.000.000 de filas por semilla.</p>
+<p><strong>MLP: densificación del vector de entrada.</strong> El MLP de Spark falló con <code class="docutils literal notranslate"><span class="pre">OutOfMemoryError:</span> <span class="pre">Java</span> <span class="pre">heap</span> <span class="pre">space</span></code>, incluso en una JVM recién iniciada. A diferencia del árbol, el MLP sí necesita el espacio del hashing, porque el enunciado define su capa de entrada como <span class="math notranslate nohighlight">\(d\)</span>, la dimensión del hashing. El problema es que su implementación convierte el vector de entrada en una matriz densa para las multiplicaciones de matrices, y el tamaño de esa matriz es</p>
+<div class="math notranslate nohighlight">
+\[ n \times d \times 8 \ \text{bytes} = 10^6 \times 4.101 \times 8 \approx 32{,}8 \ \text{GB}, \]</div>
+<p>el doble de la RAM de la máquina. La corrección fue reducir la dimensión del hashing del MLP a <span class="math notranslate nohighlight">\(2^9 = 512\)</span> y la muestra a 300.000 filas, de modo que <span class="math notranslate nohighlight">\(d = 512 + 5 = 517\)</span> y la matriz densa ocupa <span class="math notranslate nohighlight">\(3 \times 10^5 \times 517 \times 8 \approx 1{,}24\)</span> GB. Con eso, el MLP completó sus cinco semillas, en unos 29 minutos cada una. La notación <span class="math notranslate nohighlight">\([d, 100, 2]\)</span> del enunciado se mantiene, porque <span class="math notranslate nohighlight">\(d\)</span> es justamente la dimensión de entrada, que depende del hashing usado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Filas de entrenamiento</p></th>
+<th class="head"><p>Variables</p></th>
+<th class="head"><p>Dimensión de entrada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LogisticRegression</p></td>
+<td><p>32.377.421 (completo)</p></td>
+<td><p>Hashing <span class="math notranslate nohighlight">\(2^{12}\)</span> + 5 indexadas</p></td>
+<td><p>4.101</p></td>
+</tr>
+<tr class="row-odd"><td><p>GBTClassifier</p></td>
+<td><p>1.000.000 (muestra por semilla)</p></td>
+<td><p>5 indexadas</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>MultilayerPerceptronClassifier</p></td>
+<td><p>300.000 (muestra por semilla)</p></td>
+<td><p>Hashing <span class="math notranslate nohighlight">\(2^{9}\)</span> + 5 indexadas</p></td>
+<td><p>517</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="resultados">
+<h2>5.4 Resultados<a class="headerlink" href="#resultados" title="Link to this heading">#</a></h2>
+<p>Las métricas se calcularon con scikit-learn sobre las probabilidades que Spark guardó para el día 30 completo (4.218.938 filas). La tabla agrega además el AUC que reportó el <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code> de Spark durante el entrenamiento.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"stats"</span> <span class="o">/</span> <span class="s2">"spark_metricas_por_corrida.csv"</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"spark"</span> <span class="o">/</span> <span class="s2">"runs.csv"</span><span class="p">)[[</span><span class="s2">"model"</span><span class="p">,</span> <span class="s2">"seed"</span><span class="p">,</span> <span class="s2">"roc_auc"</span><span class="p">,</span> <span class="s2">"predict_time_s"</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"roc_auc"</span><span class="p">:</span> <span class="s2">"auc_evaluador"</span><span class="p">})</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"model"</span><span class="p">,</span> <span class="s2">"seed"</span><span class="p">])</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">roc_auc</span><span class="o">=</span><span class="p">(</span><span class="s2">"roc_auc"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span> <span class="n">de</span><span class="o">=</span><span class="p">(</span><span class="s2">"roc_auc"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">),</span> <span class="n">auc_evaluador</span><span class="o">=</span><span class="p">(</span><span class="s2">"auc_evaluador"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+                           <span class="n">pr_auc</span><span class="o">=</span><span class="p">(</span><span class="s2">"pr_auc"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span> <span class="n">log_loss</span><span class="o">=</span><span class="p">(</span><span class="s2">"log_loss"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span> <span class="n">brier</span><span class="o">=</span><span class="p">(</span><span class="s2">"brier"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span> <span class="n">ece</span><span class="o">=</span><span class="p">(</span><span class="s2">"ece"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+                           <span class="n">ajuste_s</span><span class="o">=</span><span class="p">(</span><span class="s2">"fit_time_s"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span> <span class="n">prediccion_s</span><span class="o">=</span><span class="p">(</span><span class="s2">"predict_time_s"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"model"</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"model"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s2">"lr"</span><span class="p">:</span> <span class="s2">"LogisticRegression"</span><span class="p">,</span> <span class="s2">"gbt"</span><span class="p">:</span> <span class="s2">"GBTClassifier"</span><span class="p">,</span> <span class="s2">"mlp"</span><span class="p">:</span> <span class="s2">"MLP"</span><span class="p">})</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"model"</span><span class="p">:</span> <span class="s2">"modelo"</span><span class="p">,</span> <span class="s2">"roc_auc"</span><span class="p">:</span> <span class="s2">"ROC AUC"</span><span class="p">,</span> <span class="s2">"de"</span><span class="p">:</span> <span class="s2">"DE AUC"</span><span class="p">,</span> <span class="s2">"auc_evaluador"</span><span class="p">:</span> <span class="s2">"AUC del evaluador de Spark"</span><span class="p">,</span>
+                        <span class="s2">"pr_auc"</span><span class="p">:</span> <span class="s2">"PR AUC"</span><span class="p">,</span> <span class="s2">"log_loss"</span><span class="p">:</span> <span class="s2">"log loss"</span><span class="p">,</span> <span class="s2">"brier"</span><span class="p">:</span> <span class="s2">"Brier"</span><span class="p">,</span> <span class="s2">"ece"</span><span class="p">:</span> <span class="s2">"ECE"</span><span class="p">,</span>
+                        <span class="s2">"ajuste_s"</span><span class="p">:</span> <span class="s2">"ajuste (s)"</span><span class="p">,</span> <span class="s2">"prediccion_s"</span><span class="p">:</span> <span class="s2">"predicción (s)"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_ed67e">
+  <thead>
+    <tr>
+      <th id="T_ed67e_level0_col0" class="col_heading level0 col0" >modelo</th>
+      <th id="T_ed67e_level0_col1" class="col_heading level0 col1" >ROC AUC</th>
+      <th id="T_ed67e_level0_col2" class="col_heading level0 col2" >DE AUC</th>
+      <th id="T_ed67e_level0_col3" class="col_heading level0 col3" >AUC del evaluador de Spark</th>
+      <th id="T_ed67e_level0_col4" class="col_heading level0 col4" >PR AUC</th>
+      <th id="T_ed67e_level0_col5" class="col_heading level0 col5" >log loss</th>
+      <th id="T_ed67e_level0_col6" class="col_heading level0 col6" >Brier</th>
+      <th id="T_ed67e_level0_col7" class="col_heading level0 col7" >ECE</th>
+      <th id="T_ed67e_level0_col8" class="col_heading level0 col8" >ajuste (s)</th>
+      <th id="T_ed67e_level0_col9" class="col_heading level0 col9" >predicción (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_ed67e_row0_col0" class="data row0 col0" >GBTClassifier</td>
+      <td id="T_ed67e_row0_col1" class="data row0 col1" >0,6566</td>
+      <td id="T_ed67e_row0_col2" class="data row0 col2" >0,0003</td>
+      <td id="T_ed67e_row0_col3" class="data row0 col3" >0,6566</td>
+      <td id="T_ed67e_row0_col4" class="data row0 col4" >0,2586</td>
+      <td id="T_ed67e_row0_col5" class="data row0 col5" >0,4372</td>
+      <td id="T_ed67e_row0_col6" class="data row0 col6" >0,1354</td>
+      <td id="T_ed67e_row0_col7" class="data row0 col7" >0,0289</td>
+      <td id="T_ed67e_row0_col8" class="data row0 col8" >214,6001</td>
+      <td id="T_ed67e_row0_col9" class="data row0 col9" >26,4890</td>
+    </tr>
+    <tr>
+      <td id="T_ed67e_row1_col0" class="data row1 col0" >LogisticRegression</td>
+      <td id="T_ed67e_row1_col1" class="data row1 col1" >0,7157</td>
+      <td id="T_ed67e_row1_col2" class="data row1 col2" >0,0000</td>
+      <td id="T_ed67e_row1_col3" class="data row1 col3" >0,7157</td>
+      <td id="T_ed67e_row1_col4" class="data row1 col4" >0,3297</td>
+      <td id="T_ed67e_row1_col5" class="data row1 col5" >0,4131</td>
+      <td id="T_ed67e_row1_col6" class="data row1 col6" >0,1286</td>
+      <td id="T_ed67e_row1_col7" class="data row1 col7" >0,0082</td>
+      <td id="T_ed67e_row1_col8" class="data row1 col8" >497,0790</td>
+      <td id="T_ed67e_row1_col9" class="data row1 col9" >44,1367</td>
+    </tr>
+    <tr>
+      <td id="T_ed67e_row2_col0" class="data row2 col0" >MLP</td>
+      <td id="T_ed67e_row2_col1" class="data row2 col1" >0,6607</td>
+      <td id="T_ed67e_row2_col2" class="data row2 col2" >0,0049</td>
+      <td id="T_ed67e_row2_col3" class="data row2 col3" >0,6422</td>
+      <td id="T_ed67e_row2_col4" class="data row2 col4" >0,2808</td>
+      <td id="T_ed67e_row2_col5" class="data row2 col5" >0,4464</td>
+      <td id="T_ed67e_row2_col6" class="data row2 col6" >0,1381</td>
+      <td id="T_ed67e_row2_col7" class="data row2 col7" >0,0469</td>
+      <td id="T_ed67e_row2_col8" class="data row2 col8" >1.737,4685</td>
+      <td id="T_ed67e_row2_col9" class="data row2 col9" >125,8823</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> En Spark, la regresión logística es el mejor modelo, con un AUC de 0,7157, seguida del MLP con 0,6607 y del árbol potenciado con 0,6566. La regresión logística es además la mejor calibrada (ECE de 0,008 frente a 0,047 del MLP) y la de menor log loss (0,413). Su desviación estándar entre semillas es prácticamente cero, como corresponde a un problema convexo resuelto con un optimizador determinista sobre los datos completos: la semilla no cambia la solución. En el MLP, el AUC del evaluador de Spark (0,6422) es 1,9 puntos menor que el calculado sobre las probabilidades (0,6607).</p>
+<p>Esto quiere decir que, en Spark, el orden de los modelos se invierte respecto de scikit-learn, y la explicación está en las diferencias de entrenamiento más que en el algoritmo. La regresión logística vio los 32 millones de filas con el espacio completo de 4.101 columnas; el MLP vio 300 mil filas con 517 columnas, y el árbol 1 millón con solo las 5 variables de baja cardinalidad, sin los identificadores de sitio, aplicación ni dispositivo, que son los que concentran la señal (capítulo 2). Así mismo, la diferencia en el AUC del MLP es un error de medición del evaluador: <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code> usa por defecto la columna <code class="docutils literal notranslate"><span class="pre">rawPrediction</span></code>, que en el MLP es la salida antes del softmax, y aproxima la curva ROC con 1.000 cortes. En la regresión logística y el árbol esa columna es monótona con la probabilidad y los dos cálculos coinciden.</p>
+<p>Por tal motivo, se adopta como referencia el AUC calculado sobre las probabilidades, que es exacto y comparable con el de scikit-learn, y se interpreta el ranking de Spark como el resultado de lo que cada modelo pudo entrenar en esta máquina, no como evidencia de que un MLP sea inferior a una regresión logística en este problema.</p>
+</section>
+<section id="limitaciones-del-mlp-nativo-de-spark">
+<h2>5.5 Limitaciones del MLP nativo de Spark<a class="headerlink" href="#limitaciones-del-mlp-nativo-de-spark" title="Link to this heading">#</a></h2>
+<p>El enunciado pide una discusión obligatoria de las limitaciones del <code class="docutils literal notranslate"><span class="pre">MultilayerPerceptronClassifier</span></code>. Con la evidencia de este capítulo, son las siguientes.</p>
+<ul class="simple">
+<li><p><strong>Sin capas de embedding.</strong> La capa de entrada tiene una neurona por columna del vector, así que las categóricas solo pueden entrar hasheadas o indexadas. Un embedding aprende un vector denso de baja dimensión por categoría y comparte información entre categorías parecidas; el hashing, en cambio, mezcla categorías sin relación cuando colisionan, y el índice del <code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> impone un orden que no existe.</p></li>
+<li><p><strong>Entrada densificada.</strong> Como se mostró en la sección 5.3, el costo en memoria es <span class="math notranslate nohighlight">\(n \times d\)</span> y no depende de cuántas columnas son distintas de cero. Esto es lo que obligó a reducir la dimensión a 517 y la muestra a 300 mil filas, y es la limitación con mayor impacto medido en este proyecto: es la principal razón de que el MLP de Spark quede 7 puntos de AUC por debajo del de scikit-learn.</p></li>
+<li><p><strong>Sin dropout ni regularización.</strong> El clasificador no tiene parámetro de regularización, de modo que la única forma de controlar el sobreajuste es el número de iteraciones. El MLP de scikit-learn usa regularización L2 (<span class="math notranslate nohighlight">\(\alpha\)</span>) y parada temprana sobre un conjunto de validación.</p></li>
+<li><p><strong>Activación sigmoide fija en las capas ocultas.</strong> La sigmoide se satura para entradas grandes y su derivada máxima es 0,25, lo que desacelera el aprendizaje en redes profundas. scikit-learn usa ReLU por defecto, que no se satura para entradas positivas.</p></li>
+<li><p><strong>Softmax de dos salidas para un problema binario.</strong> Para clasificación binaria, la salida softmax con dos neuronas equivale a una sigmoide con un parámetro redundante por neurona oculta.</p></li>
+<li><p><strong>Optimización por lotes completos.</strong> Con <code class="docutils literal notranslate"><span class="pre">l-bfgs</span></code>, cada iteración recorre todas las filas; no hay minilotes ni Adam, y tampoco parada temprana por validación.</p></li>
+</ul>
+<p>El enunciado propone como extensión opcional una red con embeddings entrenada de forma distribuida con TorchDistributor. No se desarrolló, por el plazo, y queda como trabajo futuro: es la alternativa que resolvería a la vez la falta de embeddings y la densificación de la entrada.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dl_tarea1"
+        },
+        kernelOptions: {
+            name: "dl_tarea1",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dl_tarea1'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_modelado_sklearn.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">4. Modelado con scikit-learn</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_evaluacion_estadistica.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">6. Evaluación estadística</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesion-y-pipeline">5.1 Sesión y pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-los-datos">Lectura de los datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-hiperparametros">5.2 Selección de hiperparámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-problemas-de-memoria-diagnosticados-y-resueltos">5.3 Tres problemas de memoria, diagnosticados y resueltos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">5.4 Resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-mlp-nativo-de-spark">5.5 Limitaciones del MLP nativo de Spark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Donny Torres
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

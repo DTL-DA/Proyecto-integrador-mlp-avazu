@@ -1,0 +1,1454 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Análisis exploratorio de datos &#8212; Proyecto Integrador 2.12 — MLP para click en anuncios móviles</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/02_eda';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="3. Protocolo anti-fuga y preprocesamiento" href="03_protocolo_antifuga_y_preprocesamiento.html" />
+    <link rel="prev" title="1. Ficha de datos y preguntas de investigación" href="01_ficha_datos_y_preguntas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Integrador 2.12 — MLP para click en anuncios móviles</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Proyecto Integrador 2.12: MLP para predecir clics en anuncios móviles
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ficha_datos_y_preguntas.html">1. Ficha de datos y preguntas de investigación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Análisis exploratorio de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_protocolo_antifuga_y_preprocesamiento.html">3. Protocolo anti-fuga y preprocesamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modelado_sklearn.html">4. Modelado con scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_modelado_pyspark.html">5. Modelado con PySpark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_evaluacion_estadistica.html">6. Evaluación estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_benchmarking.html">7. Benchmarking computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interpretabilidad.html">8. Interpretabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_comparacion_resultados.html">9. Comparación de resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_reflexion_critica.html">10. Reflexión crítica y conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_anexo_reproducibilidad.html">11. Anexo de reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/DTL-DA/Proyecto-integrador-mlp-avazu" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/02_eda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. Análisis exploratorio de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-eficiente-y-calidad-de-los-datos">2.1 Carga eficiente y calidad de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-la-variable-objetivo">2.2 Distribución de la variable objetivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasa-de-clics-por-dia">2.3 Tasa de clics por día</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasa-de-clics-por-hora-y-franja-horaria">2.4 Tasa de clics por hora y franja horaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-las-principales-categoricas">2.5 Frecuencias de las principales categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cardinalidad-y-cola-larga">2.6 Cardinalidad y cola larga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asociacion-con-la-variable-objetivo">2.7 Asociación con la variable objetivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-mutua-y-su-sesgo-de-estimacion">Información mutua y su sesgo de estimación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-de-cramer-entre-categoricas-de-baja-cardinalidad">V de Cramér entre categóricas de baja cardinalidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlacion-de-spearman-de-las-columnas-anonimizadas">Correlación de Spearman de las columnas anonimizadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriva-entre-entrenamiento-y-prueba">2.8 Deriva entre entrenamiento y prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesis-decision-impacto-y-riesgo-por-hallazgo">2.9 Síntesis: decisión, impacto y riesgo por hallazgo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos">
+<h1>2. Análisis exploratorio de datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h1>
+<p>El análisis exploratorio tiene un propósito concreto: convertir lo que se observa en los datos en decisiones de preprocesamiento y de arquitectura, y detectar a tiempo los riesgos de fuga. Por eso cada análisis cierra con una interpretación técnica, y la sección 2.9 reúne en una tabla la decisión, el impacto en la arquitectura y el riesgo de cada hallazgo.</p>
+<p>Las agregaciones de conteo y CTR se calcularon sobre las 40.428.967 filas con DuckDB, fuera de memoria. Las medidas de asociación y el PSI usan una muestra aleatoria de 2.000.000 de filas de entrenamiento, por el límite de 16 GB de RAM.</p>
+<section id="carga-eficiente-y-calidad-de-los-datos">
+<h2>2.1 Carga eficiente y calidad de los datos<a class="headerlink" href="#carga-eficiente-y-calidad-de-los-datos" title="Link to this heading">#</a></h2>
+<p>El CSV se convirtió una sola vez a Parquet particionado por día con DuckDB, y desde ahí cada análisis lee solo las columnas y los días que necesita. La conversión verificó el conteo total de filas (40.428.967), la presencia de los diez días y la ausencia de valores nulos en las 24 columnas originales.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dias</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"ctr_by_day.csv"</span><span class="p">)</span>
+<span class="n">dias</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">"2014-10-"</span> <span class="o">+</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+<span class="n">nombres</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">"lunes"</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">"martes"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"miércoles"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"jueves"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"viernes"</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">"sábado"</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">"domingo"</span><span class="p">}</span>
+<span class="n">dias</span><span class="p">[</span><span class="s2">"dia_semana"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">nombres</span><span class="p">)</span>
+<span class="n">dias</span><span class="p">[</span><span class="s2">"particion"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">28</span><span class="p">,</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">29</span><span class="p">],</span> <span class="p">[</span><span class="s2">"train"</span><span class="p">,</span> <span class="s2">"validación"</span><span class="p">],</span> <span class="s2">"prueba"</span><span class="p">)</span>
+<span class="n">dias</span><span class="p">[</span><span class="s2">"ctr_pct"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"ctr"</span><span class="p">]</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">dias</span><span class="p">[[</span><span class="s2">"day"</span><span class="p">,</span> <span class="s2">"dia_semana"</span><span class="p">,</span> <span class="s2">"particion"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span> <span class="s2">"día"</span><span class="p">,</span> <span class="s2">"dia_semana"</span><span class="p">:</span> <span class="s2">"día de la semana"</span><span class="p">,</span> <span class="s2">"particion"</span><span class="p">:</span> <span class="s2">"partición"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">:</span> <span class="s2">"impresiones"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_0e298">
+  <thead>
+    <tr>
+      <th id="T_0e298_level0_col0" class="col_heading level0 col0" >día</th>
+      <th id="T_0e298_level0_col1" class="col_heading level0 col1" >día de la semana</th>
+      <th id="T_0e298_level0_col2" class="col_heading level0 col2" >partición</th>
+      <th id="T_0e298_level0_col3" class="col_heading level0 col3" >impresiones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_0e298_row0_col0" class="data row0 col0" >21</td>
+      <td id="T_0e298_row0_col1" class="data row0 col1" >martes</td>
+      <td id="T_0e298_row0_col2" class="data row0 col2" >train</td>
+      <td id="T_0e298_row0_col3" class="data row0 col3" >4.122.995</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row1_col0" class="data row1 col0" >22</td>
+      <td id="T_0e298_row1_col1" class="data row1 col1" >miércoles</td>
+      <td id="T_0e298_row1_col2" class="data row1 col2" >train</td>
+      <td id="T_0e298_row1_col3" class="data row1 col3" >5.337.126</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row2_col0" class="data row2 col0" >23</td>
+      <td id="T_0e298_row2_col1" class="data row2 col1" >jueves</td>
+      <td id="T_0e298_row2_col2" class="data row2 col2" >train</td>
+      <td id="T_0e298_row2_col3" class="data row2 col3" >3.870.752</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row3_col0" class="data row3 col0" >24</td>
+      <td id="T_0e298_row3_col1" class="data row3 col1" >viernes</td>
+      <td id="T_0e298_row3_col2" class="data row3 col2" >train</td>
+      <td id="T_0e298_row3_col3" class="data row3 col3" >3.335.302</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row4_col0" class="data row4 col0" >25</td>
+      <td id="T_0e298_row4_col1" class="data row4 col1" >sábado</td>
+      <td id="T_0e298_row4_col2" class="data row4 col2" >train</td>
+      <td id="T_0e298_row4_col3" class="data row4 col3" >3.363.122</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row5_col0" class="data row5 col0" >26</td>
+      <td id="T_0e298_row5_col1" class="data row5 col1" >domingo</td>
+      <td id="T_0e298_row5_col2" class="data row5 col2" >train</td>
+      <td id="T_0e298_row5_col3" class="data row5 col3" >3.835.892</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row6_col0" class="data row6 col0" >27</td>
+      <td id="T_0e298_row6_col1" class="data row6 col1" >lunes</td>
+      <td id="T_0e298_row6_col2" class="data row6 col2" >train</td>
+      <td id="T_0e298_row6_col3" class="data row6 col3" >3.225.010</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row7_col0" class="data row7 col0" >28</td>
+      <td id="T_0e298_row7_col1" class="data row7 col1" >martes</td>
+      <td id="T_0e298_row7_col2" class="data row7 col2" >train</td>
+      <td id="T_0e298_row7_col3" class="data row7 col3" >5.287.222</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row8_col0" class="data row8 col0" >29</td>
+      <td id="T_0e298_row8_col1" class="data row8 col1" >miércoles</td>
+      <td id="T_0e298_row8_col2" class="data row8 col2" >validación</td>
+      <td id="T_0e298_row8_col3" class="data row8 col3" >3.832.608</td>
+    </tr>
+    <tr>
+      <td id="T_0e298_row9_col0" class="data row9 col0" >30</td>
+      <td id="T_0e298_row9_col1" class="data row9 col1" >jueves</td>
+      <td id="T_0e298_row9_col2" class="data row9 col2" >prueba</td>
+      <td id="T_0e298_row9_col3" class="data row9 col3" >4.218.938</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="distribucion-de-la-variable-objetivo">
+<h2>2.2 Distribución de la variable objetivo<a class="headerlink" href="#distribucion-de-la-variable-objetivo" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figura</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"click_overall.png"</span><span class="p">,</span> <span class="mi">520</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/2e6759d5e0fa8aa15381b239618073c526e2293fc0f61599efe40b5dd8652bdb.png"><img alt="../_images/2e6759d5e0fa8aa15381b239618073c526e2293fc0f61599efe40b5dd8652bdb.png" src="../_images/2e6759d5e0fa8aa15381b239618073c526e2293fc0f61599efe40b5dd8652bdb.png" style="width: 520px;" />
+</a>
+</div>
+</div>
+<p><strong>Interpretación.</strong> De las 40.428.967 impresiones, 33.563.901 (83,02 %) no tuvieron clic y 6.865.066 (16,98 %) sí lo tuvieron. Es un desbalance moderado, con 4,89 negativos por cada positivo, lejos de los escenarios extremos de detección de fraude donde la clase positiva no llega al 1 %.</p>
+<p>Esto significa que un clasificador trivial que siempre predice «no clic» tendría un accuracy de 83 %, sin ningún valor práctico. Por eso el accuracy no puede ser la métrica de referencia. El ROC AUC sí es apropiado como métrica primaria, porque mide la probabilidad de que un positivo reciba un puntaje mayor que un negativo y no depende de la tasa base, mientras que la PR AUC tiene como referencia de azar la propia tasa base (0,17), así que expone mejor el desempeño sobre la clase minoritaria.</p>
+<p>Por tal motivo, se opta por ROC AUC como métrica primaria y PR AUC como secundaria, y por elegir el umbral de decisión en validación maximizando F1, en lugar de usar 0,5. La ponderación de clases se evalúa como ablación (capítulo 9), tal como pide el enunciado.</p>
+</section>
+<section id="tasa-de-clics-por-dia">
+<h2>2.3 Tasa de clics por día<a class="headerlink" href="#tasa-de-clics-por-dia" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">new_figure</span><span class="p">((</span><span class="mf">7.2</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">))</span>
+<span class="n">tonos</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"train"</span><span class="p">:</span> <span class="s2">"#4d4d4d"</span><span class="p">,</span> <span class="s2">"validación"</span><span class="p">:</span> <span class="s2">"#a6a6a6"</span><span class="p">,</span> <span class="s2">"prueba"</span><span class="p">:</span> <span class="s2">"#1a1a1a"</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">dias</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"particion"</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">sub</span><span class="p">[</span><span class="s2">"day"</span><span class="p">],</span> <span class="n">sub</span><span class="p">[</span><span class="s2">"ctr_pct"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">tonos</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">],</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"ctr_pct"</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="mf">0.06</span><span class="p">,</span> <span class="n">es</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="mf">0.16980562</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#808080"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"tasa base global"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mf">19.8</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">w</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dias</span><span class="p">[</span><span class="s2">"day"</span><span class="p">],</span> <span class="n">dias</span><span class="p">[</span><span class="s2">"dia_semana"</span><span class="p">])])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"día de octubre de 2014"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"CTR (%)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/4429c5bf6ee36620c8be20dff75218541167785c1988958140f46a5a1ecf7b4f.png" src="../_images/4429c5bf6ee36620c8be20dff75218541167785c1988958140f46a5a1ecf7b4f.png" />
+</div>
+</div>
+<p><strong>Interpretación.</strong> El CTR diario oscila entre 15,22 % (día 28, martes) y 18,30 % (día 26, domingo), una amplitud de 3,1 puntos porcentuales sobre una media de 17 %. Los dos días de mayor volumen, el 22 y el 28 (más de 5,2 millones de impresiones cada uno), son también los de menor CTR, 15,72 % y 15,22 %. La validación (día 29) tiene un CTR de 15,66 % y la prueba (día 30) de 16,93 %.</p>
+<p>Lo anterior indica que el CTR tiene deriva temporal: varía de un día a otro en una magnitud comparable a las diferencias entre modelos que interesa detectar. Hay que tener en cuenta que, si la partición fuera aleatoria, las mismas condiciones de un día aparecerían a la vez en entrenamiento y en prueba, y el modelo se evaluaría sobre un futuro que ya conoce. Además, la validación tiene un CTR 1,3 puntos más bajo que la prueba, así que un umbral calibrado sobre el día 29 puede quedar algo desplazado frente al día 30.</p>
+<p>Por ello, se mantiene la partición temporal que fija el enunciado (train 21 a 28, validación 29, prueba 30), y se reportan métricas de calibración (log loss, Brier, ECE), que son las que capturan ese desplazamiento entre el CTR de validación y el de prueba.</p>
+</section>
+<section id="tasa-de-clics-por-hora-y-franja-horaria">
+<h2>2.4 Tasa de clics por hora y franja horaria<a class="headerlink" href="#tasa-de-clics-por-hora-y-franja-horaria" title="Link to this heading">#</a></h2>
+<p>La hora del día, <code class="docutils literal notranslate"><span class="pre">hour_of_day</span></code>, es la principal variable numérica derivada del campo <code class="docutils literal notranslate"><span class="pre">hour</span></code>. El panel izquierdo muestra su distribución, es decir, el volumen de impresiones por hora, y el derecho su CTR.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">horas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"ctr_by_hour.csv"</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#d9d9d9"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span> <span class="n">a</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"top"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">):</span> <span class="n">a</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">horas</span><span class="p">[</span><span class="s2">"hour_of_day"</span><span class="p">],</span> <span class="n">horas</span><span class="p">[</span><span class="s2">"n"</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#4d4d4d"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"hora del día"</span><span class="p">);</span> <span class="n">a1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"impresiones (millones)"</span><span class="p">);</span> <span class="n">a1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Distribución de la hora"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">a2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">horas</span><span class="p">[</span><span class="s2">"hour_of_day"</span><span class="p">],</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">horas</span><span class="p">[</span><span class="s2">"ctr"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">a2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="mf">0.16980562</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#808080"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"hora del día"</span><span class="p">);</span> <span class="n">a2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"CTR (%)"</span><span class="p">);</span> <span class="n">a2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"CTR por hora"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">franjas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"ctr_by_franja.csv"</span><span class="p">)</span>
+<span class="n">franjas</span><span class="p">[</span><span class="s2">"ctr_pct"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">franjas</span><span class="p">[</span><span class="s2">"ctr"</span><span class="p">]</span>
+<span class="n">franjas</span><span class="p">[</span><span class="s2">"franja_horaria"</span><span class="p">]</span> <span class="o">=</span> <span class="n">franjas</span><span class="p">[</span><span class="s2">"franja_horaria"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">"manana"</span><span class="p">:</span> <span class="s2">"mañana"</span><span class="p">})</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">franjas</span><span class="p">[[</span><span class="s2">"franja_horaria"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">,</span> <span class="s2">"ctr_pct"</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"franja_horaria"</span><span class="p">:</span> <span class="s2">"franja"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">:</span> <span class="s2">"impresiones"</span><span class="p">,</span> <span class="s2">"ctr_pct"</span><span class="p">:</span> <span class="s2">"CTR (%)"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ed5621bb6c29f4807955cca7006499ecb90cf6661337a2bf341dadc54ef313d4.png" src="../_images/ed5621bb6c29f4807955cca7006499ecb90cf6661337a2bf341dadc54ef313d4.png" />
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_311b5">
+  <thead>
+    <tr>
+      <th id="T_311b5_level0_col0" class="col_heading level0 col0" >franja</th>
+      <th id="T_311b5_level0_col1" class="col_heading level0 col1" >impresiones</th>
+      <th id="T_311b5_level0_col2" class="col_heading level0 col2" >CTR (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_311b5_row0_col0" class="data row0 col0" >tarde</td>
+      <td id="T_311b5_row0_col1" class="data row0 col1" >12.970.206</td>
+      <td id="T_311b5_row0_col2" class="data row0 col2" >17,49</td>
+    </tr>
+    <tr>
+      <td id="T_311b5_row1_col0" class="data row1 col0" >madrugada</td>
+      <td id="T_311b5_row1_col1" class="data row1 col1" >8.347.162</td>
+      <td id="T_311b5_row1_col2" class="data row1 col2" >17,05</td>
+    </tr>
+    <tr>
+      <td id="T_311b5_row2_col0" class="data row2 col0" >mañana</td>
+      <td id="T_311b5_row2_col1" class="data row2 col1" >12.194.906</td>
+      <td id="T_311b5_row2_col2" class="data row2 col2" >16,66</td>
+    </tr>
+    <tr>
+      <td id="T_311b5_row3_col0" class="data row3 col0" >noche</td>
+      <td id="T_311b5_row3_col1" class="data row3 col1" >6.916.693</td>
+      <td id="T_311b5_row3_col2" class="data row3 col2" >16,49</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> El volumen de impresiones sigue el ciclo diario de uso: es mínimo a las 23 horas (818.771 impresiones) y máximo a las 13 horas (2.388.730). El CTR, en cambio, varía poco, entre 15,96 % a las 4 horas y 18,58 % a la 1 hora, con una desviación estándar de 0,78 puntos entre las 24 horas. Por franja, la tarde tiene el CTR más alto (17,49 %) y la noche el más bajo (16,49 %).</p>
+<p>Es decir, la hora explica mucho del volumen pero poco de la probabilidad de clic: un rango de 2,6 puntos alrededor de una media de 17 % es una señal débil frente a la que aportan el sitio, la aplicación o el dispositivo (sección 2.7). Así mismo, la relación entre hora y CTR no es monótona, porque el máximo está a la 1 y el mínimo a las 4, así que tratar la hora como variable numérica continua en un modelo lineal no la aprovecharía.</p>
+<p>En consecuencia, si la hora se usa como predictor, debe entrar como categórica y no escalada como numérica. Hay que declarar que el conjunto de variables del experimento principal se limitó a las 12 categóricas de sitio, aplicación y dispositivo, y no incluyó la hora ni las columnas <code class="docutils literal notranslate"><span class="pre">C1</span></code> y <code class="docutils literal notranslate"><span class="pre">C14</span></code> a <code class="docutils literal notranslate"><span class="pre">C21</span></code>. Esa exclusión no se fijó a partir de esta evidencia, así que su efecto se cuantifica como una variante de las ablaciones, con esas columnas como categóricas dentro del hashing (capítulo 9). La transformación logarítmica que el enunciado propone para numéricas de cola pesada no aplica: la hora es acotada y cíclica, y las columnas <code class="docutils literal notranslate"><span class="pre">C*</span></code> son códigos anonimizados, no magnitudes (sección 2.7).</p>
+</section>
+<section id="frecuencias-de-las-principales-categoricas">
+<h2>2.5 Frecuencias de las principales categóricas<a class="headerlink" href="#frecuencias-de-las-principales-categoricas" title="Link to this heading">#</a></h2>
+<p>La tabla muestra, para cada variable de baja cardinalidad, sus tres categorías más frecuentes con su volumen, su participación en el total y su CTR.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"device_type"</span><span class="p">,</span> <span class="s2">"device_conn_type"</span><span class="p">,</span> <span class="s2">"banner_pos"</span><span class="p">,</span> <span class="s2">"app_category"</span><span class="p">,</span> <span class="s2">"site_category"</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"freq_</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">))</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"n"</span><span class="p">]),</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="s2">"n"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">40428967</span><span class="p">,</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="s2">"ctr"</span><span class="p">]))</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"categoría"</span><span class="p">,</span> <span class="s2">"impresiones"</span><span class="p">,</span> <span class="s2">"</span><span class="si">% d</span><span class="s2">el total"</span><span class="p">,</span> <span class="s2">"CTR (%)"</span><span class="p">]),</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"impresiones"</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_6da25">
+  <thead>
+    <tr>
+      <th id="T_6da25_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_6da25_level0_col1" class="col_heading level0 col1" >categoría</th>
+      <th id="T_6da25_level0_col2" class="col_heading level0 col2" >impresiones</th>
+      <th id="T_6da25_level0_col3" class="col_heading level0 col3" >% del total</th>
+      <th id="T_6da25_level0_col4" class="col_heading level0 col4" >CTR (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_6da25_row0_col0" class="data row0 col0" >device_type</td>
+      <td id="T_6da25_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_6da25_row0_col2" class="data row0 col2" >37.304.667</td>
+      <td id="T_6da25_row0_col3" class="data row0 col3" >92,27</td>
+      <td id="T_6da25_row0_col4" class="data row0 col4" >16,92</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row1_col0" class="data row1 col0" >device_type</td>
+      <td id="T_6da25_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_6da25_row1_col2" class="data row1 col2" >2.220.812</td>
+      <td id="T_6da25_row1_col3" class="data row1 col3" >5,49</td>
+      <td id="T_6da25_row1_col4" class="data row1 col4" >21,07</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row2_col0" class="data row2 col0" >device_type</td>
+      <td id="T_6da25_row2_col1" class="data row2 col1" >4</td>
+      <td id="T_6da25_row2_col2" class="data row2 col2" >774.272</td>
+      <td id="T_6da25_row2_col3" class="data row2 col3" >1,92</td>
+      <td id="T_6da25_row2_col4" class="data row2 col4" >9,54</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row3_col0" class="data row3 col0" >device_conn_type</td>
+      <td id="T_6da25_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_6da25_row3_col2" class="data row3 col2" >34.886.838</td>
+      <td id="T_6da25_row3_col3" class="data row3 col3" >86,29</td>
+      <td id="T_6da25_row3_col4" class="data row3 col4" >18,11</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row4_col0" class="data row4 col0" >device_conn_type</td>
+      <td id="T_6da25_row4_col1" class="data row4 col1" >2</td>
+      <td id="T_6da25_row4_col2" class="data row4 col2" >3.317.443</td>
+      <td id="T_6da25_row4_col3" class="data row4 col3" >8,21</td>
+      <td id="T_6da25_row4_col4" class="data row4 col4" >13,53</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row5_col0" class="data row5 col0" >device_conn_type</td>
+      <td id="T_6da25_row5_col1" class="data row5 col1" >3</td>
+      <td id="T_6da25_row5_col2" class="data row5 col2" >2.181.796</td>
+      <td id="T_6da25_row5_col3" class="data row5 col3" >5,40</td>
+      <td id="T_6da25_row5_col4" class="data row5 col4" >4,40</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row6_col0" class="data row6 col0" >banner_pos</td>
+      <td id="T_6da25_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_6da25_row6_col2" class="data row6 col2" >29.109.590</td>
+      <td id="T_6da25_row6_col3" class="data row6 col3" >72,00</td>
+      <td id="T_6da25_row6_col4" class="data row6 col4" >16,43</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row7_col0" class="data row7 col0" >banner_pos</td>
+      <td id="T_6da25_row7_col1" class="data row7 col1" >1</td>
+      <td id="T_6da25_row7_col2" class="data row7 col2" >11.247.282</td>
+      <td id="T_6da25_row7_col3" class="data row7 col3" >27,82</td>
+      <td id="T_6da25_row7_col4" class="data row7 col4" >18,36</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row8_col0" class="data row8 col0" >banner_pos</td>
+      <td id="T_6da25_row8_col1" class="data row8 col1" >7</td>
+      <td id="T_6da25_row8_col2" class="data row8 col2" >43.577</td>
+      <td id="T_6da25_row8_col3" class="data row8 col3" >0,11</td>
+      <td id="T_6da25_row8_col4" class="data row8 col4" >32,01</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row9_col0" class="data row9 col0" >app_category</td>
+      <td id="T_6da25_row9_col1" class="data row9 col1" >07d7df22</td>
+      <td id="T_6da25_row9_col2" class="data row9 col2" >26.165.592</td>
+      <td id="T_6da25_row9_col3" class="data row9 col3" >64,72</td>
+      <td id="T_6da25_row9_col4" class="data row9 col4" >19,91</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row10_col0" class="data row10 col0" >app_category</td>
+      <td id="T_6da25_row10_col1" class="data row10 col1" >0f2161f8</td>
+      <td id="T_6da25_row10_col2" class="data row10 col2" >9.561.058</td>
+      <td id="T_6da25_row10_col3" class="data row10 col3" >23,65</td>
+      <td id="T_6da25_row10_col4" class="data row10 col4" >10,81</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row11_col0" class="data row11 col0" >app_category</td>
+      <td id="T_6da25_row11_col1" class="data row11 col1" >cef3e649</td>
+      <td id="T_6da25_row11_col2" class="data row11 col2" >1.731.545</td>
+      <td id="T_6da25_row11_col3" class="data row11 col3" >4,28</td>
+      <td id="T_6da25_row11_col4" class="data row11 col4" >9,32</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row12_col0" class="data row12 col0" >site_category</td>
+      <td id="T_6da25_row12_col1" class="data row12 col1" >50e219e0</td>
+      <td id="T_6da25_row12_col2" class="data row12 col2" >16.537.234</td>
+      <td id="T_6da25_row12_col3" class="data row12 col3" >40,90</td>
+      <td id="T_6da25_row12_col4" class="data row12 col4" >12,86</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row13_col0" class="data row13 col0" >site_category</td>
+      <td id="T_6da25_row13_col1" class="data row13 col1" >f028772b</td>
+      <td id="T_6da25_row13_col2" class="data row13 col2" >12.657.073</td>
+      <td id="T_6da25_row13_col3" class="data row13 col3" >31,31</td>
+      <td id="T_6da25_row13_col4" class="data row13 col4" >17,96</td>
+    </tr>
+    <tr>
+      <td id="T_6da25_row14_col0" class="data row14 col0" >site_category</td>
+      <td id="T_6da25_row14_col1" class="data row14 col1" >28905ebd</td>
+      <td id="T_6da25_row14_col2" class="data row14 col2" >7.377.208</td>
+      <td id="T_6da25_row14_col3" class="data row14 col3" >18,25</td>
+      <td id="T_6da25_row14_col4" class="data row14 col4" >20,80</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> Las categóricas de baja cardinalidad tienen distribuciones muy concentradas y CTR muy distintos entre categorías. El tipo de dispositivo 1 cubre el 92,3 % de las impresiones con un CTR de 16,92 %, mientras que el tipo 0 tiene un CTR de 21,07 %. En el tipo de conexión, la categoría 0 (86,3 % del total) tiene un CTR de 18,11 % y la 3 apenas 4,40 %. En la posición del anuncio, la 7 llega a 32,01 % con solo 43.577 impresiones, y una categoría de sitio (<code class="docutils literal notranslate"><span class="pre">3e814130</span></code>) alcanza 28,30 % con 3.050.306.</p>
+<p>De esta forma, estas variables discriminan bien aunque tengan pocas categorías: una diferencia de 18,11 % frente a 4,40 % es una razón de 4 a 1 en la probabilidad de clic. Hay que tener en cuenta que las categorías con muy pocas impresiones, como la posición 7, producen estimaciones de CTR con mucha varianza: con 43.577 observaciones el error estándar es cercano a 0,2 puntos, pero en categorías de pocas decenas sería de varios puntos, y un codificador que las use sin suavizar memorizaría ruido.</p>
+<p>Por lo anterior, conviene agrupar en <code class="docutils literal notranslate"><span class="pre">__RARE__</span></code> las categorías con menos de 20 apariciones en entrenamiento, y usar target encoding con suavizado bayesiano hacia la media global (capítulo 3), de modo que las categorías poco frecuentes se acerquen a la tasa base en lugar de tomar valores extremos.</p>
+</section>
+<section id="cardinalidad-y-cola-larga">
+<h2>2.6 Cardinalidad y cola larga<a class="headerlink" href="#cardinalidad-y-cola-larga" title="Link to this heading">#</a></h2>
+<p>La curva de frecuencia acumulada muestra qué fracción de las impresiones cubren las categorías más frecuentes de cada variable de alta cardinalidad. La tabla reporta además la proporción de categorías vistas una sola vez, que el enunciado pide de forma explícita.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figura</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"cola_larga.png"</span><span class="p">,</span> <span class="mi">760</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"cardinalidad_resumen.csv"</span><span class="p">)</span>
+<span class="n">c</span><span class="p">[</span><span class="s2">"pct_singletons"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="s2">"pct_singletons"</span><span class="p">]</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"columna"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"n_categorias"</span><span class="p">:</span> <span class="s2">"categorías"</span><span class="p">,</span> <span class="s2">"pct_singletons"</span><span class="p">:</span> <span class="s2">"% vistas una vez"</span><span class="p">,</span>
+                        <span class="s2">"categorias_para_80pct_masa"</span><span class="p">:</span> <span class="s2">"categorías para el 80 </span><span class="si">% d</span><span class="s2">e la masa"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+      <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"categorías"</span><span class="p">,</span> <span class="s2">"categorías para el 80 </span><span class="si">% d</span><span class="s2">e la masa"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b12ca2faa73782c4e4a7368d3fe310068ba7fc0d1df6bb668a7497bcbd39c7f9.png"><img alt="../_images/b12ca2faa73782c4e4a7368d3fe310068ba7fc0d1df6bb668a7497bcbd39c7f9.png" src="../_images/b12ca2faa73782c4e4a7368d3fe310068ba7fc0d1df6bb668a7497bcbd39c7f9.png" style="width: 760px;" />
+</a>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_e93ed">
+  <thead>
+    <tr>
+      <th id="T_e93ed_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_e93ed_level0_col1" class="col_heading level0 col1" >categorías</th>
+      <th id="T_e93ed_level0_col2" class="col_heading level0 col2" >% vistas una vez</th>
+      <th id="T_e93ed_level0_col3" class="col_heading level0 col3" >categorías para el 80 % de la masa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_e93ed_row0_col0" class="data row0 col0" >site_id</td>
+      <td id="T_e93ed_row0_col1" class="data row0 col1" >4.737</td>
+      <td id="T_e93ed_row0_col2" class="data row0 col2" >11,97</td>
+      <td id="T_e93ed_row0_col3" class="data row0 col3" >26</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row1_col0" class="data row1 col0" >site_domain</td>
+      <td id="T_e93ed_row1_col1" class="data row1 col1" >7.745</td>
+      <td id="T_e93ed_row1_col2" class="data row1 col2" >25,07</td>
+      <td id="T_e93ed_row1_col3" class="data row1 col3" >19</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row2_col0" class="data row2 col0" >app_id</td>
+      <td id="T_e93ed_row2_col1" class="data row2 col1" >8.552</td>
+      <td id="T_e93ed_row2_col2" class="data row2 col2" >19,11</td>
+      <td id="T_e93ed_row2_col3" class="data row2 col3" >10</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row3_col0" class="data row3 col0" >app_domain</td>
+      <td id="T_e93ed_row3_col1" class="data row3 col1" >559</td>
+      <td id="T_e93ed_row3_col2" class="data row3 col2" >23,43</td>
+      <td id="T_e93ed_row3_col3" class="data row3 col3" >2</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row4_col0" class="data row4 col0" >device_id</td>
+      <td id="T_e93ed_row4_col1" class="data row4 col1" >2.686.408</td>
+      <td id="T_e93ed_row4_col2" class="data row4 col2" >62,91</td>
+      <td id="T_e93ed_row4_col3" class="data row4 col3" >1</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row5_col0" class="data row5 col0" >device_ip</td>
+      <td id="T_e93ed_row5_col1" class="data row5 col1" >6.729.486</td>
+      <td id="T_e93ed_row5_col2" class="data row5 col2" >49,42</td>
+      <td id="T_e93ed_row5_col3" class="data row5 col3" >1.470.152</td>
+    </tr>
+    <tr>
+      <td id="T_e93ed_row6_col0" class="data row6 col0" >device_model</td>
+      <td id="T_e93ed_row6_col1" class="data row6 col1" >8.251</td>
+      <td id="T_e93ed_row6_col2" class="data row6 col2" >9,82</td>
+      <td id="T_e93ed_row6_col3" class="data row6 col3" >294</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> tiene 6.729.486 categorías, de las que el 49,4 % aparece una sola vez, y necesita 1.470.152 categorías para cubrir el 80 % de las impresiones. <code class="docutils literal notranslate"><span class="pre">device_id</span></code> tiene 2.686.408 categorías, con 62,9 % vistas una vez, pero una sola categoría cubre por sí sola más del 80 % de la masa: es un valor de relleno, un artefacto conocido de Avazu para los dispositivos sin identificador. En el otro extremo, <code class="docutils literal notranslate"><span class="pre">site_id</span></code> y <code class="docutils literal notranslate"><span class="pre">app_id</span></code> tienen miles de categorías, pero 26 y 10 de ellas, respectivamente, cubren el 80 % del tráfico.</p>
+<p>Esto quiere decir que hay dos tipos de alta cardinalidad. En <code class="docutils literal notranslate"><span class="pre">site_id</span></code>, <code class="docutils literal notranslate"><span class="pre">app_id</span></code> o <code class="docutils literal notranslate"><span class="pre">site_domain</span></code> la masa se concentra en pocas categorías estables, que el modelo puede aprender. En <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> y <code class="docutils literal notranslate"><span class="pre">device_id</span></code>, la mitad o más de las categorías no se vuelve a ver, así que no tienen poder de generalización: una IP que aparece una vez en entrenamiento no aporta nada al predecir el día 30. El enunciado lo advierte de forma explícita: un one-hot sobre <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> y <code class="docutils literal notranslate"><span class="pre">device_id</span></code> haría que la capa de entrada del MLP tuviera millones de neuronas.</p>
+<p>Por esta razón, lo indicado es descartar el one-hot y usar hashing de dimensión fija, que acota la entrada a <span class="math notranslate nohighlight">\(2^{12}\)</span> columnas sin importar cuántas categorías existan, combinado con la agrupación de raras, que manda las categorías vistas una vez a un solo token. La dimensión del hashing se trata como factor experimental en las ablaciones.</p>
+</section>
+<section id="asociacion-con-la-variable-objetivo">
+<h2>2.7 Asociación con la variable objetivo<a class="headerlink" href="#asociacion-con-la-variable-objetivo" title="Link to this heading">#</a></h2>
+<section id="informacion-mutua-y-su-sesgo-de-estimacion">
+<h3>Información mutua y su sesgo de estimación<a class="headerlink" href="#informacion-mutua-y-su-sesgo-de-estimacion" title="Link to this heading">#</a></h3>
+<p>La información mutua entre una variable <span class="math notranslate nohighlight">\(X\)</span> con <span class="math notranslate nohighlight">\(K\)</span> categorías y el objetivo <span class="math notranslate nohighlight">\(Y\)</span> se estimó con el estimador directo (<em>plug-in</em>), que reemplaza las probabilidades por frecuencias observadas. Ese estimador tiene un sesgo positivo conocido, de orden</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}[\hat I(X;Y)] - I(X;Y) \approx \frac{(K-1)(|\mathcal{Y}|-1)}{2N} \ \text{nats},\]</div>
+<p>donde <span class="math notranslate nohighlight">\(N\)</span> es el tamaño de la muestra y <span class="math notranslate nohighlight">\(|\mathcal{Y}| = 2\)</span> <span class="bibtex-citation" id="id1">[<a class="reference internal" href="10_reflexion_critica.html#id31" title="Liam Paninski. Estimation of entropy and mutual information. Neural Computation, 15(6):1191–1253, 2003. doi:10.1162/089976603321780272.">Paninski, 2003</a>]</span>. Para variables con cientos de miles de categorías en una muestra de 2.000.000 de filas, ese sesgo no es despreciable, así que la tabla lo reporta junto al valor estimado. El número de categorías distintas por variable se midió en una muestra de entrenamiento del mismo tamaño; en las variables de baja cardinalidad, con unas decenas de categorías, el sesgo es del orden de <span class="math notranslate nohighlight">\(10^{-5}\)</span> y se omite.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"informacion_mutua.csv"</span><span class="p">)</span>
+<span class="n">k_muestra</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"device_ip"</span><span class="p">:</span> <span class="mi">929021</span><span class="p">,</span> <span class="s2">"device_id"</span><span class="p">:</span> <span class="mi">274882</span><span class="p">,</span> <span class="s2">"site_id"</span><span class="p">:</span> <span class="mi">3006</span><span class="p">,</span> <span class="s2">"app_id"</span><span class="p">:</span> <span class="mi">3983</span><span class="p">,</span> <span class="s2">"site_domain"</span><span class="p">:</span> <span class="mi">3520</span><span class="p">,</span> <span class="s2">"device_model"</span><span class="p">:</span> <span class="mi">5753</span><span class="p">}</span>
+<span class="n">mi</span><span class="p">[</span><span class="s2">"K_en_muestra_2M"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="s2">"columna"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">k_muestra</span><span class="p">)</span>
+<span class="n">mi</span><span class="p">[</span><span class="s2">"sesgo_esperado"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="s2">"K_en_muestra_2M"</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2_000_000</span><span class="p">)</span>
+<span class="n">mi</span><span class="p">[</span><span class="s2">"IM_corregida"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mi</span><span class="p">[</span><span class="s2">"informacion_mutua"</span><span class="p">]</span> <span class="o">-</span> <span class="n">mi</span><span class="p">[</span><span class="s2">"sesgo_esperado"</span><span class="p">]</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"columna"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"informacion_mutua"</span><span class="p">:</span> <span class="s2">"IM estimada (nats)"</span><span class="p">,</span>
+                         <span class="s2">"K_en_muestra_2M"</span><span class="p">:</span> <span class="s2">"K en la muestra"</span><span class="p">,</span> <span class="s2">"sesgo_esperado"</span><span class="p">:</span> <span class="s2">"sesgo esperado"</span><span class="p">,</span>
+                         <span class="s2">"IM_corregida"</span><span class="p">:</span> <span class="s2">"IM corregida"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"K en la muestra"</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_2b6e3">
+  <thead>
+    <tr>
+      <th id="T_2b6e3_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_2b6e3_level0_col1" class="col_heading level0 col1" >IM estimada (nats)</th>
+      <th id="T_2b6e3_level0_col2" class="col_heading level0 col2" >K en la muestra</th>
+      <th id="T_2b6e3_level0_col3" class="col_heading level0 col3" >sesgo esperado</th>
+      <th id="T_2b6e3_level0_col4" class="col_heading level0 col4" >IM corregida</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_2b6e3_row0_col0" class="data row0 col0" >device_ip</td>
+      <td id="T_2b6e3_row0_col1" class="data row0 col1" >0,2597</td>
+      <td id="T_2b6e3_row0_col2" class="data row0 col2" >929.021</td>
+      <td id="T_2b6e3_row0_col3" class="data row0 col3" >0,2323</td>
+      <td id="T_2b6e3_row0_col4" class="data row0 col4" >0,0274</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row1_col0" class="data row1 col0" >device_id</td>
+      <td id="T_2b6e3_row1_col1" class="data row1 col1" >0,0679</td>
+      <td id="T_2b6e3_row1_col2" class="data row1 col2" >274.882</td>
+      <td id="T_2b6e3_row1_col3" class="data row1 col3" >0,0687</td>
+      <td id="T_2b6e3_row1_col4" class="data row1 col4" >-0,0008</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row2_col0" class="data row2 col0" >site_id</td>
+      <td id="T_2b6e3_row2_col1" class="data row2 col1" >0,0369</td>
+      <td id="T_2b6e3_row2_col2" class="data row2 col2" >3.006</td>
+      <td id="T_2b6e3_row2_col3" class="data row2 col3" >0,0008</td>
+      <td id="T_2b6e3_row2_col4" class="data row2 col4" >0,0362</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row3_col0" class="data row3 col0" >site_domain</td>
+      <td id="T_2b6e3_row3_col1" class="data row3 col1" >0,0331</td>
+      <td id="T_2b6e3_row3_col2" class="data row3 col2" >3.520</td>
+      <td id="T_2b6e3_row3_col3" class="data row3 col3" >0,0009</td>
+      <td id="T_2b6e3_row3_col4" class="data row3 col4" >0,0322</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row4_col0" class="data row4 col0" >app_id</td>
+      <td id="T_2b6e3_row4_col1" class="data row4 col1" >0,0234</td>
+      <td id="T_2b6e3_row4_col2" class="data row4 col2" >3.983</td>
+      <td id="T_2b6e3_row4_col3" class="data row4 col3" >0,0010</td>
+      <td id="T_2b6e3_row4_col4" class="data row4 col4" >0,0224</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row5_col0" class="data row5 col0" >device_model</td>
+      <td id="T_2b6e3_row5_col1" class="data row5 col1" >0,0197</td>
+      <td id="T_2b6e3_row5_col2" class="data row5 col2" >5.753</td>
+      <td id="T_2b6e3_row5_col3" class="data row5 col3" >0,0014</td>
+      <td id="T_2b6e3_row5_col4" class="data row5 col4" >0,0183</td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row6_col0" class="data row6 col0" >app_domain</td>
+      <td id="T_2b6e3_row6_col1" class="data row6 col1" >0,0124</td>
+      <td id="T_2b6e3_row6_col2" class="data row6 col2" ></td>
+      <td id="T_2b6e3_row6_col3" class="data row6 col3" ></td>
+      <td id="T_2b6e3_row6_col4" class="data row6 col4" ></td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row7_col0" class="data row7 col0" >site_category</td>
+      <td id="T_2b6e3_row7_col1" class="data row7 col1" >0,0080</td>
+      <td id="T_2b6e3_row7_col2" class="data row7 col2" ></td>
+      <td id="T_2b6e3_row7_col3" class="data row7 col3" ></td>
+      <td id="T_2b6e3_row7_col4" class="data row7 col4" ></td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row8_col0" class="data row8 col0" >app_category</td>
+      <td id="T_2b6e3_row8_col1" class="data row8 col1" >0,0072</td>
+      <td id="T_2b6e3_row8_col2" class="data row8 col2" ></td>
+      <td id="T_2b6e3_row8_col3" class="data row8 col3" ></td>
+      <td id="T_2b6e3_row8_col4" class="data row8 col4" ></td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row9_col0" class="data row9 col0" >device_conn_type</td>
+      <td id="T_2b6e3_row9_col1" class="data row9 col1" >0,0052</td>
+      <td id="T_2b6e3_row9_col2" class="data row9 col2" ></td>
+      <td id="T_2b6e3_row9_col3" class="data row9 col3" ></td>
+      <td id="T_2b6e3_row9_col4" class="data row9 col4" ></td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row10_col0" class="data row10 col0" >device_type</td>
+      <td id="T_2b6e3_row10_col1" class="data row10 col1" >0,0008</td>
+      <td id="T_2b6e3_row10_col2" class="data row10 col2" ></td>
+      <td id="T_2b6e3_row10_col3" class="data row10 col3" ></td>
+      <td id="T_2b6e3_row10_col4" class="data row10 col4" ></td>
+    </tr>
+    <tr>
+      <td id="T_2b6e3_row11_col0" class="data row11 col0" >banner_pos</td>
+      <td id="T_2b6e3_row11_col1" class="data row11 col1" >0,0003</td>
+      <td id="T_2b6e3_row11_col2" class="data row11 col2" ></td>
+      <td id="T_2b6e3_row11_col3" class="data row11 col3" ></td>
+      <td id="T_2b6e3_row11_col4" class="data row11 col4" ></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> El estimador directo ubica a <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> (0,2597 nats) y a <code class="docutils literal notranslate"><span class="pre">device_id</span></code> (0,0679) muy por encima de las demás variables. Sin embargo, en una muestra de 2.000.000 de filas hay 929.021 IP distintas, lo que produce un sesgo esperado de 0,2323 nats, y 274.882 identificadores de dispositivo, con un sesgo de 0,0687. Al descontar el sesgo, a <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> le quedan unos 0,027 nats y <code class="docutils literal notranslate"><span class="pre">device_id</span></code> queda en cero. <code class="docutils literal notranslate"><span class="pre">site_id</span></code> (0,0369), <code class="docutils literal notranslate"><span class="pre">site_domain</span></code> (0,0331) y <code class="docutils literal notranslate"><span class="pre">app_id</span></code> (0,0234), en cambio, tienen sesgos menores a 0,0011, así que su señal es real.</p>
+<p>Lo anterior indica que el primer lugar de <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> es en su mayor parte un artefacto de la cardinalidad: con tantas categorías vistas una vez, cada una «predice» sin error su propio clic, y el estimador lo confunde con dependencia. Después de la corrección, el ordenamiento cambia: encabezan <code class="docutils literal notranslate"><span class="pre">site_id</span></code> (0,036) y <code class="docutils literal notranslate"><span class="pre">site_domain</span></code> (0,032), seguidos por <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> (0,027), <code class="docutils literal notranslate"><span class="pre">app_id</span></code> (0,022) y <code class="docutils literal notranslate"><span class="pre">device_model</span></code> (0,018). El capítulo 8 confirma que la señal está en el sitio y la aplicación con la importancia por permutación sobre el modelo entrenado, donde los codificadores de <code class="docutils literal notranslate"><span class="pre">app_id</span></code> y <code class="docutils literal notranslate"><span class="pre">site_id</span></code> encabezan la lista.</p>
+<p>Por ello, se recomienda no descartar ni privilegiar variables con base en la información mutua sin corregir. Las de alta cardinalidad se conservan, pero con agrupación de raras y suavizado, que es lo que evita que el modelo aprenda el mismo artefacto que infla el estimador.</p>
+</section>
+<section id="v-de-cramer-entre-categoricas-de-baja-cardinalidad">
+<h3>V de Cramér entre categóricas de baja cardinalidad<a class="headerlink" href="#v-de-cramer-entre-categoricas-de-baja-cardinalidad" title="Link to this heading">#</a></h3>
+<p>La V de Cramér, <span class="math notranslate nohighlight">\(V = \sqrt{\chi^2 / (N \cdot \min(r-1, c-1))}\)</span>, mide la asociación entre dos categóricas en una escala de 0 a 1 <span class="bibtex-citation" id="id2">[<a class="reference internal" href="10_reflexion_critica.html#id32" title="Harald Cramér. Mathematical Methods of Statistics. Princeton University Press, Princeton, NJ, 1946.">Cramér, 1946</a>]</span>. Se usa para detectar redundancia entre predictores.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"cramers_v.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"cramers_v"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"var_a"</span><span class="p">:</span> <span class="s2">"variable A"</span><span class="p">,</span> <span class="s2">"var_b"</span><span class="p">:</span> <span class="s2">"variable B"</span><span class="p">,</span> <span class="s2">"cramers_v"</span><span class="p">:</span> <span class="s2">"V de Cramér"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_ff7f2">
+  <thead>
+    <tr>
+      <th id="T_ff7f2_level0_col0" class="col_heading level0 col0" >variable A</th>
+      <th id="T_ff7f2_level0_col1" class="col_heading level0 col1" >variable B</th>
+      <th id="T_ff7f2_level0_col2" class="col_heading level0 col2" >V de Cramér</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_ff7f2_row0_col0" class="data row0 col0" >app_category</td>
+      <td id="T_ff7f2_row0_col1" class="data row0 col1" >device_conn_type</td>
+      <td id="T_ff7f2_row0_col2" class="data row0 col2" >0,299</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row1_col0" class="data row1 col0" >banner_pos</td>
+      <td id="T_ff7f2_row1_col1" class="data row1 col1" >site_category</td>
+      <td id="T_ff7f2_row1_col2" class="data row1 col2" >0,276</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row2_col0" class="data row2 col0" >site_category</td>
+      <td id="T_ff7f2_row2_col1" class="data row2 col1" >device_conn_type</td>
+      <td id="T_ff7f2_row2_col2" class="data row2 col2" >0,204</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row3_col0" class="data row3 col0" >site_category</td>
+      <td id="T_ff7f2_row3_col1" class="data row3 col1" >app_category</td>
+      <td id="T_ff7f2_row3_col2" class="data row3 col2" >0,198</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row4_col0" class="data row4 col0" >site_category</td>
+      <td id="T_ff7f2_row4_col1" class="data row4 col1" >device_type</td>
+      <td id="T_ff7f2_row4_col2" class="data row4 col2" >0,179</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row5_col0" class="data row5 col0" >banner_pos</td>
+      <td id="T_ff7f2_row5_col1" class="data row5 col1" >app_category</td>
+      <td id="T_ff7f2_row5_col2" class="data row5 col2" >0,177</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row6_col0" class="data row6 col0" >banner_pos</td>
+      <td id="T_ff7f2_row6_col1" class="data row6 col1" >device_type</td>
+      <td id="T_ff7f2_row6_col2" class="data row6 col2" >0,173</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row7_col0" class="data row7 col0" >app_category</td>
+      <td id="T_ff7f2_row7_col1" class="data row7 col1" >device_type</td>
+      <td id="T_ff7f2_row7_col2" class="data row7 col2" >0,152</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row8_col0" class="data row8 col0" >device_type</td>
+      <td id="T_ff7f2_row8_col1" class="data row8 col1" >device_conn_type</td>
+      <td id="T_ff7f2_row8_col2" class="data row8 col2" >0,132</td>
+    </tr>
+    <tr>
+      <td id="T_ff7f2_row9_col0" class="data row9 col0" >banner_pos</td>
+      <td id="T_ff7f2_row9_col1" class="data row9 col1" >device_conn_type</td>
+      <td id="T_ff7f2_row9_col2" class="data row9 col2" >0,084</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> La asociación más alta es entre <code class="docutils literal notranslate"><span class="pre">app_category</span></code> y <code class="docutils literal notranslate"><span class="pre">device_conn_type</span></code>, con <span class="math notranslate nohighlight">\(V = 0{,}299\)</span>, seguida de <code class="docutils literal notranslate"><span class="pre">banner_pos</span></code> y <code class="docutils literal notranslate"><span class="pre">site_category</span></code> (<span class="math notranslate nohighlight">\(V = 0{,}276\)</span>). Las demás parejas están entre 0,08 y 0,20, y ninguna supera 0,30.</p>
+<p>Así mismo, valores de ese orden indican una asociación moderada, no redundancia: ninguna variable se puede reconstruir a partir de otra, porque eso requeriría valores cercanos a 1. La asociación entre categoría de la aplicación y tipo de conexión tiene sentido operativo, porque ciertos tipos de aplicación se usan sobre todo con wifi o con datos móviles.</p>
+<p>Por tanto, corresponde conservar todas las categóricas de baja cardinalidad, sin eliminar ninguna por colinealidad. Una asociación moderada entre predictores no afecta a un MLP ni a los árboles potenciados como afectaría a la interpretación de los coeficientes de una regresión logística.</p>
+</section>
+<section id="correlacion-de-spearman-de-las-columnas-anonimizadas">
+<h3>Correlación de Spearman de las columnas anonimizadas<a class="headerlink" href="#correlacion-de-spearman-de-las-columnas-anonimizadas" title="Link to this heading">#</a></h3>
+<p>Las columnas <code class="docutils literal notranslate"><span class="pre">C1</span></code> y <code class="docutils literal notranslate"><span class="pre">C14</span></code> a <code class="docutils literal notranslate"><span class="pre">C21</span></code> vienen como enteros. La correlación de Spearman con <code class="docutils literal notranslate"><span class="pre">click</span></code> verifica si su orden numérico contiene información monótona.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figura</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"correlacion_numeric_like.png"</span><span class="p">,</span> <span class="mi">560</span><span class="p">)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"spearman_numeric_like.csv"</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"columna"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"spearman_rho"</span><span class="p">:</span> <span class="s2">"rho de Spearman"</span><span class="p">,</span> <span class="s2">"p_valor"</span><span class="p">:</span> <span class="s2">"p-valor"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/4fb8c89583252a19eb5a630cd0a8692d209f3b980cb7cf25243da3f41f749165.png"><img alt="../_images/4fb8c89583252a19eb5a630cd0a8692d209f3b980cb7cf25243da3f41f749165.png" src="../_images/4fb8c89583252a19eb5a630cd0a8692d209f3b980cb7cf25243da3f41f749165.png" style="width: 560px;" />
+</a>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_a3f1d">
+  <thead>
+    <tr>
+      <th id="T_a3f1d_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_a3f1d_level0_col1" class="col_heading level0 col1" >rho de Spearman</th>
+      <th id="T_a3f1d_level0_col2" class="col_heading level0 col2" >p-valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_a3f1d_row0_col0" class="data row0 col0" >C1</td>
+      <td id="T_a3f1d_row0_col1" class="data row0 col1" >-0,0378</td>
+      <td id="T_a3f1d_row0_col2" class="data row0 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row1_col0" class="data row1 col0" >C14</td>
+      <td id="T_a3f1d_row1_col1" class="data row1 col1" >-0,0750</td>
+      <td id="T_a3f1d_row1_col2" class="data row1 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row2_col0" class="data row2 col0" >C15</td>
+      <td id="T_a3f1d_row2_col1" class="data row2 col1" >-0,1178</td>
+      <td id="T_a3f1d_row2_col2" class="data row2 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row3_col0" class="data row3 col0" >C16</td>
+      <td id="T_a3f1d_row3_col1" class="data row3 col1" >0,1348</td>
+      <td id="T_a3f1d_row3_col2" class="data row3 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row4_col0" class="data row4 col0" >C17</td>
+      <td id="T_a3f1d_row4_col1" class="data row4 col1" >-0,0673</td>
+      <td id="T_a3f1d_row4_col2" class="data row4 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row5_col0" class="data row5 col0" >C18</td>
+      <td id="T_a3f1d_row5_col1" class="data row5 col1" >0,0105</td>
+      <td id="T_a3f1d_row5_col2" class="data row5 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row6_col0" class="data row6 col0" >C19</td>
+      <td id="T_a3f1d_row6_col1" class="data row6 col1" >-0,0170</td>
+      <td id="T_a3f1d_row6_col2" class="data row6 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row7_col0" class="data row7 col0" >C20</td>
+      <td id="T_a3f1d_row7_col1" class="data row7 col1" >-0,0693</td>
+      <td id="T_a3f1d_row7_col2" class="data row7 col2" >0,0000</td>
+    </tr>
+    <tr>
+      <td id="T_a3f1d_row8_col0" class="data row8 col0" >C21</td>
+      <td id="T_a3f1d_row8_col1" class="data row8 col1" >-0,0816</td>
+      <td id="T_a3f1d_row8_col2" class="data row8 col2" >0,0000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> Todas las correlaciones con <code class="docutils literal notranslate"><span class="pre">click</span></code> son débiles: la mayor en valor absoluto es la de <code class="docutils literal notranslate"><span class="pre">C16</span></code> (<span class="math notranslate nohighlight">\(\rho = 0{,}135\)</span>), seguida de <code class="docutils literal notranslate"><span class="pre">C15</span></code> (<span class="math notranslate nohighlight">\(-0{,}118\)</span>), y el resto está por debajo de 0,08. Los <span class="math notranslate nohighlight">\(p\)</span>-valores son prácticamente cero en todas, incluso en <code class="docutils literal notranslate"><span class="pre">C18</span></code> con <span class="math notranslate nohighlight">\(\rho = 0{,}011\)</span>.</p>
+<p>Sin embargo, con 2.000.000 de observaciones cualquier correlación distinta de cero resulta significativa, porque el error estándar de <span class="math notranslate nohighlight">\(\rho\)</span> es del orden de <span class="math notranslate nohighlight">\(1/\sqrt{N} \approx 0{,}0007\)</span>. La significancia aquí no dice nada de la relevancia práctica. Además, estas columnas son códigos anonimizados, y no hay razón para que el orden de sus valores tenga sentido: el código 320 no es «más» que el 300.</p>
+<p>De ahí que, si se usan, deban entrar como categóricas y no como numéricas escaladas, sin transformación logarítmica ni <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, que no tienen sentido estadístico sobre identificadores. Una correlación de Spearman débil no descarta su utilidad como categóricas, porque Spearman solo mide relaciones monótonas con el orden de los códigos. Como el experimento principal no las incluyó, la ablación del capítulo 9 mide su aporte dentro del hashing.</p>
+</section>
+</section>
+<section id="deriva-entre-entrenamiento-y-prueba">
+<h2>2.8 Deriva entre entrenamiento y prueba<a class="headerlink" href="#deriva-entre-entrenamiento-y-prueba" title="Link to this heading">#</a></h2>
+<p>El índice de estabilidad poblacional compara la distribución de cada variable entre entrenamiento (proporciones <span class="math notranslate nohighlight">\(p_i\)</span>) y prueba (proporciones <span class="math notranslate nohighlight">\(q_i\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{PSI} = \sum_i (q_i - p_i) \ln\frac{q_i}{p_i}.\]</div>
+<p>La convención usual en riesgo de crédito es leer valores menores a 0,10 como estabilidad, entre 0,10 y 0,25 como cambio moderado y mayores a 0,25 como cambio significativo <span class="bibtex-citation" id="id3">[<a class="reference internal" href="10_reflexion_critica.html#id33" title="Naeem Siddiqi. Credit Risk Scorecards: Developing and Implementing Intelligent Credit Scoring. John Wiley &amp; Sons, Hoboken, NJ, 2006.">Siddiqi, 2006</a>]</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"psi_train_vs_test.csv"</span><span class="p">)</span>
+<span class="n">psi</span><span class="p">[</span><span class="s2">"lectura"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="s2">"psi"</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">99</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"estable"</span><span class="p">,</span> <span class="s2">"moderado"</span><span class="p">,</span> <span class="s2">"significativo"</span><span class="p">])</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">psi</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"columna"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"psi"</span><span class="p">:</span> <span class="s2">"PSI"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_09e54">
+  <thead>
+    <tr>
+      <th id="T_09e54_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_09e54_level0_col1" class="col_heading level0 col1" >PSI</th>
+      <th id="T_09e54_level0_col2" class="col_heading level0 col2" >lectura</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_09e54_row0_col0" class="data row0 col0" >app_category</td>
+      <td id="T_09e54_row0_col1" class="data row0 col1" >0,1843</td>
+      <td id="T_09e54_row0_col2" class="data row0 col2" >moderado</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row1_col0" class="data row1 col0" >site_category</td>
+      <td id="T_09e54_row1_col1" class="data row1 col1" >0,0644</td>
+      <td id="T_09e54_row1_col2" class="data row1 col2" >estable</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row2_col0" class="data row2 col0" >hour_of_day</td>
+      <td id="T_09e54_row2_col1" class="data row2 col1" >0,0439</td>
+      <td id="T_09e54_row2_col2" class="data row2 col2" >estable</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row3_col0" class="data row3 col0" >device_conn_type</td>
+      <td id="T_09e54_row3_col1" class="data row3 col1" >0,0238</td>
+      <td id="T_09e54_row3_col2" class="data row3 col2" >estable</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row4_col0" class="data row4 col0" >banner_pos</td>
+      <td id="T_09e54_row4_col1" class="data row4 col1" >0,0134</td>
+      <td id="T_09e54_row4_col2" class="data row4 col2" >estable</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row5_col0" class="data row5 col0" >device_type</td>
+      <td id="T_09e54_row5_col1" class="data row5 col1" >0,0115</td>
+      <td id="T_09e54_row5_col2" class="data row5 col2" >estable</td>
+    </tr>
+    <tr>
+      <td id="T_09e54_row6_col0" class="data row6 col0" >franja_horaria</td>
+      <td id="T_09e54_row6_col1" class="data row6 col1" >0,0100</td>
+      <td id="T_09e54_row6_col2" class="data row6 col2" >estable</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> Solo <code class="docutils literal notranslate"><span class="pre">app_category</span></code> supera el umbral de estabilidad, con un PSI de 0,184, que cae en la franja de cambio moderado. Le siguen <code class="docutils literal notranslate"><span class="pre">site_category</span></code> (0,064) y la hora del día (0,044), y las demás variables están por debajo de 0,025.</p>
+<p>En ese sentido, la mezcla de tipos de aplicación del día 30 es distinta de la de los días 21 a 28. Como <code class="docutils literal notranslate"><span class="pre">app_category</span></code> tiene CTR muy diferentes entre categorías (19,91 % en la principal frente a 10,81 % en la segunda, sección 2.5), un cambio en su mezcla mueve la tasa de clics esperada aunque el comportamiento dentro de cada categoría no cambie. Esto es una amenaza a la validez externa que conviene tener presente: el desempeño en el día 30 depende en parte de esa mezcla.</p>
+<p>Con base en esto, se propone mantener la partición temporal sin ajustes, porque precisamente mide el desempeño bajo esta deriva real, y reportar la calibración en prueba para cuantificar su efecto. La deriva se retoma como amenaza a la validez en el capítulo 10.</p>
+</section>
+<section id="sintesis-decision-impacto-y-riesgo-por-hallazgo">
+<h2>2.9 Síntesis: decisión, impacto y riesgo por hallazgo<a class="headerlink" href="#sintesis-decision-impacto-y-riesgo-por-hallazgo" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hallazgo</p></th>
+<th class="head"><p>Decisión de preprocesamiento</p></th>
+<th class="head"><p>Impacto en la arquitectura</p></th>
+<th class="head"><p>Riesgo, incluida la fuga</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Desbalance de 4,89 a 1 (CTR de 16,98 %)</p></td>
+<td><p>Umbral elegido en validación; ponderación como ablación</p></td>
+<td><p>ROC AUC y PR AUC como métricas; salida con probabilidad calibrable</p></td>
+<td><p>Usar el umbral de 0,5; elegir el umbral mirando prueba</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deriva diaria del CTR (15,22 % a 18,30 %)</p></td>
+<td><p>Partición temporal 21-28 / 29 / 30</p></td>
+<td><p>Ninguno en el modelo; sí en el protocolo de evaluación</p></td>
+<td><p>Partición aleatoria, que sobreestima el desempeño</p></td>
+</tr>
+<tr class="row-even"><td><p>Hora con relación no monótona y débil</p></td>
+<td><p>Si se usa, como categórica; no incluida en el experimento principal</p></td>
+<td><p>Sin rama numérica para la hora</p></td>
+<td><p>Omitir una señal útil; se mide en la ablación</p></td>
+</tr>
+<tr class="row-odd"><td><p>Categorías raras con CTR inestable</p></td>
+<td><p>Token <code class="docutils literal notranslate"><span class="pre">__RARE__</span></code> con umbral 20, ajustado en train</p></td>
+<td><p>Menos columnas efectivas en el hashing</p></td>
+<td><p>Fijar el umbral con validación o prueba</p></td>
+</tr>
+<tr class="row-even"><td><p>Alta cardinalidad (hasta 6,7 millones de categorías)</p></td>
+<td><p>Hashing <span class="math notranslate nohighlight">\(2^{12}\)</span> más frecuencia y target encoding</p></td>
+<td><p>Entrada de dimensión fija, sin one-hot</p></td>
+<td><p>Target encoding sin validación cruzada interna, que filtra la etiqueta</p></td>
+</tr>
+<tr class="row-odd"><td><p>IM de <code class="docutils literal notranslate"><span class="pre">device_ip</span></code> y <code class="docutils literal notranslate"><span class="pre">device_id</span></code> inflada por sesgo</p></td>
+<td><p>No seleccionar variables por IM sin corregir</p></td>
+<td><p>Se conservan todas, con suavizado</p></td>
+<td><p>Confundir cardinalidad con señal</p></td>
+</tr>
+<tr class="row-even"><td><p>Asociación moderada entre categóricas (<span class="math notranslate nohighlight">\(V \le 0{,}30\)</span>)</p></td>
+<td><p>Conservar todas</p></td>
+<td><p>Ninguno</p></td>
+<td><p>Bajo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Columnas <code class="docutils literal notranslate"><span class="pre">C*</span></code> anonimizadas, sin orden con sentido</p></td>
+<td><p>Si se usan, como categóricas; no incluidas en el experimento principal</p></td>
+<td><p>Sin escalado ni logaritmo</p></td>
+<td><p>Darles semántica numérica; omitir señal útil (se mide en la ablación)</p></td>
+</tr>
+<tr class="row-even"><td><p>Deriva moderada de <code class="docutils literal notranslate"><span class="pre">app_category</span></code> (PSI = 0,184)</p></td>
+<td><p>Ninguna adicional</p></td>
+<td><p>Reportar calibración en prueba</p></td>
+<td><p>Validez externa limitada al día 30</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dl_tarea1"
+        },
+        kernelOptions: {
+            name: "dl_tarea1",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dl_tarea1'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_ficha_datos_y_preguntas.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">1. Ficha de datos y preguntas de investigación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_protocolo_antifuga_y_preprocesamiento.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">3. Protocolo anti-fuga y preprocesamiento</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-eficiente-y-calidad-de-los-datos">2.1 Carga eficiente y calidad de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-la-variable-objetivo">2.2 Distribución de la variable objetivo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasa-de-clics-por-dia">2.3 Tasa de clics por día</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasa-de-clics-por-hora-y-franja-horaria">2.4 Tasa de clics por hora y franja horaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-las-principales-categoricas">2.5 Frecuencias de las principales categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cardinalidad-y-cola-larga">2.6 Cardinalidad y cola larga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asociacion-con-la-variable-objetivo">2.7 Asociación con la variable objetivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-mutua-y-su-sesgo-de-estimacion">Información mutua y su sesgo de estimación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-de-cramer-entre-categoricas-de-baja-cardinalidad">V de Cramér entre categóricas de baja cardinalidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlacion-de-spearman-de-las-columnas-anonimizadas">Correlación de Spearman de las columnas anonimizadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriva-entre-entrenamiento-y-prueba">2.8 Deriva entre entrenamiento y prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesis-decision-impacto-y-riesgo-por-hallazgo">2.9 Síntesis: decisión, impacto y riesgo por hallazgo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Donny Torres
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1014 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Anexo de reproducibilidad &#8212; Proyecto Integrador 2.12 — MLP para click en anuncios móviles</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/11_anexo_reproducibilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="10. Reflexión crítica y conclusiones" href="10_reflexion_critica.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Integrador 2.12 — MLP para click en anuncios móviles</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Proyecto Integrador 2.12: MLP para predecir clics en anuncios móviles
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ficha_datos_y_preguntas.html">1. Ficha de datos y preguntas de investigación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_protocolo_antifuga_y_preprocesamiento.html">3. Protocolo anti-fuga y preprocesamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modelado_sklearn.html">4. Modelado con scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_modelado_pyspark.html">5. Modelado con PySpark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_evaluacion_estadistica.html">6. Evaluación estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_benchmarking.html">7. Benchmarking computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interpretabilidad.html">8. Interpretabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_comparacion_resultados.html">9. Comparación de resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_reflexion_critica.html">10. Reflexión crítica y conclusiones</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Anexo de reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/DTL-DA/Proyecto-integrador-mlp-avazu" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/11_anexo_reproducibilidad.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>11. Anexo de reproducibilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno">11.1 Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware">11.2 Hardware</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-particion-y-decisiones-fijadas-a-priori">11.3 Semillas, partición y decisiones fijadas a priori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-spark">11.4 Configuración de Spark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manifiesto-de-datos">11.5 Manifiesto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-ejecucion">11.6 Orden de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-desviaciones">11.7 Registro de desviaciones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="anexo-de-reproducibilidad">
+<h1>11. Anexo de reproducibilidad<a class="headerlink" href="#anexo-de-reproducibilidad" title="Link to this heading">#</a></h1>
+<p>Este anexo reúne lo necesario para reproducir el proyecto de punta a punta, como pide el enunciado: el entorno con versiones fijadas, el hardware, las semillas, la configuración de Spark, el manifiesto de los datos, el orden de ejecución y el registro de las desviaciones frente al plan y al enunciado.</p>
+<section id="entorno">
+<h2>11.1 Entorno<a class="headerlink" href="#entorno" title="Link to this heading">#</a></h2>
+<p>El entorno se crea con <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code>, que fija la versión de Python y de cada paquete, y el kernel del libro se registra con <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name</span> <span class="pre">dl_tarea1</span></code>. PySpark necesita Java 17; se usó Eclipse Temurin 17.0.20.1. <code class="docutils literal notranslate"><span class="pre">src/config.py</span></code> respeta la variable <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> si está definida y, si no, busca <code class="docutils literal notranslate"><span class="pre">~/Java/jdk-17</span></code>. En Windows, <code class="docutils literal notranslate"><span class="pre">config.py</span></code> además fija el intérprete de los <em>workers</em> de PySpark, el host local <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> y un <code class="docutils literal notranslate"><span class="pre">HADOOP_HOME</span></code> vacío dentro de <code class="docutils literal notranslate"><span class="pre">artifacts/</span></code>, porque Hadoop exige esa variable aunque no se use <code class="docutils literal notranslate"><span class="pre">winutils.exe</span></code>. No se descargó ningún binario nativo de terceros. Las versiones con que se ejecutó este libro son las siguientes:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span>
+<span class="n">paquetes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pyspark"</span><span class="p">,</span> <span class="s2">"scikit-learn"</span><span class="p">,</span> <span class="s2">"pandas"</span><span class="p">,</span> <span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"polars"</span><span class="p">,</span> <span class="s2">"duckdb"</span><span class="p">,</span> <span class="s2">"pyarrow"</span><span class="p">,</span> <span class="s2">"kaggle"</span><span class="p">,</span> <span class="s2">"lime"</span><span class="p">,</span> <span class="s2">"shap"</span><span class="p">,</span> <span class="s2">"optuna"</span><span class="p">,</span>
+            <span class="s2">"matplotlib"</span><span class="p">,</span> <span class="s2">"scipy"</span><span class="p">,</span> <span class="s2">"statsmodels"</span><span class="p">,</span> <span class="s2">"jupyter-book"</span><span class="p">,</span> <span class="s2">"myst-nb"</span><span class="p">,</span> <span class="s2">"sphinxcontrib-bibtex"</span><span class="p">,</span> <span class="s2">"ipykernel"</span><span class="p">,</span> <span class="s2">"joblib"</span><span class="p">,</span> <span class="s2">"psutil"</span><span class="p">]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"paquete"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"python"</span><span class="p">]</span> <span class="o">+</span> <span class="n">paquetes</span><span class="p">,</span> <span class="s2">"versión"</span><span class="p">:</span> <span class="p">[</span><span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()]</span> <span class="o">+</span> <span class="p">[</span><span class="n">version</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paquetes</span><span class="p">]})</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_77106">
+  <thead>
+    <tr>
+      <th id="T_77106_level0_col0" class="col_heading level0 col0" >paquete</th>
+      <th id="T_77106_level0_col1" class="col_heading level0 col1" >versión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_77106_row0_col0" class="data row0 col0" >python</td>
+      <td id="T_77106_row0_col1" class="data row0 col1" >3.11.16</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row1_col0" class="data row1 col0" >pyspark</td>
+      <td id="T_77106_row1_col1" class="data row1 col1" >3.5.3</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row2_col0" class="data row2 col0" >scikit-learn</td>
+      <td id="T_77106_row2_col1" class="data row2 col1" >1.5.2</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row3_col0" class="data row3 col0" >pandas</td>
+      <td id="T_77106_row3_col1" class="data row3 col1" >2.2.3</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row4_col0" class="data row4 col0" >numpy</td>
+      <td id="T_77106_row4_col1" class="data row4 col1" >1.26.4</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row5_col0" class="data row5 col0" >polars</td>
+      <td id="T_77106_row5_col1" class="data row5 col1" >1.12.0</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row6_col0" class="data row6 col0" >duckdb</td>
+      <td id="T_77106_row6_col1" class="data row6 col1" >1.1.3</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row7_col0" class="data row7 col0" >pyarrow</td>
+      <td id="T_77106_row7_col1" class="data row7 col1" >17.0.0</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row8_col0" class="data row8 col0" >kaggle</td>
+      <td id="T_77106_row8_col1" class="data row8 col1" >2.2.5</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row9_col0" class="data row9 col0" >lime</td>
+      <td id="T_77106_row9_col1" class="data row9 col1" >0.2.0.1</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row10_col0" class="data row10 col0" >shap</td>
+      <td id="T_77106_row10_col1" class="data row10 col1" >0.46.0</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row11_col0" class="data row11 col0" >optuna</td>
+      <td id="T_77106_row11_col1" class="data row11 col1" >4.0.0</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row12_col0" class="data row12 col0" >matplotlib</td>
+      <td id="T_77106_row12_col1" class="data row12 col1" >3.9.2</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row13_col0" class="data row13 col0" >scipy</td>
+      <td id="T_77106_row13_col1" class="data row13 col1" >1.14.1</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row14_col0" class="data row14 col0" >statsmodels</td>
+      <td id="T_77106_row14_col1" class="data row14 col1" >0.14.4</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row15_col0" class="data row15 col0" >jupyter-book</td>
+      <td id="T_77106_row15_col1" class="data row15 col1" >1.0.4.post1</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row16_col0" class="data row16 col0" >myst-nb</td>
+      <td id="T_77106_row16_col1" class="data row16 col1" >1.1.2</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row17_col0" class="data row17 col0" >sphinxcontrib-bibtex</td>
+      <td id="T_77106_row17_col1" class="data row17 col1" >2.7.0</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row18_col0" class="data row18 col0" >ipykernel</td>
+      <td id="T_77106_row18_col1" class="data row18 col1" >6.29.5</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row19_col0" class="data row19 col0" >joblib</td>
+      <td id="T_77106_row19_col1" class="data row19 col1" >1.4.2</td>
+    </tr>
+    <tr>
+      <td id="T_77106_row20_col0" class="data row20 col0" >psutil</td>
+      <td id="T_77106_row20_col1" class="data row20 col1" >6.1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="hardware">
+<h2>11.2 Hardware<a class="headerlink" href="#hardware" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Procesador</p></td>
+<td><p>Intel Core i5-1235U: 2 núcleos de rendimiento con 2 hilos cada uno y 8 núcleos de eficiencia, 12 hilos, límite de potencia de 15 W</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memoria</p></td>
+<td><p>16 GB de RAM</p></td>
+</tr>
+<tr class="row-even"><td><p>Sistema operativo</p></td>
+<td><p>Windows 11</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU</p></td>
+<td><p>No se usó; todo el proyecto corre en CPU</p></td>
+</tr>
+<tr class="row-even"><td><p>Spark</p></td>
+<td><p>Modo local (<code class="docutils literal notranslate"><span class="pre">local[*]</span></code> y <code class="docutils literal notranslate"><span class="pre">local[p]</span></code> en el benchmarking); sin clúster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El enunciado asume entre 32 y 64 GB de RAM para trabajar con Avazu; con 16 GB, los tamaños de muestra y las grillas se redujeron de forma declarada antes de entrenar (capítulos 4 y 5).</p>
+</section>
+<section id="semillas-particion-y-decisiones-fijadas-a-priori">
+<h2>11.3 Semillas, partición y decisiones fijadas a priori<a class="headerlink" href="#semillas-particion-y-decisiones-fijadas-a-priori" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Semillas</p></td>
+<td><p>13, 29, 47, 71 y 97 (<code class="docutils literal notranslate"><span class="pre">SEEDS</span></code> en <code class="docutils literal notranslate"><span class="pre">src/config.py</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Partición temporal</p></td>
+<td><p>train días 21 a 28, validación día 29, prueba día 30</p></td>
+</tr>
+<tr class="row-even"><td><p>Métrica primaria</p></td>
+<td><p>ROC AUC; nivel de significancia <span class="math notranslate nohighlight">\(\alpha = 0{,}05\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Margen de equivalencia</p></td>
+<td><p><span class="math notranslate nohighlight">\(\delta = 0{,}01\)</span> de AUC, declarado antes de ver los resultados (<code class="docutils literal notranslate"><span class="pre">artifacts/stats/decisiones_a_priori.json</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Optuna</p></td>
+<td><p>muestreador TPE con semilla 13</p></td>
+</tr>
+<tr class="row-odd"><td><p>Muestreo con DuckDB</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">USING</span> <span class="pre">SAMPLE</span> <span class="pre">...</span> <span class="pre">(reservoir,</span> <span class="pre">semilla)</span></code>; con un solo hilo es determinista</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los scripts de interpretabilidad, ablación, benchmarking por etapas y punto de cruce fijan DuckDB en un hilo, de modo que sus muestras se reproducen exactamente. Los scripts del experimento principal (<code class="docutils literal notranslate"><span class="pre">sklearn_pipeline.py</span></code> y <code class="docutils literal notranslate"><span class="pre">spark_pipeline.py</span></code>) y las pruebas de escalamiento de <code class="docutils literal notranslate"><span class="pre">benchmarking.py</span></code> muestrearon con 8 hilos; con esa configuración, el muestreo por reservorio de DuckDB no es determinista, así que al volver a correrlos se obtienen muestras distintas del mismo tamaño y resultados equivalentes, pero no idénticos dígito a dígito.</p>
+</section>
+<section id="configuracion-de-spark">
+<h2>11.4 Configuración de Spark<a class="headerlink" href="#configuracion-de-spark" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parámetro</p></th>
+<th class="head"><p>Experimento principal</p></th>
+<th class="head"><p>Benchmarking</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">local[*]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">local[1]</span></code>, <code class="docutils literal notranslate"><span class="pre">local[2]</span></code>, <code class="docutils literal notranslate"><span class="pre">local[4]</span></code>, <code class="docutils literal notranslate"><span class="pre">local[8]</span></code>, <code class="docutils literal notranslate"><span class="pre">local[12]</span></code> y <code class="docutils literal notranslate"><span class="pre">local[*]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">spark.driver.memory</span></code></p></td>
+<td><p>12g</p></td>
+<td><p>8g</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spark.memory.fraction</span></code></p></td>
+<td><p>0,8</p></td>
+<td><p>0,8 (por etapas: valor por defecto)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">spark.memory.storageFraction</span></code></p></td>
+<td><p>0,6</p></td>
+<td><p>0,6 (por etapas: valor por defecto)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spark.sql.shuffle.partitions</span></code></p></td>
+<td><p>12</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">spark.driver.host</span></code> y <code class="docutils literal notranslate"><span class="pre">spark.driver.bindAddress</span></code></p></td>
+<td><p>127.0.0.1</p></td>
+<td><p>127.0.0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Spark UI</p></td>
+<td><p>deshabilitada</p></td>
+<td><p>habilitada solo en <code class="docutils literal notranslate"><span class="pre">stage_benchmark.py</span></code>, puerto 4050</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En modo local no hay ejecutores separados: el driver y el ejecutor comparten la misma JVM, cuya memoria es <code class="docutils literal notranslate"><span class="pre">spark.driver.memory</span></code>, y el número de hilos de <code class="docutils literal notranslate"><span class="pre">local[p]</span></code> hace las veces de núcleos de ejecutor. Los datos de Spark se leen desde archivos Parquet planos escritos con pyarrow, porque leer el directorio particionado exige las librerías nativas de Hadoop en Windows (sección 5.1).</p>
+</section>
+<section id="manifiesto-de-datos">
+<h2>11.5 Manifiesto de datos<a class="headerlink" href="#manifiesto-de-datos" title="Link to this heading">#</a></h2>
+<p>Los datos vienen de la competencia <em>Avazu CTR Prediction</em> de Kaggle <span class="bibtex-citation" id="id1">[<a class="reference internal" href="10_reflexion_critica.html#id3" title="Avazu. Click-through rate prediction. https://www.kaggle.com/competitions/avazu-ctr-prediction, 2014. Competencia de Kaggle.">Avazu, 2014</a>]</span>, que se descarga con la API de Kaggle; el token se guarda en <code class="docutils literal notranslate"><span class="pre">~/.kaggle/access_token</span></code> y nunca dentro del repositorio. <code class="docutils literal notranslate"><span class="pre">src/data_prep.py</span></code> convierte el CSV a Parquet particionado por día, y <code class="docutils literal notranslate"><span class="pre">src/manifiesto_datos.py</span></code> registra el número de filas, el tamaño, la fecha de modificación y el hash SHA-256 de cada partición. El hash del día 30 permite verificar que el conjunto de prueba es el mismo que se usó en todo el proyecto.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ART</span> <span class="o">/</span> <span class="s2">"eda"</span> <span class="o">/</span> <span class="s2">"manifiesto_datos.json"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">"particiones"</span><span class="p">])[[</span><span class="s2">"dia"</span><span class="p">,</span> <span class="s2">"rol"</span><span class="p">,</span> <span class="s2">"archivo"</span><span class="p">,</span> <span class="s2">"filas"</span><span class="p">,</span> <span class="s2">"bytes"</span><span class="p">,</span> <span class="s2">"modificado"</span><span class="p">,</span> <span class="s2">"sha256"</span><span class="p">]]</span>
+<span class="n">t</span><span class="p">[</span><span class="s2">"MB"</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">"bytes"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"bytes"</span><span class="p">])[[</span><span class="s2">"dia"</span><span class="p">,</span> <span class="s2">"rol"</span><span class="p">,</span> <span class="s2">"archivo"</span><span class="p">,</span> <span class="s2">"filas"</span><span class="p">,</span> <span class="s2">"MB"</span><span class="p">,</span> <span class="s2">"modificado"</span><span class="p">,</span> <span class="s2">"sha256"</span><span class="p">]],</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"dia"</span><span class="p">,</span> <span class="s2">"filas"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total: </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s1">'total_filas'</span><span class="p">])</span><span class="si">}</span><span class="s2"> filas"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_8449d">
+  <thead>
+    <tr>
+      <th id="T_8449d_level0_col0" class="col_heading level0 col0" >dia</th>
+      <th id="T_8449d_level0_col1" class="col_heading level0 col1" >rol</th>
+      <th id="T_8449d_level0_col2" class="col_heading level0 col2" >archivo</th>
+      <th id="T_8449d_level0_col3" class="col_heading level0 col3" >filas</th>
+      <th id="T_8449d_level0_col4" class="col_heading level0 col4" >MB</th>
+      <th id="T_8449d_level0_col5" class="col_heading level0 col5" >modificado</th>
+      <th id="T_8449d_level0_col6" class="col_heading level0 col6" >sha256</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_8449d_row0_col0" class="data row0 col0" >21</td>
+      <td id="T_8449d_row0_col1" class="data row0 col1" >train</td>
+      <td id="T_8449d_row0_col2" class="data row0 col2" >processed/day=21/data_0.parquet</td>
+      <td id="T_8449d_row0_col3" class="data row0 col3" >4.122.995</td>
+      <td id="T_8449d_row0_col4" class="data row0 col4" >171,2</td>
+      <td id="T_8449d_row0_col5" class="data row0 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row0_col6" class="data row0 col6" >10eb965c18549174ee46d388f9b9b0aba544ef08911c969f60ebfb5ed48bf0a0</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row1_col0" class="data row1 col0" >22</td>
+      <td id="T_8449d_row1_col1" class="data row1 col1" >train</td>
+      <td id="T_8449d_row1_col2" class="data row1 col2" >processed/day=22/data_0.parquet</td>
+      <td id="T_8449d_row1_col3" class="data row1 col3" >5.337.126</td>
+      <td id="T_8449d_row1_col4" class="data row1 col4" >216,2</td>
+      <td id="T_8449d_row1_col5" class="data row1 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row1_col6" class="data row1 col6" >17cb8523ddb53fe00a230bb1c447f7e9298132bc18b2d655c2cee7bcc04f3098</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row2_col0" class="data row2 col0" >23</td>
+      <td id="T_8449d_row2_col1" class="data row2 col1" >train</td>
+      <td id="T_8449d_row2_col2" class="data row2 col2" >processed/day=23/data_0.parquet</td>
+      <td id="T_8449d_row2_col3" class="data row2 col3" >3.870.752</td>
+      <td id="T_8449d_row2_col4" class="data row2 col4" >160,3</td>
+      <td id="T_8449d_row2_col5" class="data row2 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row2_col6" class="data row2 col6" >1b8d2580d070058c352263642a60d598d6844642273b191c618116a05a5560b4</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row3_col0" class="data row3 col0" >24</td>
+      <td id="T_8449d_row3_col1" class="data row3 col1" >train</td>
+      <td id="T_8449d_row3_col2" class="data row3 col2" >processed/day=24/data_0.parquet</td>
+      <td id="T_8449d_row3_col3" class="data row3 col3" >3.335.302</td>
+      <td id="T_8449d_row3_col4" class="data row3 col4" >136,0</td>
+      <td id="T_8449d_row3_col5" class="data row3 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row3_col6" class="data row3 col6" >f9df5f9c7eda6ef93f6ab5b4c045b45d5f53aea669d73cb90651a56f117632e2</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row4_col0" class="data row4 col0" >25</td>
+      <td id="T_8449d_row4_col1" class="data row4 col1" >train</td>
+      <td id="T_8449d_row4_col2" class="data row4 col2" >processed/day=25/data_0.parquet</td>
+      <td id="T_8449d_row4_col3" class="data row4 col3" >3.363.122</td>
+      <td id="T_8449d_row4_col4" class="data row4 col4" >139,0</td>
+      <td id="T_8449d_row4_col5" class="data row4 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row4_col6" class="data row4 col6" >29d2868cd7d0a19a611a4287780ffe34a0ed66457135b1ee582ee1fc1d7d69d9</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row5_col0" class="data row5 col0" >26</td>
+      <td id="T_8449d_row5_col1" class="data row5 col1" >train</td>
+      <td id="T_8449d_row5_col2" class="data row5 col2" >processed/day=26/data_0.parquet</td>
+      <td id="T_8449d_row5_col3" class="data row5 col3" >3.835.892</td>
+      <td id="T_8449d_row5_col4" class="data row5 col4" >159,2</td>
+      <td id="T_8449d_row5_col5" class="data row5 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row5_col6" class="data row5 col6" >38edbb6e857c4d3ee1ccfa4a19ed4782625b44bf819d671ffa9bd49a86f80bad</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row6_col0" class="data row6 col0" >27</td>
+      <td id="T_8449d_row6_col1" class="data row6 col1" >train</td>
+      <td id="T_8449d_row6_col2" class="data row6 col2" >processed/day=27/data_0.parquet</td>
+      <td id="T_8449d_row6_col3" class="data row6 col3" >3.225.010</td>
+      <td id="T_8449d_row6_col4" class="data row6 col4" >136,9</td>
+      <td id="T_8449d_row6_col5" class="data row6 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row6_col6" class="data row6 col6" >7f3fb8faf281677360dad9a9a88cbd3e43e7d5bf97e68545886c2747b3f67a32</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row7_col0" class="data row7 col0" >28</td>
+      <td id="T_8449d_row7_col1" class="data row7 col1" >train</td>
+      <td id="T_8449d_row7_col2" class="data row7 col2" >processed/day=28/data_0.parquet</td>
+      <td id="T_8449d_row7_col3" class="data row7 col3" >5.287.222</td>
+      <td id="T_8449d_row7_col4" class="data row7 col4" >217,8</td>
+      <td id="T_8449d_row7_col5" class="data row7 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row7_col6" class="data row7 col6" >86ae1d0e008aab3293710d8dbcd7a7e3c2583a2eea85771ab037eddeb5b355a4</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row8_col0" class="data row8 col0" >29</td>
+      <td id="T_8449d_row8_col1" class="data row8 col1" >validacion</td>
+      <td id="T_8449d_row8_col2" class="data row8 col2" >processed/day=29/data_0.parquet</td>
+      <td id="T_8449d_row8_col3" class="data row8 col3" >3.832.608</td>
+      <td id="T_8449d_row8_col4" class="data row8 col4" >160,1</td>
+      <td id="T_8449d_row8_col5" class="data row8 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row8_col6" class="data row8 col6" >0eaaa8893c60dfd6a05d681b1ee92b8953d80d70fa20751dc5baff2c1840d3ea</td>
+    </tr>
+    <tr>
+      <td id="T_8449d_row9_col0" class="data row9 col0" >30</td>
+      <td id="T_8449d_row9_col1" class="data row9 col1" >prueba</td>
+      <td id="T_8449d_row9_col2" class="data row9 col2" >processed/day=30/data_0.parquet</td>
+      <td id="T_8449d_row9_col3" class="data row9 col3" >4.218.938</td>
+      <td id="T_8449d_row9_col4" class="data row9 col4" >170,8</td>
+      <td id="T_8449d_row9_col5" class="data row9 col5" >2026-11-05T21:37:32</td>
+      <td id="T_8449d_row9_col6" class="data row9 col6" >359b9068b917123ed898533d9b04759494c32961c4cb9a4ebbbfb0edeffa5bb7</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total: 40.428.967 filas
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="orden-de-ejecucion">
+<h2>11.6 Orden de ejecución<a class="headerlink" href="#orden-de-ejecucion" title="Link to this heading">#</a></h2>
+<p>Desde la carpeta <code class="docutils literal notranslate"><span class="pre">src/</span></code>, con el entorno <code class="docutils literal notranslate"><span class="pre">dl_tarea1</span></code> activo:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Script</p></th>
+<th class="head"><p>Salida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data_prep.py</span></code></p></td>
+<td><p>descarga Avazu y escribe <code class="docutils literal notranslate"><span class="pre">data/processed/day=*/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">manifiesto_datos.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/eda/manifiesto_datos.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eda.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/eda/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sklearn_pipeline.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/sklearn/</span></code> (45 corridas)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spark_pipeline.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/spark/</span></code> (15 corridas)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stats_tests.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/stats/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">benchmarking.py</span></code></p></td>
+<td><p>escalamiento, Amdahl y punto de cruce en <code class="docutils literal notranslate"><span class="pre">artifacts/benchmarking/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stage_benchmark.py</span></code></p></td>
+<td><p>tiempos por etapa y Spark UI en <code class="docutils literal notranslate"><span class="pre">artifacts/benchmarking/</span></code>; debe correr con la máquina sin otra carga</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">interpretability.py</span></code>, luego con <code class="docutils literal notranslate"><span class="pre">--sensibilidad</span></code> y con <code class="docutils literal notranslate"><span class="pre">--discretizacion</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/interpretability/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ablation.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">artifacts/ablation/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code>, desde la raíz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_build/html/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los scripts de modelado guardan cada corrida al terminarla y, si se interrumpen, retoman desde la última corrida completa. Cada script deja su registro con marcas de tiempo en el <code class="docutils literal notranslate"><span class="pre">run_log</span></code> de su carpeta de <code class="docutils literal notranslate"><span class="pre">artifacts/</span></code>; según esos registros, la ablación tardó unas 2 horas, el benchmarking de escalamiento 1 hora y 40 minutos y la interpretabilidad con su sensibilidad unos 12 minutos. Los cuadernos del libro solo leen <code class="docutils literal notranslate"><span class="pre">artifacts/</span></code> y no vuelven a entrenar.</p>
+</section>
+<section id="registro-de-desviaciones">
+<h2>11.7 Registro de desviaciones<a class="headerlink" href="#registro-de-desviaciones" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Desviación</p></th>
+<th class="head"><p>Motivo</p></th>
+<th class="head"><p>Efecto y dónde se trata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Avazu en lugar de Criteo 1TB</p></td>
+<td><p>sin clúster ni almacenamiento para 1 TB; el enunciado admite Avazu como dataset secundario</p></td>
+<td><p>capítulo 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Muestras de scikit-learn de 80.085, 800.847 y 1.601.694 filas, no de 100 mil, 1 y 2 millones</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">USING</span> <span class="pre">SAMPLE</span></code> de DuckDB se aplica antes del filtro por día</p></td>
+<td><p>tamaños efectivos documentados en la sección 3.6</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP de Spark con hashing de 2^9 y 300.000 filas, GBT con solo 5 variables y 1 millón de filas</p></td>
+<td><p>densificación de la entrada y acumulación de memoria con 16 GB</p></td>
+<td><p>sección 5.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grilla del MLP de Spark reducida a una combinación del espacio mandatado</p></td>
+<td><p>el tiempo por combinación hacía inviable la grilla en el plazo</p></td>
+<td><p>sección 5.2</p></td>
+</tr>
+<tr class="row-even"><td><p>Columnas C1, C14 a C21 y la hora no usadas en el modelo principal</p></td>
+<td><p>omisión detectada al redactar</p></td>
+<td><p>ablación <code class="docutils literal notranslate"><span class="pre">con_C_y_hora</span></code>, sección 9.3: diferencia equivalente a cero dentro de <span class="math notranslate nohighlight">\(\delta\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>AUC del MLP de Spark recalculado desde las probabilidades</p></td>
+<td><p>el evaluador de Spark usa <code class="docutils literal notranslate"><span class="pre">rawPrediction</span></code> y 1.000 intervalos</p></td>
+<td><p>sección 5.4</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretabilidad y ablación con muestreo de un hilo</p></td>
+<td><p>el muestreo con varios hilos no era reproducible</p></td>
+<td><p>sección 11.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dos variantes corregidas de ponderación de clases</p></td>
+<td><p>el sobremuestreo antes de la partición interna de parada temprana contaminaba la validación, y la parada por accuracy no detecta el sobreajuste con clases balanceadas</p></td>
+<td><p>sección 9.3; se reportan las tres variantes</p></td>
+</tr>
+<tr class="row-even"><td><p>Benchmarking por etapas repetido</p></td>
+<td><p>la primera corrida coincidió con otro proceso en la máquina</p></td>
+<td><p>se reporta solo la corrida limpia</p></td>
+</tr>
+<tr class="row-odd"><td><p>Punto de cruce medido de nuevo</p></td>
+<td><p>la primera versión comparaba tiempos de scikit-learn de otra sesión y otra muestra, y Spark recibía los datos con <code class="docutils literal notranslate"><span class="pre">createDataFrame</span></code> desde pandas; con el mismo número de filas, su ajuste tardaba 40,0 s frente a 14,2 s del benchmarking por etapas</p></td>
+<td><p>sección 7.4: ambos entornos en la misma sesión, con la misma muestra y entrada por Parquet</p></td>
+</tr>
+<tr class="row-even"><td><p>Hash de la prueba calculado al cierre</p></td>
+<td><p>no se registró al crear la partición</p></td>
+<td><p>sección 11.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Red con embeddings y TorchDistributor no desarrollada</p></td>
+<td><p>extensión opcional del enunciado; plazo</p></td>
+<td><p>sección 10.4</p></td>
+</tr>
+<tr class="row-even"><td><p>Costo en la nube con tarifa de terceros</p></td>
+<td><p>la página oficial de precios no se consultó</p></td>
+<td><p>sección 7.6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dl_tarea1"
+        },
+        kernelOptions: {
+            name: "dl_tarea1",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dl_tarea1'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_reflexion_critica.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">10. Reflexión crítica y conclusiones</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno">11.1 Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware">11.2 Hardware</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-particion-y-decisiones-fijadas-a-priori">11.3 Semillas, partición y decisiones fijadas a priori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-spark">11.4 Configuración de Spark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manifiesto-de-datos">11.5 Manifiesto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-ejecucion">11.6 Orden de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-desviaciones">11.7 Registro de desviaciones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Donny Torres
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

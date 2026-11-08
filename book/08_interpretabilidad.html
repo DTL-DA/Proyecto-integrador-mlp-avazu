@@ -1,0 +1,1365 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Interpretabilidad &#8212; Proyecto Integrador 2.12 — MLP para click en anuncios móviles</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/08_interpretabilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="9. Comparación de resultados" href="09_comparacion_resultados.html" />
+    <link rel="prev" title="7. Benchmarking computacional" href="07_benchmarking.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyecto Integrador 2.12 — MLP para click en anuncios móviles</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Proyecto Integrador 2.12: MLP para predecir clics en anuncios móviles
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ficha_datos_y_preguntas.html">1. Ficha de datos y preguntas de investigación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_protocolo_antifuga_y_preprocesamiento.html">3. Protocolo anti-fuga y preprocesamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modelado_sklearn.html">4. Modelado con scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_modelado_pyspark.html">5. Modelado con PySpark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_evaluacion_estadistica.html">6. Evaluación estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_benchmarking.html">7. Benchmarking computacional</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Interpretabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_comparacion_resultados.html">9. Comparación de resultados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_reflexion_critica.html">10. Reflexión crítica y conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_anexo_reproducibilidad.html">11. Anexo de reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/DTL-DA/Proyecto-integrador-mlp-avazu" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/08_interpretabilidad.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. Interpretabilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-instancias-y-espacio-interpretable">8.1 Modelo, instancias y espacio interpretable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicaciones-locales">8.2 Explicaciones locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidad-y-estabilidad">8.3 Fidelidad y estabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-al-ancho-del-kernel-y-al-numero-de-muestras">8.4 Sensibilidad al ancho del kernel y al número de muestras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-la-discretizacion-de-lime">8.5 Diagnóstico de la discretización de LIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-con-shap-y-con-la-importancia-por-permutacion">8.6 Contraste con SHAP y con la importancia por permutación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-la-pregunta-p4">8.7 Respuesta a la pregunta P4</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="interpretabilidad">
+<h1>8. Interpretabilidad<a class="headerlink" href="#interpretabilidad" title="Link to this heading">#</a></h1>
+<p>Este capítulo responde la pregunta P4: ¿son las explicaciones de LIME estables y fieles al modelo? Para responderla se explican con LIME los errores más confiados del MLP de scikit-learn, se mide la fidelidad del sustituto local, su estabilidad entre semillas y su sensibilidad al ancho del kernel y al número de muestras perturbadas, y se contrastan las explicaciones con SHAP y con la importancia por permutación <span class="bibtex-citation" id="id1">[<a class="reference internal" href="10_reflexion_critica.html#id5" title="Scott M. Lundberg and Su-In Lee. A unified approach to interpreting model predictions. In Advances in Neural Information Processing Systems 30, 4765–4774. 2017.">Lundberg and Lee, 2017</a>, <a class="reference internal" href="10_reflexion_critica.html#id4" title="Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. “why should I trust you?”: explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135–1144. 2016. doi:10.1145/2939672.2939778.">Ribeiro <em>et al.</em>, 2016</a>]</span>. El propósito no es solo describir qué variables pesan, sino establecer cuánto se puede confiar en cada método y en qué condiciones falla.</p>
+<p>Todas las cifras de este capítulo se generan con <code class="docutils literal notranslate"><span class="pre">src/interpretability.py</span></code>; la muestra del día 30 se extrae con muestreo determinista (DuckDB con un solo hilo), así que las instancias y los resultados se reproducen al volver a correr el script.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+<span class="n">IN</span> <span class="o">=</span> <span class="n">ART</span> <span class="o">/</span> <span class="s2">"interpretability"</span>
+<span class="n">inst</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"instancias_explicadas.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"lime_explicaciones.csv"</span><span class="p">)</span>
+<span class="n">stab</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"lime_estabilidad_jaccard.csv"</span><span class="p">)</span>
+<span class="n">shp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"shap_valores.csv"</span><span class="p">)</span>
+<span class="n">agr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"concordancia_lime_shap.csv"</span><span class="p">)</span>
+<span class="n">perm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"permutation_importance.csv"</span><span class="p">)</span>
+<span class="n">sens</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"lime_sensibilidad.csv"</span><span class="p">)</span>
+<span class="n">disq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"lime_discretizacion_cuartiles.csv"</span><span class="p">)</span>
+<span class="n">dise</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">IN</span> <span class="o">/</span> <span class="s2">"lime_discretizacion_efecto.csv"</span><span class="p">)</span>
+<span class="n">FEATS</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">shp</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"_freq"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"_te"</span><span class="p">)]</span>
+<span class="n">POS</span><span class="p">,</span> <span class="n">NEG</span> <span class="o">=</span> <span class="s2">"#4d4d4d"</span><span class="p">,</span> <span class="s2">"#bfbfbf"</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ejes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#d9d9d9"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"top"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">):</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">barras</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">etiquetas</span><span class="p">,</span> <span class="n">valores</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">valores</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">POS</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">NEG</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">valores</span><span class="p">]</span>
+    <span class="n">hat</span> <span class="o">=</span> <span class="p">[</span><span class="s2">""</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"////"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">valores</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">yi</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">valores</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">hat</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">hatch</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">etiquetas</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">);</span> <span class="n">ejes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">titulo</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">LEYENDA</span> <span class="o">=</span> <span class="p">[</span><span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">POS</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"sube la probabilidad de clic"</span><span class="p">),</span>
+           <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">NEG</span><span class="p">,</span> <span class="n">hatch</span><span class="o">=</span><span class="s2">"////"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"baja la probabilidad de clic"</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="modelo-instancias-y-espacio-interpretable">
+<h2>8.1 Modelo, instancias y espacio interpretable<a class="headerlink" href="#modelo-instancias-y-espacio-interpretable" title="Link to this heading">#</a></h2>
+<p>El modelo explicado es el MLP de una capa oculta de 50 neuronas, entrenado con el tier mayor (1.601.694 filas) y la semilla 13, con su umbral de 0,2062 elegido en validación. Sobre una muestra de 500.000 filas del día 30 se eligen de forma sistemática, como pide el enunciado, los 6 falsos positivos con mayor probabilidad predicha y los 6 falsos negativos con menor probabilidad, es decir, los errores de mayor confianza errónea.</p>
+<p>Con hashing, las 4.096 columnas del bloque disperso no son legibles: cada una mezcla tokens de varias variables. Por tal motivo, LIME y SHAP se aplican sobre un espacio reducido de 14 variables densas con nombre, la frecuencia (<code class="docutils literal notranslate"><span class="pre">_freq</span></code>) y el target encoding fuera de pliegue (<code class="docutils literal notranslate"><span class="pre">_te</span></code>) de las 7 columnas de alta cardinalidad, ya estandarizadas. La correspondencia con las variables originales es directa, porque cada variable del espacio reducido es función de una sola columna original: <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code> es la tasa de clic suavizada de la aplicación en train, y <code class="docutils literal notranslate"><span class="pre">app_id_freq</span></code> su frecuencia relativa. El bloque hasheado de la instancia se mantiene fijo en todas las perturbaciones, de modo que lo que se explica es la función</p>
+<div class="math notranslate nohighlight">
+\[g_x(\mathbf d) = f\big(\mathbf h_x,\ \mathbf d\big), \qquad \mathbf d \in \mathbb R^{14},\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf h_x\)</span> es el bloque hasheado de la instancia <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(\mathbf d\)</span> el bloque denso perturbado. LIME busca el sustituto lineal <span class="math notranslate nohighlight">\(\hat g\)</span> que minimiza la pérdida ponderada por cercanía <span class="bibtex-citation" id="id2">[<a class="reference internal" href="10_reflexion_critica.html#id4" title="Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. “why should I trust you?”: explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135–1144. 2016. doi:10.1145/2939672.2939778.">Ribeiro <em>et al.</em>, 2016</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat g = \arg\min_{g \in G}\ \sum_{z} \pi_x(z)\,\big(g_x(z) - g(z')\big)^2 + \Omega(g), \qquad \pi_x(z) = \sqrt{\exp\!\left(-\frac{D(x,z)^2}{\sigma^2}\right)},\]</div>
+<p>con <span class="math notranslate nohighlight">\(\sigma = 0{,}75\sqrt{14} \approx 2{,}81\)</span> por defecto. Como se usa <code class="docutils literal notranslate"><span class="pre">discretize_continuous=True</span></code>, cada variable se discretiza en cuartiles de la muestra de referencia y <span class="math notranslate nohighlight">\(z'\)</span> es un vector binario que indica si la perturbación quedó en el mismo intervalo que la instancia. El peso de una condición como <code class="docutils literal notranslate"><span class="pre">app_id_te</span> <span class="pre">&gt;</span> <span class="pre">0.42</span></code> mide entonces el cambio de probabilidad asociado a permanecer en ese intervalo frente a salir de él.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"index"</span><span class="p">:</span> <span class="s2">"instancia"</span><span class="p">,</span> <span class="s2">"p_pred"</span><span class="p">:</span> <span class="s2">"probabilidad predicha"</span><span class="p">,</span>
+                                        <span class="s2">"y_true"</span><span class="p">:</span> <span class="s2">"clase real"</span><span class="p">,</span> <span class="s2">"tipo_error"</span><span class="p">:</span> <span class="s2">"tipo de error"</span><span class="p">})</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">shp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"indice_instancia"</span><span class="p">:</span> <span class="s2">"instancia"</span><span class="p">})[[</span><span class="s2">"instancia"</span><span class="p">,</span> <span class="s2">"valor_base"</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">"instancia"</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"valor_base"</span><span class="p">:</span> <span class="s2">"valor base SHAP"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"instancia"</span><span class="p">,</span> <span class="s2">"clase real"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_ab7f5">
+  <thead>
+    <tr>
+      <th id="T_ab7f5_level0_col0" class="col_heading level0 col0" >instancia</th>
+      <th id="T_ab7f5_level0_col1" class="col_heading level0 col1" >probabilidad predicha</th>
+      <th id="T_ab7f5_level0_col2" class="col_heading level0 col2" >clase real</th>
+      <th id="T_ab7f5_level0_col3" class="col_heading level0 col3" >tipo de error</th>
+      <th id="T_ab7f5_level0_col4" class="col_heading level0 col4" >valor base SHAP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_ab7f5_row0_col0" class="data row0 col0" >162.046</td>
+      <td id="T_ab7f5_row0_col1" class="data row0 col1" >0,9437</td>
+      <td id="T_ab7f5_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_ab7f5_row0_col3" class="data row0 col3" >FP</td>
+      <td id="T_ab7f5_row0_col4" class="data row0 col4" >0,2201</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row1_col0" class="data row1 col0" >425.036</td>
+      <td id="T_ab7f5_row1_col1" class="data row1 col1" >0,9205</td>
+      <td id="T_ab7f5_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_ab7f5_row1_col3" class="data row1 col3" >FP</td>
+      <td id="T_ab7f5_row1_col4" class="data row1 col4" >0,2212</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row2_col0" class="data row2 col0" >20.447</td>
+      <td id="T_ab7f5_row2_col1" class="data row2 col1" >0,9075</td>
+      <td id="T_ab7f5_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_ab7f5_row2_col3" class="data row2 col3" >FP</td>
+      <td id="T_ab7f5_row2_col4" class="data row2 col4" >0,2606</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row3_col0" class="data row3 col0" >108.238</td>
+      <td id="T_ab7f5_row3_col1" class="data row3 col1" >0,9075</td>
+      <td id="T_ab7f5_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_ab7f5_row3_col3" class="data row3 col3" >FP</td>
+      <td id="T_ab7f5_row3_col4" class="data row3 col4" >0,2606</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row4_col0" class="data row4 col0" >293.206</td>
+      <td id="T_ab7f5_row4_col1" class="data row4 col1" >0,8996</td>
+      <td id="T_ab7f5_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_ab7f5_row4_col3" class="data row4 col3" >FP</td>
+      <td id="T_ab7f5_row4_col4" class="data row4 col4" >0,2519</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row5_col0" class="data row5 col0" >222.511</td>
+      <td id="T_ab7f5_row5_col1" class="data row5 col1" >0,8914</td>
+      <td id="T_ab7f5_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_ab7f5_row5_col3" class="data row5 col3" >FP</td>
+      <td id="T_ab7f5_row5_col4" class="data row5 col4" >0,2452</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row6_col0" class="data row6 col0" >421.018</td>
+      <td id="T_ab7f5_row6_col1" class="data row6 col1" >0,0031</td>
+      <td id="T_ab7f5_row6_col2" class="data row6 col2" >1</td>
+      <td id="T_ab7f5_row6_col3" class="data row6 col3" >FN</td>
+      <td id="T_ab7f5_row6_col4" class="data row6 col4" >0,1023</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row7_col0" class="data row7 col0" >357.301</td>
+      <td id="T_ab7f5_row7_col1" class="data row7 col1" >0,0057</td>
+      <td id="T_ab7f5_row7_col2" class="data row7 col2" >1</td>
+      <td id="T_ab7f5_row7_col3" class="data row7 col3" >FN</td>
+      <td id="T_ab7f5_row7_col4" class="data row7 col4" >0,1281</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row8_col0" class="data row8 col0" >316.607</td>
+      <td id="T_ab7f5_row8_col1" class="data row8 col1" >0,0062</td>
+      <td id="T_ab7f5_row8_col2" class="data row8 col2" >1</td>
+      <td id="T_ab7f5_row8_col3" class="data row8 col3" >FN</td>
+      <td id="T_ab7f5_row8_col4" class="data row8 col4" >0,0905</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row9_col0" class="data row9 col0" >33.350</td>
+      <td id="T_ab7f5_row9_col1" class="data row9 col1" >0,0063</td>
+      <td id="T_ab7f5_row9_col2" class="data row9 col2" >1</td>
+      <td id="T_ab7f5_row9_col3" class="data row9 col3" >FN</td>
+      <td id="T_ab7f5_row9_col4" class="data row9 col4" >0,0986</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row10_col0" class="data row10 col0" >160.755</td>
+      <td id="T_ab7f5_row10_col1" class="data row10 col1" >0,0064</td>
+      <td id="T_ab7f5_row10_col2" class="data row10 col2" >1</td>
+      <td id="T_ab7f5_row10_col3" class="data row10 col3" >FN</td>
+      <td id="T_ab7f5_row10_col4" class="data row10 col4" >0,1527</td>
+    </tr>
+    <tr>
+      <td id="T_ab7f5_row11_col0" class="data row11 col0" >179.616</td>
+      <td id="T_ab7f5_row11_col1" class="data row11 col1" >0,0066</td>
+      <td id="T_ab7f5_row11_col2" class="data row11 col2" >1</td>
+      <td id="T_ab7f5_row11_col3" class="data row11 col3" >FN</td>
+      <td id="T_ab7f5_row11_col4" class="data row11 col4" >0,1247</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> Los falsos positivos tienen probabilidades predichas entre 0,891 y 0,944 sin haber recibido clic, y los falsos negativos entre 0,0031 y 0,0066 a pesar de haberlo recibido. Dos falsos positivos, el 20447 y el 108238, tienen la misma probabilidad (0,9075) y explicaciones idénticas, porque comparten el mismo perfil en todas las columnas. El valor base de SHAP no es igual para todas las instancias: va de 0,220 a 0,261 en los falsos positivos y de 0,091 a 0,153 en los falsos negativos.</p>
+<p>Esto significa que el bloque hasheado ya mueve la probabilidad antes de que intervengan las 14 variables explicadas. El valor base es <span class="math notranslate nohighlight">\(\mathbb E_{\mathbf d}[f(\mathbf h_x, \mathbf d)]\)</span>, la predicción media cuando el bloque denso se toma del fondo y el hasheado se deja en el de la instancia. En los falsos negativos ese valor ronda 0,12, por debajo de la tasa base de 0,17, así que una parte de la probabilidad baja de esas impresiones se debe a variables de baja cardinalidad y al cruce <code class="docutils literal notranslate"><span class="pre">site_id</span> <span class="pre">×</span> <span class="pre">device_type</span></code>, que no se explican aquí. Las variables densas explican, en promedio, la distancia entre ese valor base y la predicción: suben la probabilidad unos 0,67 puntos en los falsos positivos y la bajan unos 0,11 en los falsos negativos.</p>
+<p>Por ello, se recomienda leer las explicaciones de este capítulo como explicaciones condicionales al bloque hasheado y no como una atribución completa de la predicción. Es la limitación que impone el hashing y la razón por la que el enunciado pide documentar la correspondencia con las variables originales.</p>
+</section>
+<section id="explicaciones-locales">
+<h2>8.2 Explicaciones locales<a class="headerlink" href="#explicaciones-locales" title="Link to this heading">#</a></h2>
+<p>La figura compara, para el falso positivo y el falso negativo más confiados, las 8 condiciones de LIME con la semilla 13 y los 8 valores SHAP de mayor magnitud. Las barras oscuras suben la probabilidad de clic y las claras con trama la bajan.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"tipo_error == 'FP'"</span><span class="p">)[</span><span class="s2">"p_pred"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())</span>
+<span class="n">fn_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"tipo_error == 'FN'"</span><span class="p">)[</span><span class="s2">"p_pred"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">())</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">fila</span><span class="p">,</span> <span class="p">(</span><span class="n">iid</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(((</span><span class="n">fp_id</span><span class="p">,</span> <span class="s2">"falso positivo"</span><span class="p">),</span> <span class="p">(</span><span class="n">fn_id</span><span class="p">,</span> <span class="s2">"falso negativo"</span><span class="p">))):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"indice_instancia == @iid and seed == 13"</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cond</span><span class="p">,</span> <span class="n">pesos</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"condiciones"</span><span class="p">]),</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"pesos"</span><span class="p">])</span>
+    <span class="n">barras</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">fila</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cond</span><span class="p">,</span> <span class="n">pesos</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"LIME, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">iid</span><span class="si">}</span><span class="s2"> (p = </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">'p_pred'</span><span class="p">],</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">'fidelidad_r2'</span><span class="p">],</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"indice_instancia == @iid"</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">FEATS</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">f</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">8</span><span class="p">]</span>
+    <span class="n">barras</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">fila</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">top</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">top</span><span class="p">],</span> <span class="sa">f</span><span class="s2">"SHAP, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">iid</span><span class="si">}</span><span class="s2"> (base = </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">'valor_base'</span><span class="p">],</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"peso del sustituto lineal local"</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"valor SHAP (escala de probabilidad)"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">LEYENDA</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower center"</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/6aff29fadabcee3f24b3f51c5c7c80217e8a8feb185de4a4a2046b452de4995f.png" src="../_images/6aff29fadabcee3f24b3f51c5c7c80217e8a8feb185de4a4a2046b452de4995f.png" />
+</div>
+</div>
+<p><strong>Interpretación.</strong> En el falso positivo 162046 (<span class="math notranslate nohighlight">\(p = 0{,}944\)</span>), SHAP atribuye casi todo el exceso sobre el valor base a <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code>, con +0,696 de los 0,724 puntos que separan la predicción de su valor base de 0,220. El resto son aportes menores de <code class="docutils literal notranslate"><span class="pre">site_id_te</span></code> (−0,027), <code class="docutils literal notranslate"><span class="pre">site_domain_freq</span></code> (+0,018) y <code class="docutils literal notranslate"><span class="pre">device_model_te</span></code> (+0,018). LIME también identifica a <code class="docutils literal notranslate"><span class="pre">app_id_te</span> <span class="pre">&gt;</span> <span class="pre">0.42</span></code> como la principal condición que sube la probabilidad (+0,212), pero pone primero a <code class="docutils literal notranslate"><span class="pre">device_id_te</span> <span class="pre">&lt;=</span> <span class="pre">0.21</span></code>, con un peso negativo de −0,285. En el falso negativo 421018 (<span class="math notranslate nohighlight">\(p = 0{,}003\)</span>), SHAP reparte la caída entre <code class="docutils literal notranslate"><span class="pre">device_ip_te</span></code> (−0,036), <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code> (−0,034) y <code class="docutils literal notranslate"><span class="pre">device_model_te</span></code> (−0,017), y LIME vuelve a encabezar con <code class="docutils literal notranslate"><span class="pre">device_id_te</span> <span class="pre">&lt;=</span> <span class="pre">0.21</span></code> (−0,280), seguido de <code class="docutils literal notranslate"><span class="pre">site_id_te</span></code> y <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code>.</p>
+<p>Así mismo, los dos métodos coinciden en la dirección de la variable que más empuja la probabilidad hacia arriba en el falso positivo y en que los target encodings dominan sobre las frecuencias. El error de confianza alta se explica, entonces, porque la aplicación tiene una tasa histórica de clic alta en train y el modelo extrapola esa tasa a una impresión que no la sigue. Discrepan, en cambio, en <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code>: es la primera condición de LIME en ambas instancias y no aparece entre las seis primeras de SHAP. La sección 8.5 muestra que esa condición es la misma en las 12 instancias, lo que obliga a revisar si se trata de una propiedad del modelo o de la forma en que LIME construye el vecindario.</p>
+<p>En consecuencia, se decide no interpretar la primera condición de LIME sin el diagnóstico de la sección 8.5 y apoyar la lectura local en las variables donde LIME y SHAP coinciden en signo y orden, como <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code> en los falsos positivos.</p>
+</section>
+<section id="fidelidad-y-estabilidad">
+<h2>8.3 Fidelidad y estabilidad<a class="headerlink" href="#fidelidad-y-estabilidad" title="Link to this heading">#</a></h2>
+<p>La fidelidad es el <span class="math notranslate nohighlight">\(R^2\)</span> ponderado del sustituto lineal sobre las muestras perturbadas, que LIME reporta como <code class="docutils literal notranslate"><span class="pre">score</span></code>: la fracción de la variabilidad de <span class="math notranslate nohighlight">\(g_x\)</span> en el vecindario que reproduce <span class="math notranslate nohighlight">\(\hat g\)</span>. La estabilidad se mide repitiendo LIME con 5 semillas por instancia y calculando el índice de Jaccard entre los conjuntos de las 8 variables principales <span class="bibtex-citation" id="id3">[<a class="reference internal" href="10_reflexion_critica.html#id34" title="Paul Jaccard. The distribution of the flora in the alpine zone. New Phytologist, 11(2):37–50, 1912. doi:10.1111/j.1469-8137.1912.tb05611.x.">Jaccard, 1912</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[J(A, B) = \frac{|A \cap B|}{|A \cup B|}.\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">))</span>
+<span class="n">orden</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"tipo_error"</span><span class="p">,</span> <span class="s2">"p_pred"</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">iid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orden</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"indice_instancia == @iid"</span><span class="p">)</span>
+    <span class="n">tipo</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"tipo_error"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mk</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">"#1a1a1a"</span><span class="p">)</span> <span class="k">if</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s2">"FP"</span> <span class="k">else</span> <span class="p">(</span><span class="s2">"s"</span><span class="p">,</span> <span class="s2">"#808080"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">g</span><span class="p">[</span><span class="s2">"fidelidad_r2"</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">mk</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">k</span><span class="p">],</span> <span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">"fidelidad_r2"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> <span class="n">marker</span><span class="o">=</span><span class="n">mk</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orden</span><span class="p">)));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">orden</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"R² del sustituto local"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#d9d9d9"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s_</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"top"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">):</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s_</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"falso positivo (relleno: media; hueco: cada semilla)"</span><span class="p">),</span>
+                   <span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#808080"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"falso negativo (relleno: media; hueco: cada semilla)"</span><span class="p">)],</span>
+          <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"tipo_error"</span><span class="p">)[</span><span class="s2">"fidelidad_r2"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">stab</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"tipo_error"</span><span class="p">)[[</span><span class="s2">"jaccard_promedio_entre_semillas"</span><span class="p">,</span> <span class="s2">"jaccard_min_entre_semillas"</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">e</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"tipo_error"</span><span class="p">,</span> <span class="s2">"jac_media"</span><span class="p">,</span> <span class="s2">"jac_media_min"</span><span class="p">,</span> <span class="s2">"jac_min_media"</span><span class="p">,</span> <span class="s2">"jac_min_min"</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">e</span><span class="p">[[</span><span class="s2">"tipo_error"</span><span class="p">,</span> <span class="s2">"jac_media"</span><span class="p">,</span> <span class="s2">"jac_min_min"</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">"tipo_error"</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"tipo_error"</span><span class="p">:</span> <span class="s2">"tipo de error"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">:</span> <span class="s2">"R² medio"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">:</span> <span class="s2">"DE del R²"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">:</span> <span class="s2">"R² mínimo"</span><span class="p">,</span>
+                        <span class="s2">"max"</span><span class="p">:</span> <span class="s2">"R² máximo"</span><span class="p">,</span> <span class="s2">"jac_media"</span><span class="p">:</span> <span class="s2">"Jaccard medio top-8"</span><span class="p">,</span> <span class="s2">"jac_min_min"</span><span class="p">:</span> <span class="s2">"Jaccard mínimo"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/634c4df1bd7ed2661ac8fe6adb6bdacdfef5acfe6eb419f4f70beb19bf37e81f.png" src="../_images/634c4df1bd7ed2661ac8fe6adb6bdacdfef5acfe6eb419f4f70beb19bf37e81f.png" />
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_5e9fd">
+  <thead>
+    <tr>
+      <th id="T_5e9fd_level0_col0" class="col_heading level0 col0" >tipo de error</th>
+      <th id="T_5e9fd_level0_col1" class="col_heading level0 col1" >R² medio</th>
+      <th id="T_5e9fd_level0_col2" class="col_heading level0 col2" >DE del R²</th>
+      <th id="T_5e9fd_level0_col3" class="col_heading level0 col3" >R² mínimo</th>
+      <th id="T_5e9fd_level0_col4" class="col_heading level0 col4" >R² máximo</th>
+      <th id="T_5e9fd_level0_col5" class="col_heading level0 col5" >Jaccard medio top-8</th>
+      <th id="T_5e9fd_level0_col6" class="col_heading level0 col6" >Jaccard mínimo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_5e9fd_row0_col0" class="data row0 col0" >FN</td>
+      <td id="T_5e9fd_row0_col1" class="data row0 col1" >0,346</td>
+      <td id="T_5e9fd_row0_col2" class="data row0 col2" >0,071</td>
+      <td id="T_5e9fd_row0_col3" class="data row0 col3" >0,265</td>
+      <td id="T_5e9fd_row0_col4" class="data row0 col4" >0,471</td>
+      <td id="T_5e9fd_row0_col5" class="data row0 col5" >0,970</td>
+      <td id="T_5e9fd_row0_col6" class="data row0 col6" >0,778</td>
+    </tr>
+    <tr>
+      <td id="T_5e9fd_row1_col0" class="data row1 col0" >FP</td>
+      <td id="T_5e9fd_row1_col1" class="data row1 col1" >0,499</td>
+      <td id="T_5e9fd_row1_col2" class="data row1 col2" >0,015</td>
+      <td id="T_5e9fd_row1_col3" class="data row1 col3" >0,472</td>
+      <td id="T_5e9fd_row1_col4" class="data row1 col4" >0,533</td>
+      <td id="T_5e9fd_row1_col5" class="data row1 col5" >0,930</td>
+      <td id="T_5e9fd_row1_col6" class="data row1 col6" >0,778</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> El <span class="math notranslate nohighlight">\(R^2\)</span> medio es de 0,499 en los falsos positivos (DE 0,015, rango de 0,472 a 0,533) y de 0,346 en los falsos negativos (DE 0,071, rango de 0,265 a 0,471), con un promedio global de 0,423. La estabilidad es alta: el Jaccard medio del top-8 entre semillas es 0,950, con 0,930 en los falsos positivos y 0,970 en los falsos negativos, y 7 de las 12 instancias tienen el mismo top-8 en las 5 semillas. El peor caso, 0,778, equivale a que una de las 8 variables cambie entre dos semillas (<span class="math notranslate nohighlight">\(7/9\)</span>).</p>
+<p>De esta forma, LIME es estable pero solo moderadamente fiel. El sustituto lineal reproduce la mitad de la variabilidad del modelo en el vecindario de los falsos positivos y apenas un tercio en el de los falsos negativos. La diferencia tiene una explicación matemática: LIME ajusta la probabilidad, no el logit, y los falsos negativos están en <span class="math notranslate nohighlight">\(p \approx 0{,}005\)</span>, donde la sigmoide de salida está saturada. Allí la respuesta del modelo a las perturbaciones es muy asimétrica, porque no puede bajar de 0 y sí puede subir varias décimas, y una recta no la representa bien. Las variables que cambian entre semillas son las de menor peso, como <code class="docutils literal notranslate"><span class="pre">site_id_freq</span></code> y <code class="docutils literal notranslate"><span class="pre">app_domain_freq</span></code>, con pesos absolutos cercanos a 0,02, así que la inestabilidad no afecta el orden de las variables principales.</p>
+<p>Por esta razón, lo indicado es reportar siempre el <span class="math notranslate nohighlight">\(R^2\)</span> junto con cada explicación de LIME y tratar con más cautela las de los falsos negativos. Una explicación estable no es por eso una explicación correcta: la estabilidad solo dice que el sustituto converge al mismo resultado, no que ese resultado represente bien al modelo.</p>
+</section>
+<section id="sensibilidad-al-ancho-del-kernel-y-al-numero-de-muestras">
+<h2>8.4 Sensibilidad al ancho del kernel y al número de muestras<a class="headerlink" href="#sensibilidad-al-ancho-del-kernel-y-al-numero-de-muestras" title="Link to this heading">#</a></h2>
+<p>El diseño es un factorial <span class="math notranslate nohighlight">\(3 \times 3\)</span> con 3 semillas por celda y las 12 instancias: ancho del kernel de 0,5, 1 y 2 veces el valor por defecto (<span class="math notranslate nohighlight">\(\sigma \approx 1{,}40\)</span>, <span class="math notranslate nohighlight">\(2{,}81\)</span> y <span class="math notranslate nohighlight">\(5{,}61\)</span>) y 1.000, 5.000 y 10.000 muestras perturbadas. En cada celda se mide la fidelidad, la estabilidad del top-5 entre las 3 semillas y la coincidencia del top-5 con la configuración por defecto (ancho 1x y 5.000 muestras).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sens</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"ancho_kernel"</span><span class="p">,</span> <span class="s2">"num_muestras"</span><span class="p">])[[</span><span class="s2">"fidelidad_r2"</span><span class="p">,</span> <span class="s2">"jaccard_entre_semillas"</span><span class="p">,</span> <span class="s2">"jaccard_vs_defecto"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">st</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">"0.5x"</span><span class="p">,</span> <span class="s2">"1x"</span><span class="p">,</span> <span class="s2">"2x"</span><span class="p">],</span> <span class="n">series_styles</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"ancho_kernel == @w"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">((</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"fidelidad_r2"</span><span class="p">),</span> <span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="s2">"jaccard_entre_semillas"</span><span class="p">),</span> <span class="p">(</span><span class="n">a3</span><span class="p">,</span> <span class="s2">"jaccard_vs_defecto"</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"num_muestras"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"ancho </span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span><span class="w"> </span><span class="s1">','</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">st</span><span class="p">[</span><span class="s2">"color"</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">st</span><span class="p">[</span><span class="s2">"linestyle"</span><span class="p">],</span>
+                <span class="n">marker</span><span class="o">=</span><span class="n">st</span><span class="p">[</span><span class="s2">"marker"</span><span class="p">],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">t_</span><span class="p">,</span> <span class="n">yl</span> <span class="ow">in</span> <span class="p">((</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"Fidelidad"</span><span class="p">,</span> <span class="s2">"R² medio"</span><span class="p">),</span> <span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="s2">"Estabilidad entre semillas"</span><span class="p">,</span> <span class="s2">"Jaccard medio top-5"</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">a3</span><span class="p">,</span> <span class="s2">"Coincidencia con la configuración por defecto"</span><span class="p">,</span> <span class="s2">"Jaccard medio top-5"</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">"1.000"</span><span class="p">,</span> <span class="s2">"5.000"</span><span class="p">,</span> <span class="s2">"10.000"</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"muestras perturbadas"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">yl</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">t_</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#d9d9d9"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s_</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"top"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">):</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s_</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sens</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"tipo_error"</span><span class="p">,</span> <span class="s2">"ancho_kernel"</span><span class="p">])[</span><span class="s2">"fidelidad_r2"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"tipo_error"</span><span class="p">:</span> <span class="s2">"tipo de error"</span><span class="p">,</span> <span class="s2">"0.5x"</span><span class="p">:</span> <span class="s2">"R² ancho 0,5x"</span><span class="p">,</span> <span class="s2">"1x"</span><span class="p">:</span> <span class="s2">"R² ancho 1x"</span><span class="p">,</span> <span class="s2">"2x"</span><span class="p">:</span> <span class="s2">"R² ancho 2x"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/5da0ccf3d10a37dfb705734b0c9108f306074f1d8f36e6d18c3d6503ee1a947e.png" src="../_images/5da0ccf3d10a37dfb705734b0c9108f306074f1d8f36e6d18c3d6503ee1a947e.png" />
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_7d9be">
+  <thead>
+    <tr>
+      <th id="T_7d9be_level0_col0" class="col_heading level0 col0" >tipo de error</th>
+      <th id="T_7d9be_level0_col1" class="col_heading level0 col1" >R² ancho 0,5x</th>
+      <th id="T_7d9be_level0_col2" class="col_heading level0 col2" >R² ancho 1x</th>
+      <th id="T_7d9be_level0_col3" class="col_heading level0 col3" >R² ancho 2x</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_7d9be_row0_col0" class="data row0 col0" >FN</td>
+      <td id="T_7d9be_row0_col1" class="data row0 col1" >0,355</td>
+      <td id="T_7d9be_row0_col2" class="data row0 col2" >0,348</td>
+      <td id="T_7d9be_row0_col3" class="data row0 col3" >0,346</td>
+    </tr>
+    <tr>
+      <td id="T_7d9be_row1_col0" class="data row1 col0" >FP</td>
+      <td id="T_7d9be_row1_col1" class="data row1 col1" >0,514</td>
+      <td id="T_7d9be_row1_col2" class="data row1 col2" >0,496</td>
+      <td id="T_7d9be_row1_col3" class="data row1 col3" >0,491</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> La fidelidad casi no cambia con el ancho del kernel: va de 0,426 a 0,441 con el ancho de 0,5x, de 0,420 a 0,425 con el de 1x y de 0,417 a 0,420 con el de 2x. Por tipo de error, el kernel estrecho sube el <span class="math notranslate nohighlight">\(R^2\)</span> de los falsos positivos de 0,491 a 0,514 y el de los falsos negativos de 0,346 a 0,355. El número de muestras sí importa para la estabilidad: con 1.000 muestras y ancho de 0,5x, el Jaccard entre semillas cae a 0,852 y la coincidencia con la configuración por defecto a 0,926. Desde 5.000 muestras, el top-5 es idéntico entre semillas (Jaccard de 1) y coincide con el de la configuración por defecto en los tres anchos.</p>
+<p>Lo anterior indica que el top-5 de LIME es robusto a duplicar o reducir a la mitad el ancho del kernel, y que la fidelidad moderada no se corrige ajustando ese hiperparámetro. Con la discretización, la distancia <span class="math notranslate nohighlight">\(D(x,z)\)</span> se calcula sobre el vector binario <span class="math notranslate nohighlight">\(z'\)</span>, así que el kernel solo cambia cuánto pesan las perturbaciones según cuántas variables salieron del intervalo de la instancia. Un kernel más estrecho concentra el ajuste en las perturbaciones más cercanas y mejora algo el <span class="math notranslate nohighlight">\(R^2\)</span>, pero con menos muestras efectivas, lo que explica que sea la configuración más inestable cuando solo hay 1.000 muestras. En las explicaciones de la sección 8.3, el top-5 también tiene Jaccard de 1 entre las 5 semillas, así que la estabilidad de 0,950 del top-8 se debe solo a las posiciones 6 a 8.</p>
+<p>Con base en esto, se propone mantener la configuración por defecto, ancho de <span class="math notranslate nohighlight">\(0{,}75\sqrt p\)</span> y 5.000 muestras, porque está en la zona donde el top-5 ya no depende de la semilla y el costo es de unos 2 segundos por explicación. Usar 1.000 muestras, sobre todo con kernels estrechos, produce explicaciones que cambian con la semilla.</p>
+</section>
+<section id="diagnostico-de-la-discretizacion-de-lime">
+<h2>8.5 Diagnóstico de la discretización de LIME<a class="headerlink" href="#diagnostico-de-la-discretizacion-de-lime" title="Link to this heading">#</a></h2>
+<p>En las 12 instancias, falsos positivos y falsos negativos por igual, la condición con mayor peso de LIME es <code class="docutils literal notranslate"><span class="pre">device_id_te</span> <span class="pre">&lt;=</span> <span class="pre">0.21</span></code>, con pesos entre −0,38 y −0,16 en las 60 explicaciones (entre −0,24 y −0,31 con la semilla 13), y es la primera en 57 de ellas. Una condición que aparece con el mismo signo y casi el mismo peso en instancias con probabilidades de 0,003 y de 0,94 no puede explicar por qué el modelo las separa. Para entender la causa se revisan dos cosas: cuántos intervalos distintos produce la discretización en cuartiles de cada variable y cuánto cambia la probabilidad cuando solo esa variable se reemplaza por valores de las filas que caen fuera del intervalo de la instancia, que es justo el contraste que hace LIME.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">disq</span><span class="p">[[</span><span class="s2">"feature"</span><span class="p">,</span> <span class="s2">"n_intervalos"</span><span class="p">,</span> <span class="s2">"masa_valor_modal"</span><span class="p">,</span> <span class="s2">"q25"</span><span class="p">,</span> <span class="s2">"q50"</span><span class="p">,</span> <span class="s2">"q75"</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"masa_valor_modal"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"n_intervalos"</span><span class="p">:</span> <span class="s2">"intervalos de LIME"</span><span class="p">,</span> <span class="s2">"masa_valor_modal"</span><span class="p">:</span> <span class="s2">"masa del valor modal"</span><span class="p">,</span>
+                        <span class="s2">"q25"</span><span class="p">:</span> <span class="s2">"cuartil 1"</span><span class="p">,</span> <span class="s2">"q50"</span><span class="p">:</span> <span class="s2">"mediana"</span><span class="p">,</span> <span class="s2">"q75"</span><span class="p">:</span> <span class="s2">"cuartil 3"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">enteros</span><span class="o">=</span><span class="p">(</span><span class="s2">"intervalos de LIME"</span><span class="p">,))</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">dise</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"feature"</span><span class="p">,</span> <span class="s2">"tipo_error"</span><span class="p">])[[</span><span class="s2">"fraccion_fuera_intervalo"</span><span class="p">,</span> <span class="s2">"cambio_p_medio"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">e</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="s2">"feature"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"_te"</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"cambio_p_medio_FP"</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"fraccion_fuera_intervalo_FP"</span><span class="p">:</span> <span class="s2">"fuera del intervalo (FP)"</span><span class="p">,</span>
+                        <span class="s2">"cambio_p_medio_FP"</span><span class="p">:</span> <span class="s2">"cambio medio de p (FP)"</span><span class="p">,</span> <span class="s2">"fraccion_fuera_intervalo_FN"</span><span class="p">:</span> <span class="s2">"fuera del intervalo (FN)"</span><span class="p">,</span>
+                        <span class="s2">"cambio_p_medio_FN"</span><span class="p">:</span> <span class="s2">"cambio medio de p (FN)"</span><span class="p">})[</span>
+    <span class="p">[</span><span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"fuera del intervalo (FP)"</span><span class="p">,</span> <span class="s2">"cambio medio de p (FP)"</span><span class="p">,</span> <span class="s2">"fuera del intervalo (FN)"</span><span class="p">,</span> <span class="s2">"cambio medio de p (FN)"</span><span class="p">]],</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_9f4cf">
+  <thead>
+    <tr>
+      <th id="T_9f4cf_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_9f4cf_level0_col1" class="col_heading level0 col1" >intervalos de LIME</th>
+      <th id="T_9f4cf_level0_col2" class="col_heading level0 col2" >masa del valor modal</th>
+      <th id="T_9f4cf_level0_col3" class="col_heading level0 col3" >cuartil 1</th>
+      <th id="T_9f4cf_level0_col4" class="col_heading level0 col4" >mediana</th>
+      <th id="T_9f4cf_level0_col5" class="col_heading level0 col5" >cuartil 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_9f4cf_row0_col0" class="data row0 col0" >device_ip_freq</td>
+      <td id="T_9f4cf_row0_col1" class="data row0 col1" >2</td>
+      <td id="T_9f4cf_row0_col2" class="data row0 col2" >0,862</td>
+      <td id="T_9f4cf_row0_col3" class="data row0 col3" >0,541</td>
+      <td id="T_9f4cf_row0_col4" class="data row0 col4" >0,541</td>
+      <td id="T_9f4cf_row0_col5" class="data row0 col5" >0,541</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row1_col0" class="data row1 col0" >device_ip_te</td>
+      <td id="T_9f4cf_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_9f4cf_row1_col2" class="data row1 col2" >0,862</td>
+      <td id="T_9f4cf_row1_col3" class="data row1 col3" >-0,065</td>
+      <td id="T_9f4cf_row1_col4" class="data row1 col4" >-0,065</td>
+      <td id="T_9f4cf_row1_col5" class="data row1 col5" >-0,065</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row2_col0" class="data row2 col0" >device_id_freq</td>
+      <td id="T_9f4cf_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_9f4cf_row2_col2" class="data row2 col2" >0,845</td>
+      <td id="T_9f4cf_row2_col3" class="data row2 col3" >0,459</td>
+      <td id="T_9f4cf_row2_col4" class="data row2 col4" >0,459</td>
+      <td id="T_9f4cf_row2_col5" class="data row2 col5" >0,459</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row3_col0" class="data row3 col0" >device_id_te</td>
+      <td id="T_9f4cf_row3_col1" class="data row3 col1" >2</td>
+      <td id="T_9f4cf_row3_col2" class="data row3 col2" >0,845</td>
+      <td id="T_9f4cf_row3_col3" class="data row3 col3" >0,209</td>
+      <td id="T_9f4cf_row3_col4" class="data row3 col4" >0,209</td>
+      <td id="T_9f4cf_row3_col5" class="data row3 col5" >0,209</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row4_col0" class="data row4 col0" >app_domain_freq</td>
+      <td id="T_9f4cf_row4_col1" class="data row4 col1" >3</td>
+      <td id="T_9f4cf_row4_col2" class="data row4 col2" >0,555</td>
+      <td id="T_9f4cf_row4_col3" class="data row4 col3" >-1,286</td>
+      <td id="T_9f4cf_row4_col4" class="data row4 col4" >0,671</td>
+      <td id="T_9f4cf_row4_col5" class="data row4 col5" >0,671</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row5_col0" class="data row5 col0" >app_domain_te</td>
+      <td id="T_9f4cf_row5_col1" class="data row5 col1" >3</td>
+      <td id="T_9f4cf_row5_col2" class="data row5 col2" >0,555</td>
+      <td id="T_9f4cf_row5_col3" class="data row5 col3" >-0,763</td>
+      <td id="T_9f4cf_row5_col4" class="data row5 col4" >0,480</td>
+      <td id="T_9f4cf_row5_col5" class="data row5 col5" >0,480</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row6_col0" class="data row6 col0" >app_id_freq</td>
+      <td id="T_9f4cf_row6_col1" class="data row6 col1" >3</td>
+      <td id="T_9f4cf_row6_col2" class="data row6 col2" >0,535</td>
+      <td id="T_9f4cf_row6_col3" class="data row6 col3" >-1,391</td>
+      <td id="T_9f4cf_row6_col4" class="data row6 col4" >0,730</td>
+      <td id="T_9f4cf_row6_col5" class="data row6 col5" >0,730</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row7_col0" class="data row7 col0" >app_id_te</td>
+      <td id="T_9f4cf_row7_col1" class="data row7 col1" >3</td>
+      <td id="T_9f4cf_row7_col2" class="data row7 col2" >0,535</td>
+      <td id="T_9f4cf_row7_col3" class="data row7 col3" >-0,888</td>
+      <td id="T_9f4cf_row7_col4" class="data row7 col4" >0,416</td>
+      <td id="T_9f4cf_row7_col5" class="data row7 col5" >0,416</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row8_col0" class="data row8 col0" >site_domain_freq</td>
+      <td id="T_9f4cf_row8_col1" class="data row8 col1" >4</td>
+      <td id="T_9f4cf_row8_col2" class="data row8 col2" >0,477</td>
+      <td id="T_9f4cf_row8_col3" class="data row8 col3" >-0,955</td>
+      <td id="T_9f4cf_row8_col4" class="data row8 col4" >-0,015</td>
+      <td id="T_9f4cf_row8_col5" class="data row8 col5" >1,247</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row9_col0" class="data row9 col0" >site_domain_te</td>
+      <td id="T_9f4cf_row9_col1" class="data row9 col1" >3</td>
+      <td id="T_9f4cf_row9_col2" class="data row9 col2" >0,477</td>
+      <td id="T_9f4cf_row9_col3" class="data row9 col3" >-0,518</td>
+      <td id="T_9f4cf_row9_col4" class="data row9 col4" >-0,518</td>
+      <td id="T_9f4cf_row9_col5" class="data row9 col5" >0,386</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row10_col0" class="data row10 col0" >site_id_freq</td>
+      <td id="T_9f4cf_row10_col1" class="data row10 col1" >4</td>
+      <td id="T_9f4cf_row10_col2" class="data row10 col2" >0,465</td>
+      <td id="T_9f4cf_row10_col3" class="data row10 col3" >-0,975</td>
+      <td id="T_9f4cf_row10_col4" class="data row10 col4" >0,066</td>
+      <td id="T_9f4cf_row10_col5" class="data row10 col5" >1,275</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row11_col0" class="data row11 col0" >site_id_te</td>
+      <td id="T_9f4cf_row11_col1" class="data row11 col1" >3</td>
+      <td id="T_9f4cf_row11_col2" class="data row11 col2" >0,465</td>
+      <td id="T_9f4cf_row11_col3" class="data row11 col3" >-0,525</td>
+      <td id="T_9f4cf_row11_col4" class="data row11 col4" >-0,525</td>
+      <td id="T_9f4cf_row11_col5" class="data row11 col5" >0,363</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row12_col0" class="data row12 col0" >device_model_freq</td>
+      <td id="T_9f4cf_row12_col1" class="data row12 col1" >4</td>
+      <td id="T_9f4cf_row12_col2" class="data row12 col2" >0,057</td>
+      <td id="T_9f4cf_row12_col3" class="data row12 col3" >-0,649</td>
+      <td id="T_9f4cf_row12_col4" class="data row12 col4" >-0,469</td>
+      <td id="T_9f4cf_row12_col5" class="data row12 col5" >0,091</td>
+    </tr>
+    <tr>
+      <td id="T_9f4cf_row13_col0" class="data row13 col0" >device_model_te</td>
+      <td id="T_9f4cf_row13_col1" class="data row13 col1" >4</td>
+      <td id="T_9f4cf_row13_col2" class="data row13 col2" >0,057</td>
+      <td id="T_9f4cf_row13_col3" class="data row13 col3" >-0,486</td>
+      <td id="T_9f4cf_row13_col4" class="data row13 col4" >0,119</td>
+      <td id="T_9f4cf_row13_col5" class="data row13 col5" >0,757</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"><style type="text/css">
+</style>
+<table id="T_0bdd2">
+  <thead>
+    <tr>
+      <th id="T_0bdd2_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_0bdd2_level0_col1" class="col_heading level0 col1" >fuera del intervalo (FP)</th>
+      <th id="T_0bdd2_level0_col2" class="col_heading level0 col2" >cambio medio de p (FP)</th>
+      <th id="T_0bdd2_level0_col3" class="col_heading level0 col3" >fuera del intervalo (FN)</th>
+      <th id="T_0bdd2_level0_col4" class="col_heading level0 col4" >cambio medio de p (FN)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_0bdd2_row0_col0" class="data row0 col0" >app_id_te</td>
+      <td id="T_0bdd2_row0_col1" class="data row0 col1" >0,8861</td>
+      <td id="T_0bdd2_row0_col2" class="data row0 col2" >-0,7093</td>
+      <td id="T_0bdd2_row0_col3" class="data row0 col3" >0,4936</td>
+      <td id="T_0bdd2_row0_col4" class="data row0 col4" >0,0061</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row1_col0" class="data row1 col0" >app_domain_te</td>
+      <td id="T_0bdd2_row1_col1" class="data row1 col1" >0,6129</td>
+      <td id="T_0bdd2_row1_col2" class="data row1 col2" >-0,0035</td>
+      <td id="T_0bdd2_row1_col3" class="data row1 col3" >0,4916</td>
+      <td id="T_0bdd2_row1_col4" class="data row1 col4" >0,0001</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row2_col0" class="data row2 col0" >device_model_te</td>
+      <td id="T_0bdd2_row2_col1" class="data row2 col1" >0,7561</td>
+      <td id="T_0bdd2_row2_col2" class="data row2 col2" >-0,0025</td>
+      <td id="T_0bdd2_row2_col3" class="data row2 col3" >0,7318</td>
+      <td id="T_0bdd2_row2_col4" class="data row2 col4" >0,0059</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row3_col0" class="data row3 col0" >device_ip_te</td>
+      <td id="T_0bdd2_row3_col1" class="data row3 col1" >0,1030</td>
+      <td id="T_0bdd2_row3_col2" class="data row3 col2" >0,0114</td>
+      <td id="T_0bdd2_row3_col3" class="data row3 col3" >0,1030</td>
+      <td id="T_0bdd2_row3_col4" class="data row3 col4" >0,0120</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row4_col0" class="data row4 col0" >site_domain_te</td>
+      <td id="T_0bdd2_row4_col1" class="data row4 col1" >0,4022</td>
+      <td id="T_0bdd2_row4_col2" class="data row4 col2" >0,0127</td>
+      <td id="T_0bdd2_row4_col3" class="data row4 col3" >0,4022</td>
+      <td id="T_0bdd2_row4_col4" class="data row4 col4" >0,0085</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row5_col0" class="data row5 col0" >site_id_te</td>
+      <td id="T_0bdd2_row5_col1" class="data row5 col1" >0,4133</td>
+      <td id="T_0bdd2_row5_col2" class="data row5 col2" >0,0249</td>
+      <td id="T_0bdd2_row5_col3" class="data row5 col3" >0,4133</td>
+      <td id="T_0bdd2_row5_col4" class="data row5 col4" >0,0165</td>
+    </tr>
+    <tr>
+      <td id="T_0bdd2_row6_col0" class="data row6 col0" >device_id_te</td>
+      <td id="T_0bdd2_row6_col1" class="data row6 col1" >0,0026</td>
+      <td id="T_0bdd2_row6_col2" class="data row6 col2" >0,0298</td>
+      <td id="T_0bdd2_row6_col3" class="data row6 col3" >0,0026</td>
+      <td id="T_0bdd2_row6_col4" class="data row6 col4" >0,2075</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> La discretización en cuartiles colapsa en las variables con un valor dominante. En <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code> y <code class="docutils literal notranslate"><span class="pre">device_ip_te</span></code> los tres cuartiles coinciden, porque el valor modal concentra el 84,6 % y el 86,2 % de las filas, y LIME solo forma dos intervalos. En <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code>, el intervalo de las 12 instancias (<code class="docutils literal notranslate"><span class="pre">&lt;=</span> <span class="pre">0.21</span></code>) contiene el 99,74 % de las filas, así que solo el 0,26 % cae fuera. Cuando únicamente esa variable se reemplaza por valores de esas filas, la probabilidad de los falsos negativos sube de 0,006 a 0,213 en promedio (+0,208) y la de los falsos positivos sube 0,030. <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code>, en cambio, está fuera del intervalo de los falsos positivos en el 88,6 % de las filas, y al reemplazarla la probabilidad de esos falsos positivos cae de 0,912 a 0,202 (−0,709).</p>
+<p>Esto quiere decir que el peso de <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code> en LIME no describe el vecindario de la instancia, sino un evento raro. Con 5.000 perturbaciones, se esperan <span class="math notranslate nohighlight">\(5.000 \times 0{,}0026 \approx 13\)</span> muestras fuera del intervalo, y el sustituto lineal estima con ellas un coeficiente grande porque en esas pocas muestras la probabilidad cambia mucho: son impresiones de dispositivos con tasa histórica de clic alta. Como el efecto es grande y casi el mismo para cualquier instancia del intervalo modal, LIME lo pone primero de forma estable en las 12 instancias, lo que muestra de nuevo que la estabilidad no garantiza la fidelidad. SHAP, con un fondo de 100 filas, espera <span class="math notranslate nohighlight">\(100 \times 0{,}0026 = 0{,}26\)</span> filas fuera de ese intervalo, así que casi nunca contrasta la instancia con otro dispositivo, y por eso el valor SHAP medio de <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code> es de 0,0052. Los dos métodos son coherentes con su distribución de referencia, pero responden preguntas distintas. El caso de <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code> es el contrario: el contraste de LIME, el valor SHAP de +0,669 en los falsos positivos y la caída de 0,709 al reemplazarla apuntan a lo mismo, y es la explicación sólida de esos errores.</p>
+<p>Por tanto, corresponde reportar, junto con cada peso de LIME, la fracción de la muestra de referencia que cae fuera del intervalo de la instancia, y no interpretar los pesos estimados con menos de unas decenas de muestras perturbadas. En un trabajo posterior, la discretización por cuartiles debería reemplazarse por perturbaciones continuas (<code class="docutils literal notranslate"><span class="pre">discretize_continuous=False</span></code>) o excluir las variables con cuartiles colapsados. Aquí se reporta el resultado sin corregir, porque el objetivo del capítulo es evaluar si LIME es fiel con su configuración estándar, y este es uno de sus modos de falla.</p>
+</section>
+<section id="contraste-con-shap-y-con-la-importancia-por-permutacion">
+<h2>8.6 Contraste con SHAP y con la importancia por permutación<a class="headerlink" href="#contraste-con-shap-y-con-la-importancia-por-permutacion" title="Link to this heading">#</a></h2>
+<p>SHAP reparte la diferencia entre la predicción y el valor base según los valores de Shapley, que promedian la contribución marginal de cada variable sobre todos los órdenes posibles de entrada <span class="bibtex-citation" id="id4">[<a class="reference internal" href="10_reflexion_critica.html#id5" title="Scott M. Lundberg and Su-In Lee. A unified approach to interpreting model predictions. In Advances in Neural Information Processing Systems 30, 4765–4774. 2017.">Lundberg and Lee, 2017</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[\phi_j = \sum_{S \subseteq F \setminus \{j\}} \frac{|S|!\,(|F|-|S|-1)!}{|F|!}\,\Big[v(S \cup \{j\}) - v(S)\Big], \qquad \sum_{j} \phi_j = g_x(\mathbf d_x) - \mathbb E\big[g_x(\mathbf d)\big].\]</div>
+<p>Se usa <code class="docutils literal notranslate"><span class="pre">PermutationExplainer</span></code> con un fondo de 100 filas de la muestra de prueba, enmascaramiento independiente y hasta 1.000 evaluaciones por instancia. La propiedad de eficiencia se cumple: la máxima diferencia entre <span class="math notranslate nohighlight">\(\sum_j \phi_j + \text{base}\)</span> y la predicción en las 12 instancias es de <span class="math notranslate nohighlight">\(4{,}7 \times 10^{-11}\)</span>. La importancia por permutación mide la caída del AUC al permutar cada variable en 200.000 filas del día 30, con 5 repeticiones; el IC 95 % usa <span class="math notranslate nohighlight">\(t_{0{,}975;\,4} = 2{,}776\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[[</span><span class="s2">"feature"</span><span class="p">,</span> <span class="s2">"caida_auc_media"</span><span class="p">,</span> <span class="s2">"caida_auc_de"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">p</span><span class="p">[</span><span class="s2">"IC 95 </span><span class="si">% i</span><span class="s2">nferior"</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">"caida_auc_media"</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.776</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="s2">"caida_auc_de"</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">p</span><span class="p">[</span><span class="s2">"IC 95 </span><span class="si">% s</span><span class="s2">uperior"</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">"caida_auc_media"</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.776</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="s2">"caida_auc_de"</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AUC sin permutar en las 200.000 filas: </span><span class="si">{</span><span class="n">es</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="s1">'auc_base'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"caida_auc_media"</span><span class="p">:</span> <span class="s2">"caída media del AUC"</span><span class="p">,</span> <span class="s2">"caida_auc_de"</span><span class="p">:</span> <span class="s2">"DE (5 repeticiones)"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC sin permutar en las 200.000 filas: 0,7326
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_db73f">
+  <thead>
+    <tr>
+      <th id="T_db73f_level0_col0" class="col_heading level0 col0" >variable</th>
+      <th id="T_db73f_level0_col1" class="col_heading level0 col1" >caída media del AUC</th>
+      <th id="T_db73f_level0_col2" class="col_heading level0 col2" >DE (5 repeticiones)</th>
+      <th id="T_db73f_level0_col3" class="col_heading level0 col3" >IC 95 % inferior</th>
+      <th id="T_db73f_level0_col4" class="col_heading level0 col4" >IC 95 % superior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_db73f_row0_col0" class="data row0 col0" >app_id_te</td>
+      <td id="T_db73f_row0_col1" class="data row0 col1" >0,0925</td>
+      <td id="T_db73f_row0_col2" class="data row0 col2" >0,0008</td>
+      <td id="T_db73f_row0_col3" class="data row0 col3" >0,0915</td>
+      <td id="T_db73f_row0_col4" class="data row0 col4" >0,0935</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row1_col0" class="data row1 col0" >site_id_te</td>
+      <td id="T_db73f_row1_col1" class="data row1 col1" >0,0467</td>
+      <td id="T_db73f_row1_col2" class="data row1 col2" >0,0007</td>
+      <td id="T_db73f_row1_col3" class="data row1 col3" >0,0459</td>
+      <td id="T_db73f_row1_col4" class="data row1 col4" >0,0476</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row2_col0" class="data row2 col0" >site_domain_te</td>
+      <td id="T_db73f_row2_col1" class="data row2 col1" >0,0230</td>
+      <td id="T_db73f_row2_col2" class="data row2 col2" >0,0004</td>
+      <td id="T_db73f_row2_col3" class="data row2 col3" >0,0225</td>
+      <td id="T_db73f_row2_col4" class="data row2 col4" >0,0235</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row3_col0" class="data row3 col0" >device_model_te</td>
+      <td id="T_db73f_row3_col1" class="data row3 col1" >0,0142</td>
+      <td id="T_db73f_row3_col2" class="data row3 col2" >0,0005</td>
+      <td id="T_db73f_row3_col3" class="data row3 col3" >0,0136</td>
+      <td id="T_db73f_row3_col4" class="data row3 col4" >0,0148</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row4_col0" class="data row4 col0" >site_domain_freq</td>
+      <td id="T_db73f_row4_col1" class="data row4 col1" >0,0061</td>
+      <td id="T_db73f_row4_col2" class="data row4 col2" >0,0002</td>
+      <td id="T_db73f_row4_col3" class="data row4 col3" >0,0058</td>
+      <td id="T_db73f_row4_col4" class="data row4 col4" >0,0064</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row5_col0" class="data row5 col0" >device_ip_te</td>
+      <td id="T_db73f_row5_col1" class="data row5 col1" >0,0059</td>
+      <td id="T_db73f_row5_col2" class="data row5 col2" >0,0001</td>
+      <td id="T_db73f_row5_col3" class="data row5 col3" >0,0057</td>
+      <td id="T_db73f_row5_col4" class="data row5 col4" >0,0060</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row6_col0" class="data row6 col0" >device_ip_freq</td>
+      <td id="T_db73f_row6_col1" class="data row6 col1" >0,0040</td>
+      <td id="T_db73f_row6_col2" class="data row6 col2" >0,0003</td>
+      <td id="T_db73f_row6_col3" class="data row6 col3" >0,0036</td>
+      <td id="T_db73f_row6_col4" class="data row6 col4" >0,0044</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row7_col0" class="data row7 col0" >device_id_te</td>
+      <td id="T_db73f_row7_col1" class="data row7 col1" >0,0031</td>
+      <td id="T_db73f_row7_col2" class="data row7 col2" >0,0001</td>
+      <td id="T_db73f_row7_col3" class="data row7 col3" >0,0030</td>
+      <td id="T_db73f_row7_col4" class="data row7 col4" >0,0033</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row8_col0" class="data row8 col0" >site_id_freq</td>
+      <td id="T_db73f_row8_col1" class="data row8 col1" >0,0022</td>
+      <td id="T_db73f_row8_col2" class="data row8 col2" >0,0001</td>
+      <td id="T_db73f_row8_col3" class="data row8 col3" >0,0021</td>
+      <td id="T_db73f_row8_col4" class="data row8 col4" >0,0023</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row9_col0" class="data row9 col0" >device_id_freq</td>
+      <td id="T_db73f_row9_col1" class="data row9 col1" >0,0017</td>
+      <td id="T_db73f_row9_col2" class="data row9 col2" >0,0001</td>
+      <td id="T_db73f_row9_col3" class="data row9 col3" >0,0016</td>
+      <td id="T_db73f_row9_col4" class="data row9 col4" >0,0019</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row10_col0" class="data row10 col0" >app_domain_freq</td>
+      <td id="T_db73f_row10_col1" class="data row10 col1" >0,0013</td>
+      <td id="T_db73f_row10_col2" class="data row10 col2" >0,0001</td>
+      <td id="T_db73f_row10_col3" class="data row10 col3" >0,0011</td>
+      <td id="T_db73f_row10_col4" class="data row10 col4" >0,0015</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row11_col0" class="data row11 col0" >device_model_freq</td>
+      <td id="T_db73f_row11_col1" class="data row11 col1" >0,0005</td>
+      <td id="T_db73f_row11_col2" class="data row11 col2" >0,0001</td>
+      <td id="T_db73f_row11_col3" class="data row11 col3" >0,0005</td>
+      <td id="T_db73f_row11_col4" class="data row11 col4" >0,0006</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row12_col0" class="data row12 col0" >app_id_freq</td>
+      <td id="T_db73f_row12_col1" class="data row12 col1" >0,0004</td>
+      <td id="T_db73f_row12_col2" class="data row12 col2" >0,0001</td>
+      <td id="T_db73f_row12_col3" class="data row12 col3" >0,0003</td>
+      <td id="T_db73f_row12_col4" class="data row12 col4" >0,0005</td>
+    </tr>
+    <tr>
+      <td id="T_db73f_row13_col0" class="data row13 col0" >app_domain_te</td>
+      <td id="T_db73f_row13_col1" class="data row13 col1" >0,0004</td>
+      <td id="T_db73f_row13_col2" class="data row13 col2" >0,0001</td>
+      <td id="T_db73f_row13_col3" class="data row13 col3" >0,0003</td>
+      <td id="T_db73f_row13_col4" class="data row13 col4" >0,0005</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> Sobre un AUC de 0,7326, permutar <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code> lo reduce en 0,0925, <code class="docutils literal notranslate"><span class="pre">site_id_te</span></code> en 0,0467, <code class="docutils literal notranslate"><span class="pre">site_domain_te</span></code> en 0,0230 y <code class="docutils literal notranslate"><span class="pre">device_model_te</span></code> en 0,0142. Las 10 variables restantes, entre ellas <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code> (0,0031) y todas las frecuencias, reducen el AUC menos de 0,007 cada una. Las desviaciones entre repeticiones son menores de 0,001, así que los intervalos no se cruzan entre las cuatro primeras variables.</p>
+<p>Es decir, la capacidad de ordenar del MLP depende sobre todo de la tasa histórica de clic de la aplicación y del sitio. Las frecuencias aportan poco una vez que el target encoding y el hashing ya identifican la categoría, lo que coincide con la ablación de la sección 9.3: la codificación solo por frecuencia es la peor de todas.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lime_abs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">lime</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"top_features"</span><span class="p">]),</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"pesos"</span><span class="p">])):</span>
+        <span class="n">lime_abs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">n_exp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lime</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"variable"</span><span class="p">:</span> <span class="n">FEATS</span><span class="p">})</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"LIME"</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lime_abs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">/</span> <span class="n">n_exp</span><span class="p">)</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"SHAP"</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">shp</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"permutación"</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">perm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"feature"</span><span class="p">)[</span><span class="s2">"caida_auc_media"</span><span class="p">])</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"SHAP"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">));</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">0.26</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">hat</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(((</span><span class="s2">"LIME"</span><span class="p">,</span> <span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span> <span class="p">(</span><span class="s2">"SHAP"</span><span class="p">,</span> <span class="s2">"#808080"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span> <span class="p">(</span><span class="s2">"permutación"</span><span class="p">,</span> <span class="s2">"#d9d9d9"</span><span class="p">,</span> <span class="s2">"////"</span><span class="p">))):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">g</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">/</span> <span class="n">g</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">hatch</span><span class="o">=</span><span class="n">hat</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#1a1a1a"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"importancia relativa (cada método dividido por su máximo)"</span><span class="p">)</span>
+<span class="n">ejes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">""</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">"par"</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="s2">" frente a "</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="s2">"rho de Spearman"</span><span class="p">:</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">b</span><span class="p">])</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span>
+                     <span class="s2">"p"</span><span class="p">:</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">b</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">}</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">"LIME"</span><span class="p">,</span> <span class="s2">"SHAP"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"LIME"</span><span class="p">,</span> <span class="s2">"permutación"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"SHAP"</span><span class="p">,</span> <span class="s2">"permutación"</span><span class="p">))])</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">agr</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"tipo_error"</span><span class="p">)[</span><span class="s2">"jaccard_lime_vs_shap_media"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tabla</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"tipo_error"</span><span class="p">:</span> <span class="s2">"tipo de error"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">:</span> <span class="s2">"Jaccard medio LIME–SHAP (top-5)"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">:</span> <span class="s2">"mínimo"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">:</span> <span class="s2">"máximo"</span><span class="p">}),</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/0f905f558a7602664f9581e12091a95e2bdc5017305263101fcf5e9e02eaa766.png" src="../_images/0f905f558a7602664f9581e12091a95e2bdc5017305263101fcf5e9e02eaa766.png" />
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_06f70">
+  <thead>
+    <tr>
+      <th id="T_06f70_level0_col0" class="col_heading level0 col0" >par</th>
+      <th id="T_06f70_level0_col1" class="col_heading level0 col1" >rho de Spearman</th>
+      <th id="T_06f70_level0_col2" class="col_heading level0 col2" >p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_06f70_row0_col0" class="data row0 col0" >LIME frente a SHAP</td>
+      <td id="T_06f70_row0_col1" class="data row0 col1" >0,7170</td>
+      <td id="T_06f70_row0_col2" class="data row0 col2" >0,0039</td>
+    </tr>
+    <tr>
+      <td id="T_06f70_row1_col0" class="data row1 col0" >LIME frente a permutación</td>
+      <td id="T_06f70_row1_col1" class="data row1 col1" >0,7620</td>
+      <td id="T_06f70_row1_col2" class="data row1 col2" >0,0015</td>
+    </tr>
+    <tr>
+      <td id="T_06f70_row2_col0" class="data row2 col0" >SHAP frente a permutación</td>
+      <td id="T_06f70_row2_col1" class="data row2 col1" >0,9253</td>
+      <td id="T_06f70_row2_col2" class="data row2 col2" >0,0000</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"><style type="text/css">
+</style>
+<table id="T_6c275">
+  <thead>
+    <tr>
+      <th id="T_6c275_level0_col0" class="col_heading level0 col0" >tipo de error</th>
+      <th id="T_6c275_level0_col1" class="col_heading level0 col1" >Jaccard medio LIME–SHAP (top-5)</th>
+      <th id="T_6c275_level0_col2" class="col_heading level0 col2" >mínimo</th>
+      <th id="T_6c275_level0_col3" class="col_heading level0 col3" >máximo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_6c275_row0_col0" class="data row0 col0" >FN</td>
+      <td id="T_6c275_row0_col1" class="data row0 col1" >0,587</td>
+      <td id="T_6c275_row0_col2" class="data row0 col2" >0,429</td>
+      <td id="T_6c275_row0_col3" class="data row0 col3" >0,667</td>
+    </tr>
+    <tr>
+      <td id="T_6c275_row1_col0" class="data row1 col0" >FP</td>
+      <td id="T_6c275_row1_col1" class="data row1 col1" >0,518</td>
+      <td id="T_6c275_row1_col2" class="data row1 col2" >0,250</td>
+      <td id="T_6c275_row1_col3" class="data row1 col3" >0,667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Interpretación.</strong> SHAP y la importancia por permutación coinciden casi por completo, con un <span class="math notranslate nohighlight">\(\rho\)</span> de Spearman de 0,925 entre sus rankings de las 14 variables, y ambos ponen primero a <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code>, con un valor SHAP absoluto medio de 0,343, más de diez veces el de la segunda variable, <code class="docutils literal notranslate"><span class="pre">site_id_te</span></code> (0,027). LIME se parece menos a los otros dos métodos (<span class="math notranslate nohighlight">\(\rho\)</span> de 0,722 con SHAP y de 0,766 con la permutación), y la razón principal es <code class="docutils literal notranslate"><span class="pre">device_id_te</span></code>: es la variable más pesada de LIME y ocupa el lugar 10 en SHAP (0,0052) y el 8 en la permutación. En el top-5 de cada instancia, el Jaccard medio entre LIME y SHAP es de 0,553, con 0,518 en los falsos positivos y 0,587 en los falsos negativos, y va de 0,25 a 0,67; con conjuntos de 5 variables, <span class="math notranslate nohighlight">\(J = k/(10-k)\)</span> si comparten <span class="math notranslate nohighlight">\(k\)</span>, así que LIME y SHAP comparten entre 2 y 4 variables por instancia y 3,5 en promedio.</p>
+<p>Hay que tener en cuenta que los tres métodos responden preguntas distintas. La permutación mide la importancia global para el AUC, SHAP atribuye una predicción concreta frente a un fondo y LIME ajusta una recta en un vecindario construido con intervalos. La coherencia entre SHAP y la permutación, que son conceptualmente distintos pero coinciden, da confianza en que <code class="docutils literal notranslate"><span class="pre">app_id_te</span></code>, <code class="docutils literal notranslate"><span class="pre">site_id_te</span></code> y <code class="docutils literal notranslate"><span class="pre">site_domain_te</span></code> son las variables que realmente usa el modelo. Los valores de <em>p</em> de Spearman, todos por debajo de 0,004, se reportan como descriptivos: con 14 variables y empates en los ceros de LIME, no corresponden a un contraste planificado.</p>
+<p>De ahí que se opte por SHAP como método de referencia para la atribución local de este modelo y por la permutación para la importancia global, y que LIME se use como evidencia complementaria, siempre acompañado de su <span class="math notranslate nohighlight">\(R^2\)</span> y del diagnóstico de discretización.</p>
+</section>
+<section id="respuesta-a-la-pregunta-p4">
+<h2>8.7 Respuesta a la pregunta P4<a class="headerlink" href="#respuesta-a-la-pregunta-p4" title="Link to this heading">#</a></h2>
+<p>¿Son las explicaciones de LIME estables y fieles al modelo? La respuesta es que son estables pero no plenamente fieles. Son estables porque, con 5.000 muestras, el top-5 es idéntico entre semillas y no cambia al reducir a la mitad o duplicar el ancho del kernel, y el top-8 tiene un Jaccard medio de 0,950. No son plenamente fieles por tres razones medidas: el sustituto reproduce el 42 % de la variabilidad local del modelo en promedio y solo el 35 % en los falsos negativos, la condición principal en las 12 instancias es un efecto de la discretización y no de la instancia (sección 8.5), y comparte en promedio 3,5 de sus 5 variables principales con SHAP.</p>
+<p>En síntesis, LIME aporta una explicación rápida, legible como reglas y reproducible si se fija el número de muestras. Lo que no puede garantizar es que esas reglas describan el modelo: la estabilidad mide la convergencia del procedimiento, no su exactitud, y la fidelidad depende de la forma del modelo en el vecindario y de cómo se discretizan las variables. La comparación con SHAP, que cumple la propiedad de eficiencia hasta <span class="math notranslate nohighlight">\(10^{-11}\)</span> y coincide con la importancia por permutación, es la que permite detectar cuándo LIME se desvía.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dl_tarea1"
+        },
+        kernelOptions: {
+            name: "dl_tarea1",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dl_tarea1'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_benchmarking.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">7. Benchmarking computacional</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_comparacion_resultados.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">9. Comparación de resultados</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-instancias-y-espacio-interpretable">8.1 Modelo, instancias y espacio interpretable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicaciones-locales">8.2 Explicaciones locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidad-y-estabilidad">8.3 Fidelidad y estabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-al-ancho-del-kernel-y-al-numero-de-muestras">8.4 Sensibilidad al ancho del kernel y al número de muestras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-la-discretizacion-de-lime">8.5 Diagnóstico de la discretización de LIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-con-shap-y-con-la-importancia-por-permutacion">8.6 Contraste con SHAP y con la importancia por permutación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-la-pregunta-p4">8.7 Respuesta a la pregunta P4</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Donny Torres
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
