@@ -1,0 +1,3 @@
+2026-11-07 17:22:38,123 [INFO] Umbral=0.2062; 6 FP y 6 FN seleccionados
+2026-11-07 17:22:38,123 [INFO] Solo diagnostico de la discretizacion de LIME...
+2026-11-07 17:22:39,659 [INFO] Diagnostico de discretizacion listo

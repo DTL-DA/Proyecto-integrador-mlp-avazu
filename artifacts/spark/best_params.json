@@ -1,0 +1,18 @@
+{
+  "lr": {
+    "regParam": 0.01,
+    "maxIter": 50
+  },
+  "gbt": {
+    "maxDepth": 5,
+    "maxIter": 10
+  },
+  "mlp": {
+    "layers_hidden": [
+      100
+    ],
+    "stepSize": 0.1,
+    "maxIter": 100,
+    "solver": "l-bfgs"
+  }
+}

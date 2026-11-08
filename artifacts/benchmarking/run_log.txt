@@ -1,0 +1,2186 @@
+2026-11-07 12:55:45,310 [INFO] Strong scaling: tamano fijo de 2000000 filas, variando local[1,2,4,8,12]...
+26/11/07 12:56:39 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: Could not locate Hadoop executable: <raiz_proyecto>\artifacts\spark\_hadoop_home_stub\bin\winutils.exe -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/11/07 12:56:40 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/11/07 12:59:42 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+26/11/07 12:59:43 WARN TaskSetManager: Stage 0 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 12:59:56 WARN TaskSetManager: Stage 3 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:00:08 WARN TaskSetManager: Stage 6 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:00:20 WARN TaskSetManager: Stage 9 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:00:32 WARN TaskSetManager: Stage 12 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:00:44 WARN TaskSetManager: Stage 15 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:01:04 WARN TaskSetManager: Stage 18 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:01:27 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+26/11/07 13:01:27 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.VectorBLAS
+26/11/07 13:01:27 WARN TaskSetManager: Stage 19 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:01:49 WARN TaskSetManager: Stage 20 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:49 WARN TaskSetManager: Stage 21 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:49 WARN TaskSetManager: Stage 22 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:50 WARN TaskSetManager: Stage 23 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:50 WARN TaskSetManager: Stage 24 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:50 WARN TaskSetManager: Stage 25 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:51 WARN TaskSetManager: Stage 26 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:51 WARN TaskSetManager: Stage 27 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:51 WARN TaskSetManager: Stage 28 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:52 WARN TaskSetManager: Stage 29 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:52 WARN TaskSetManager: Stage 30 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:52 WARN TaskSetManager: Stage 31 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:53 WARN TaskSetManager: Stage 32 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:53 WARN TaskSetManager: Stage 33 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:53 WARN TaskSetManager: Stage 34 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:54 WARN TaskSetManager: Stage 35 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:54 WARN TaskSetManager: Stage 36 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:54 WARN TaskSetManager: Stage 37 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:55 WARN TaskSetManager: Stage 38 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:55 WARN TaskSetManager: Stage 39 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:55 WARN TaskSetManager: Stage 40 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:56 WARN TaskSetManager: Stage 41 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:56 WARN TaskSetManager: Stage 42 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:56 WARN TaskSetManager: Stage 43 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:57 WARN TaskSetManager: Stage 44 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:57 WARN TaskSetManager: Stage 45 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:57 WARN TaskSetManager: Stage 46 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:57 WARN TaskSetManager: Stage 47 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:58 WARN TaskSetManager: Stage 48 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:58 WARN TaskSetManager: Stage 49 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:58 WARN TaskSetManager: Stage 50 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:01:59 WARN TaskSetManager: Stage 51 contains a task of very large size (262038 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:02:00,376 [INFO]   local[1] -> 138.0 s
+26/11/07 13:05:01 WARN TaskSetManager: Stage 0 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 2) / 2]
+
+[Stage 0:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:08 WARN TaskSetManager: Stage 3 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 2) / 2]
+
+[Stage 3:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:15 WARN TaskSetManager: Stage 6 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 2) / 2]
+
+[Stage 6:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:23 WARN TaskSetManager: Stage 9 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 2) / 2]
+
+[Stage 9:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:30 WARN TaskSetManager: Stage 12 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 2) / 2]
+
+[Stage 12:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:37 WARN TaskSetManager: Stage 15 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 2) / 2]
+
+[Stage 15:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:05:51 WARN TaskSetManager: Stage 18 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 2) / 2]
+
+[Stage 18:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:06:06 WARN TaskSetManager: Stage 19 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 2) / 2]
+
+[Stage 19:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:06:22 WARN TaskSetManager: Stage 20 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:22 WARN TaskSetManager: Stage 21 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:22 WARN TaskSetManager: Stage 22 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:22 WARN TaskSetManager: Stage 23 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:23 WARN TaskSetManager: Stage 24 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:23 WARN TaskSetManager: Stage 25 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:23 WARN TaskSetManager: Stage 26 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:24 WARN TaskSetManager: Stage 27 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:24 WARN TaskSetManager: Stage 28 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:24 WARN TaskSetManager: Stage 29 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:25 WARN TaskSetManager: Stage 30 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:25 WARN TaskSetManager: Stage 31 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:25 WARN TaskSetManager: Stage 32 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:25 WARN TaskSetManager: Stage 33 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:26 WARN TaskSetManager: Stage 34 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:26 WARN TaskSetManager: Stage 35 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:26 WARN TaskSetManager: Stage 36 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:26 WARN TaskSetManager: Stage 37 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:27 WARN TaskSetManager: Stage 38 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:27 WARN TaskSetManager: Stage 39 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:27 WARN TaskSetManager: Stage 40 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:28 WARN TaskSetManager: Stage 41 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:28 WARN TaskSetManager: Stage 42 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:28 WARN TaskSetManager: Stage 43 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:28 WARN TaskSetManager: Stage 44 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:29 WARN TaskSetManager: Stage 45 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:29 WARN TaskSetManager: Stage 46 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:29 WARN TaskSetManager: Stage 47 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:30 WARN TaskSetManager: Stage 48 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:30 WARN TaskSetManager: Stage 49 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:30 WARN TaskSetManager: Stage 50 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:06:30 WARN TaskSetManager: Stage 51 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:06:32,137 [INFO]   local[2] -> 90.1 s
+26/11/07 13:09:30 WARN TaskSetManager: Stage 0 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 4) / 4]
+
+[Stage 0:=============================>                             (2 + 2) / 4]
+
+[Stage 0:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:09:37 WARN TaskSetManager: Stage 3 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 4) / 4]
+
+[Stage 3:=============================>                             (2 + 2) / 4]
+
+[Stage 3:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:09:46 WARN TaskSetManager: Stage 6 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 4) / 4]
+
+[Stage 6:=============================>                             (2 + 2) / 4]
+
+[Stage 6:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:09:54 WARN TaskSetManager: Stage 9 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 4) / 4]
+
+[Stage 9:=============================>                             (2 + 2) / 4]
+
+[Stage 9:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:10:04 WARN TaskSetManager: Stage 12 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 4) / 4]
+
+[Stage 12:=============================>                            (2 + 2) / 4]
+
+[Stage 12:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:10:13 WARN TaskSetManager: Stage 15 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 4) / 4]
+
+[Stage 15:==============>                                           (1 + 3) / 4]
+
+[Stage 15:=============================>                            (2 + 2) / 4]
+
+[Stage 15:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:10:27 WARN TaskSetManager: Stage 18 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 4) / 4]
+
+[Stage 18:==============>                                           (1 + 3) / 4]
+
+[Stage 18:=============================>                            (2 + 2) / 4]
+
+[Stage 18:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:10:42 WARN TaskSetManager: Stage 19 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 4) / 4]
+
+[Stage 19:==============>                                           (1 + 3) / 4]
+
+[Stage 19:=============================>                            (2 + 2) / 4]
+
+[Stage 19:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:10:56 WARN TaskSetManager: Stage 20 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:56 WARN TaskSetManager: Stage 21 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:57 WARN TaskSetManager: Stage 22 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:57 WARN TaskSetManager: Stage 23 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:57 WARN TaskSetManager: Stage 24 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:57 WARN TaskSetManager: Stage 25 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:58 WARN TaskSetManager: Stage 26 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:58 WARN TaskSetManager: Stage 27 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:58 WARN TaskSetManager: Stage 28 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:58 WARN TaskSetManager: Stage 29 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:59 WARN TaskSetManager: Stage 30 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:59 WARN TaskSetManager: Stage 31 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:59 WARN TaskSetManager: Stage 32 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:10:59 WARN TaskSetManager: Stage 33 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:00 WARN TaskSetManager: Stage 34 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:00 WARN TaskSetManager: Stage 35 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:00 WARN TaskSetManager: Stage 36 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:00 WARN TaskSetManager: Stage 37 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:01 WARN TaskSetManager: Stage 38 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:01 WARN TaskSetManager: Stage 39 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:01 WARN TaskSetManager: Stage 40 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:01 WARN TaskSetManager: Stage 41 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:02 WARN TaskSetManager: Stage 42 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:02 WARN TaskSetManager: Stage 43 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:02 WARN TaskSetManager: Stage 44 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:02 WARN TaskSetManager: Stage 45 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:03 WARN TaskSetManager: Stage 46 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:03 WARN TaskSetManager: Stage 47 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:03 WARN TaskSetManager: Stage 48 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:03 WARN TaskSetManager: Stage 49 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:04 WARN TaskSetManager: Stage 50 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:11:04 WARN TaskSetManager: Stage 51 contains a task of very large size (65502 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:11:05,649 [INFO]   local[4] -> 94.8 s
+26/11/07 13:14:05 WARN TaskSetManager: Stage 0 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 8) / 8]
+
+[Stage 0:============================================>              (6 + 2) / 8]
+
+[Stage 0:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:14:16 WARN TaskSetManager: Stage 3 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 8) / 8]
+
+[Stage 3:============================================>              (6 + 2) / 8]
+
+[Stage 3:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:14:27 WARN TaskSetManager: Stage 6 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 8) / 8]
+
+[Stage 6:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:14:40 WARN TaskSetManager: Stage 9 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 8) / 8]
+
+[Stage 9:============================================>              (6 + 2) / 8]
+
+[Stage 9:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:14:51 WARN TaskSetManager: Stage 12 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 8) / 8]
+
+[Stage 12:=============================>                            (4 + 4) / 8]
+
+[Stage 12:===========================================>              (6 + 2) / 8]
+
+[Stage 12:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:15:03 WARN TaskSetManager: Stage 15 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 8) / 8]
+
+[Stage 15:===========================================>              (6 + 2) / 8]
+
+[Stage 15:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:15:19 WARN TaskSetManager: Stage 18 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 8) / 8]
+
+[Stage 18:====================================>                     (5 + 3) / 8]
+
+[Stage 18:===========================================>              (6 + 2) / 8]
+
+[Stage 18:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:15:38 WARN TaskSetManager: Stage 20 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 20:>                                                         (0 + 8) / 8]
+
+[Stage 20:====================================>                     (5 + 3) / 8]
+
+[Stage 20:===========================================>              (6 + 2) / 8]
+
+[Stage 20:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:15:56 WARN TaskSetManager: Stage 22 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:56 WARN TaskSetManager: Stage 24 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:57 WARN TaskSetManager: Stage 26 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:57 WARN TaskSetManager: Stage 28 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:57 WARN TaskSetManager: Stage 30 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:58 WARN TaskSetManager: Stage 32 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:58 WARN TaskSetManager: Stage 34 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:58 WARN TaskSetManager: Stage 36 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:59 WARN TaskSetManager: Stage 38 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:59 WARN TaskSetManager: Stage 40 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:15:59 WARN TaskSetManager: Stage 42 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:00 WARN TaskSetManager: Stage 44 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:00 WARN TaskSetManager: Stage 46 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:01 WARN TaskSetManager: Stage 48 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:01 WARN TaskSetManager: Stage 50 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:01 WARN TaskSetManager: Stage 52 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:02 WARN TaskSetManager: Stage 54 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:02 WARN TaskSetManager: Stage 56 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:02 WARN TaskSetManager: Stage 58 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:03 WARN TaskSetManager: Stage 60 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:03 WARN TaskSetManager: Stage 62 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:04 WARN TaskSetManager: Stage 64 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:04 WARN TaskSetManager: Stage 66 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:04 WARN TaskSetManager: Stage 68 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:05 WARN TaskSetManager: Stage 70 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:05 WARN TaskSetManager: Stage 72 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:05 WARN TaskSetManager: Stage 74 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:06 WARN TaskSetManager: Stage 76 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:06 WARN TaskSetManager: Stage 78 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:06 WARN TaskSetManager: Stage 80 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:07 WARN TaskSetManager: Stage 82 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:16:07 WARN TaskSetManager: Stage 84 contains a task of very large size (32755 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:16:08,725 [INFO]   local[8] -> 122.9 s
+26/11/07 13:19:09 WARN TaskSetManager: Stage 0 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                        (0 + 12) / 12]
+
+[Stage 0:===============================================>         (10 + 2) / 12]
+
+[Stage 0:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:19:23 WARN TaskSetManager: Stage 3 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                        (0 + 12) / 12]
+
+[Stage 3:===============================================>         (10 + 2) / 12]
+
+[Stage 3:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:19:38 WARN TaskSetManager: Stage 6 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                        (0 + 12) / 12]
+
+[Stage 6:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:19:54 WARN TaskSetManager: Stage 9 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                        (0 + 12) / 12]
+
+[Stage 9:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:20:10 WARN TaskSetManager: Stage 12 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                       (0 + 12) / 12]
+
+[Stage 12:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:20:25 WARN TaskSetManager: Stage 15 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                       (0 + 12) / 12]
+
+[Stage 15:============================>                            (6 + 6) / 12]
+
+[Stage 15:==============================================>         (10 + 2) / 12]
+
+[Stage 15:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:20:45 WARN TaskSetManager: Stage 18 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                       (0 + 12) / 12]
+
+[Stage 18:==============================================>         (10 + 2) / 12]
+
+[Stage 18:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:21:06 WARN TaskSetManager: Stage 20 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 20:>                                                       (0 + 12) / 12]
+
+[Stage 20:==============================================>         (10 + 2) / 12]
+
+[Stage 20:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 13:21:28 WARN TaskSetManager: Stage 22 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:28 WARN TaskSetManager: Stage 24 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:28 WARN TaskSetManager: Stage 26 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:29 WARN TaskSetManager: Stage 28 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:29 WARN TaskSetManager: Stage 30 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:30 WARN TaskSetManager: Stage 32 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:30 WARN TaskSetManager: Stage 34 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:31 WARN TaskSetManager: Stage 36 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:31 WARN TaskSetManager: Stage 38 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:32 WARN TaskSetManager: Stage 40 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:32 WARN TaskSetManager: Stage 42 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:32 WARN TaskSetManager: Stage 44 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:33 WARN TaskSetManager: Stage 46 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:33 WARN TaskSetManager: Stage 48 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:34 WARN TaskSetManager: Stage 50 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:34 WARN TaskSetManager: Stage 52 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:35 WARN TaskSetManager: Stage 54 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:35 WARN TaskSetManager: Stage 56 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:36 WARN TaskSetManager: Stage 58 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:36 WARN TaskSetManager: Stage 60 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:36 WARN TaskSetManager: Stage 62 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:37 WARN TaskSetManager: Stage 64 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:37 WARN TaskSetManager: Stage 66 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:38 WARN TaskSetManager: Stage 68 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:38 WARN TaskSetManager: Stage 70 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:39 WARN TaskSetManager: Stage 72 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:39 WARN TaskSetManager: Stage 74 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:39 WARN TaskSetManager: Stage 76 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:40 WARN TaskSetManager: Stage 78 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:40 WARN TaskSetManager: Stage 80 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:41 WARN TaskSetManager: Stage 82 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:21:41 WARN TaskSetManager: Stage 84 contains a task of very large size (21784 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:21:43,352 [INFO]   local[12] -> 153.2 s
+2026-11-07 13:21:43,653 [INFO] Weak scaling: tamano proporcional a nucleos (1 nucleo/1M filas)...
+26/11/07 13:23:31 WARN TaskSetManager: Stage 0 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:23:37 WARN TaskSetManager: Stage 3 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:23:49 WARN TaskSetManager: Stage 6 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:23:55 WARN TaskSetManager: Stage 9 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:24:02 WARN TaskSetManager: Stage 12 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:24:08 WARN TaskSetManager: Stage 15 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:24:19 WARN TaskSetManager: Stage 18 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:24:30 WARN TaskSetManager: Stage 19 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 1) / 1]
+
+                                                                                
+26/11/07 13:24:40 WARN TaskSetManager: Stage 20 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 21 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 22 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 23 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 24 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 25 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 26 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:41 WARN TaskSetManager: Stage 27 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 28 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 29 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 30 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 31 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 32 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:42 WARN TaskSetManager: Stage 33 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 34 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 35 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 36 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 37 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 38 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 39 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:43 WARN TaskSetManager: Stage 40 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 41 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 42 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 43 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 44 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 45 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:44 WARN TaskSetManager: Stage 46 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:45 WARN TaskSetManager: Stage 47 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:45 WARN TaskSetManager: Stage 48 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:45 WARN TaskSetManager: Stage 49 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:45 WARN TaskSetManager: Stage 50 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:24:45 WARN TaskSetManager: Stage 51 contains a task of very large size (130869 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:24:46,766 [INFO]   local[1] con 1000000 filas -> 74.7 s
+26/11/07 13:28:14 WARN TaskSetManager: Stage 0 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 2) / 2]
+
+[Stage 0:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:28:21 WARN TaskSetManager: Stage 3 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 2) / 2]
+
+[Stage 3:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:28:28 WARN TaskSetManager: Stage 6 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 2) / 2]
+
+[Stage 6:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:28:35 WARN TaskSetManager: Stage 9 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 2) / 2]
+
+[Stage 9:=============================>                             (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:28:42 WARN TaskSetManager: Stage 12 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 2) / 2]
+
+[Stage 12:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:28:49 WARN TaskSetManager: Stage 15 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 2) / 2]
+
+[Stage 15:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:29:03 WARN TaskSetManager: Stage 18 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 2) / 2]
+
+[Stage 18:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:29:17 WARN TaskSetManager: Stage 19 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 2) / 2]
+
+[Stage 19:=============================>                            (1 + 1) / 2]
+
+                                                                                
+26/11/07 13:29:32 WARN TaskSetManager: Stage 20 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:33 WARN TaskSetManager: Stage 21 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:33 WARN TaskSetManager: Stage 22 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:33 WARN TaskSetManager: Stage 23 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:33 WARN TaskSetManager: Stage 24 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:34 WARN TaskSetManager: Stage 25 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:34 WARN TaskSetManager: Stage 26 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:34 WARN TaskSetManager: Stage 27 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:34 WARN TaskSetManager: Stage 28 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:35 WARN TaskSetManager: Stage 29 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:35 WARN TaskSetManager: Stage 30 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:35 WARN TaskSetManager: Stage 31 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:35 WARN TaskSetManager: Stage 32 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:36 WARN TaskSetManager: Stage 33 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:36 WARN TaskSetManager: Stage 34 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:36 WARN TaskSetManager: Stage 35 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:36 WARN TaskSetManager: Stage 36 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:37 WARN TaskSetManager: Stage 37 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:37 WARN TaskSetManager: Stage 38 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:37 WARN TaskSetManager: Stage 39 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:37 WARN TaskSetManager: Stage 40 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:37 WARN TaskSetManager: Stage 41 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:38 WARN TaskSetManager: Stage 42 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:38 WARN TaskSetManager: Stage 43 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:38 WARN TaskSetManager: Stage 44 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:38 WARN TaskSetManager: Stage 45 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:38 WARN TaskSetManager: Stage 46 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:39 WARN TaskSetManager: Stage 47 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:39 WARN TaskSetManager: Stage 48 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:39 WARN TaskSetManager: Stage 49 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:29:39 WARN TaskSetManager: Stage 50 contains a task of very large size (131022 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:29:41,028 [INFO]   local[2] con 2000000 filas -> 86.3 s
+26/11/07 13:36:26 WARN TaskSetManager: Stage 0 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 4) / 4]
+
+[Stage 0:==============>                                            (1 + 3) / 4]
+
+[Stage 0:=============================>                             (2 + 2) / 4]
+
+[Stage 0:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:36:39 WARN TaskSetManager: Stage 3 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 4) / 4]
+
+[Stage 3:==============>                                            (1 + 3) / 4]
+
+[Stage 3:=============================>                             (2 + 2) / 4]
+
+[Stage 3:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:36:51 WARN TaskSetManager: Stage 6 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 4) / 4]
+
+[Stage 6:==============>                                            (1 + 3) / 4]
+
+[Stage 6:=============================>                             (2 + 2) / 4]
+
+[Stage 6:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:37:03 WARN TaskSetManager: Stage 9 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 4) / 4]
+
+[Stage 9:==============>                                            (1 + 3) / 4]
+
+[Stage 9:=============================>                             (2 + 2) / 4]
+
+[Stage 9:============================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:37:15 WARN TaskSetManager: Stage 12 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 4) / 4]
+
+[Stage 12:==============>                                           (1 + 3) / 4]
+
+[Stage 12:=============================>                            (2 + 2) / 4]
+
+[Stage 12:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:37:29 WARN TaskSetManager: Stage 15 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 4) / 4]
+
+[Stage 15:==============>                                           (1 + 3) / 4]
+
+[Stage 15:=============================>                            (2 + 2) / 4]
+
+[Stage 15:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:37:52 WARN TaskSetManager: Stage 18 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 4) / 4]
+
+[Stage 18:==============>                                           (1 + 3) / 4]
+
+[Stage 18:=============================>                            (2 + 2) / 4]
+
+[Stage 18:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:38:15 WARN TaskSetManager: Stage 19 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 19:>                                                         (0 + 4) / 4]
+
+[Stage 19:==============>                                           (1 + 3) / 4]
+
+[Stage 19:=============================>                            (2 + 2) / 4]
+
+[Stage 19:===========================================>              (3 + 1) / 4]
+
+                                                                                
+26/11/07 13:38:44 WARN TaskSetManager: Stage 20 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:44 WARN TaskSetManager: Stage 21 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:45 WARN TaskSetManager: Stage 22 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 22:>                                                         (0 + 3) / 4]
+
+                                                                                
+26/11/07 13:38:45 WARN TaskSetManager: Stage 23 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:46 WARN TaskSetManager: Stage 24 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 24:>                                                         (0 + 4) / 4]
+
+                                                                                
+26/11/07 13:38:46 WARN TaskSetManager: Stage 25 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:47 WARN TaskSetManager: Stage 26 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 26:>                                                         (0 + 4) / 4]
+
+                                                                                
+26/11/07 13:38:47 WARN TaskSetManager: Stage 27 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:48 WARN TaskSetManager: Stage 28 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:48 WARN TaskSetManager: Stage 29 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:49 WARN TaskSetManager: Stage 30 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:49 WARN TaskSetManager: Stage 31 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:50 WARN TaskSetManager: Stage 32 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:50 WARN TaskSetManager: Stage 33 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:50 WARN TaskSetManager: Stage 34 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:51 WARN TaskSetManager: Stage 35 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:51 WARN TaskSetManager: Stage 36 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:52 WARN TaskSetManager: Stage 37 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:52 WARN TaskSetManager: Stage 38 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:52 WARN TaskSetManager: Stage 39 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:53 WARN TaskSetManager: Stage 40 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:53 WARN TaskSetManager: Stage 41 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:54 WARN TaskSetManager: Stage 42 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:54 WARN TaskSetManager: Stage 43 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:54 WARN TaskSetManager: Stage 44 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:55 WARN TaskSetManager: Stage 45 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:55 WARN TaskSetManager: Stage 46 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:56 WARN TaskSetManager: Stage 47 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:56 WARN TaskSetManager: Stage 48 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:57 WARN TaskSetManager: Stage 49 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 13:38:57 WARN TaskSetManager: Stage 50 contains a task of very large size (130776 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 13:38:59,229 [INFO]   local[4] con 4000000 filas -> 151.8 s
+
+[Stage 0:>                                                          (0 + 0) / 8]
+26/11/07 13:52:50 WARN TaskSetManager: Stage 0 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                          (0 + 1) / 8]
+
+[Stage 0:>                                                          (0 + 2) / 8]
+
+[Stage 0:>                                                          (0 + 3) / 8]
+
+[Stage 0:>                                                          (0 + 4) / 8]
+
+[Stage 0:>                                                          (0 + 5) / 8]
+
+[Stage 0:>                                                          (0 + 6) / 8]
+
+[Stage 0:>                                                          (0 + 7) / 8]
+
+[Stage 0:>                                                          (0 + 8) / 8]
+
+[Stage 0:====================================>                      (5 + 3) / 8]
+
+[Stage 0:============================================>              (6 + 2) / 8]
+
+[Stage 0:===================================================>       (7 + 1) / 8]
+
+                                                                                
+
+[Stage 3:>                                                          (0 + 0) / 8]
+26/11/07 13:53:30 WARN TaskSetManager: Stage 3 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                          (0 + 1) / 8]
+
+[Stage 3:>                                                          (0 + 2) / 8]
+
+[Stage 3:>                                                          (0 + 3) / 8]
+
+[Stage 3:>                                                          (0 + 4) / 8]
+
+[Stage 3:>                                                          (0 + 5) / 8]
+
+[Stage 3:>                                                          (0 + 6) / 8]
+
+[Stage 3:>                                                          (0 + 7) / 8]
+
+[Stage 3:>                                                          (0 + 8) / 8]
+
+[Stage 3:====================================>                      (5 + 3) / 8]
+
+[Stage 3:============================================>              (6 + 2) / 8]
+
+[Stage 3:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:54:03 WARN TaskSetManager: Stage 6 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                          (0 + 7) / 8]
+
+[Stage 6:>                                                          (0 + 8) / 8]
+
+[Stage 6:====================================>                      (5 + 3) / 8]
+
+[Stage 6:============================================>              (6 + 2) / 8]
+
+[Stage 6:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:54:25 WARN TaskSetManager: Stage 9 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                          (0 + 8) / 8]
+
+[Stage 9:=======>                                                   (1 + 7) / 8]
+
+[Stage 9:====================================>                      (5 + 3) / 8]
+
+[Stage 9:============================================>              (6 + 2) / 8]
+
+[Stage 9:===================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:54:46 WARN TaskSetManager: Stage 12 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                         (0 + 8) / 8]
+
+[Stage 12:====================================>                     (5 + 3) / 8]
+
+[Stage 12:===========================================>              (6 + 2) / 8]
+
+[Stage 12:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:55:09 WARN TaskSetManager: Stage 15 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                         (0 + 8) / 8]
+
+[Stage 15:=======>                                                  (1 + 7) / 8]
+
+[Stage 15:==============>                                           (2 + 6) / 8]
+
+[Stage 15:=====================>                                    (3 + 5) / 8]
+
+[Stage 15:=============================>                            (4 + 4) / 8]
+
+[Stage 15:====================================>                     (5 + 3) / 8]
+
+[Stage 15:===========================================>              (6 + 2) / 8]
+
+[Stage 15:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:55:48 WARN TaskSetManager: Stage 18 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                         (0 + 7) / 8]
+
+[Stage 18:>                                                         (0 + 8) / 8]
+
+[Stage 18:=======>                                                  (1 + 7) / 8]
+
+[Stage 18:==============>                                           (2 + 6) / 8]
+
+[Stage 18:=====================>                                    (3 + 5) / 8]
+
+[Stage 18:=============================>                            (4 + 4) / 8]
+
+[Stage 18:====================================>                     (5 + 3) / 8]
+
+[Stage 18:===========================================>              (6 + 2) / 8]
+
+[Stage 18:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:56:30 WARN TaskSetManager: Stage 20 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 20:>                                                         (0 + 6) / 8]
+
+[Stage 20:>                                                         (0 + 8) / 8]
+
+[Stage 20:=======>                                                  (1 + 7) / 8]
+
+[Stage 20:==============>                                           (2 + 6) / 8]
+
+[Stage 20:=====================>                                    (3 + 5) / 8]
+
+[Stage 20:=============================>                            (4 + 4) / 8]
+
+[Stage 20:====================================>                     (5 + 3) / 8]
+
+[Stage 20:===========================================>              (6 + 2) / 8]
+
+[Stage 20:==================================================>       (7 + 1) / 8]
+
+                                                                                
+26/11/07 13:57:12 WARN TaskSetManager: Stage 22 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 22:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:13 WARN TaskSetManager: Stage 24 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 24:>                                                         (0 + 8) / 8]
+
+[Stage 24:===========================================>              (6 + 2) / 8]
+
+                                                                                
+26/11/07 13:57:14 WARN TaskSetManager: Stage 26 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 26:>                                                         (0 + 8) / 8]
+
+[Stage 26:=============================>                            (4 + 4) / 8]
+
+                                                                                
+26/11/07 13:57:15 WARN TaskSetManager: Stage 28 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 28:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:16 WARN TaskSetManager: Stage 30 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 30:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:17 WARN TaskSetManager: Stage 32 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 32:>                                                         (0 + 8) / 8]
+
+[Stage 32:==============>                                           (2 + 6) / 8]
+
+                                                                                
+26/11/07 13:57:18 WARN TaskSetManager: Stage 34 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 34:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:19 WARN TaskSetManager: Stage 36 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 36:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:20 WARN TaskSetManager: Stage 38 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 38:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:21 WARN TaskSetManager: Stage 40 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 40:>                                                         (0 + 8) / 8]
+
+[Stage 40:=====================>                                    (3 + 5) / 8]
+
+                                                                                
+26/11/07 13:57:22 WARN TaskSetManager: Stage 42 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 42:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:23 WARN TaskSetManager: Stage 44 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 44:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:24 WARN TaskSetManager: Stage 46 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 46:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:25 WARN TaskSetManager: Stage 48 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 48:>                                                         (0 + 7) / 8]
+
+[Stage 48:>                                                         (0 + 8) / 8]
+
+[Stage 48:====================================>                     (5 + 3) / 8]
+
+                                                                                
+26/11/07 13:57:26 WARN TaskSetManager: Stage 50 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 50:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:27 WARN TaskSetManager: Stage 52 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 52:>                                                         (0 + 8) / 8]
+
+[Stage 52:=============================>                            (4 + 4) / 8]
+
+                                                                                
+26/11/07 13:57:28 WARN TaskSetManager: Stage 54 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 54:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:29 WARN TaskSetManager: Stage 56 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 56:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:30 WARN TaskSetManager: Stage 58 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 58:>                                                         (0 + 8) / 8]
+
+[Stage 58:===========================================>              (6 + 2) / 8]
+
+                                                                                
+26/11/07 13:57:31 WARN TaskSetManager: Stage 60 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 60:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:31 WARN TaskSetManager: Stage 62 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 62:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:32 WARN TaskSetManager: Stage 64 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 64:>                                                         (0 + 8) / 8]
+
+[Stage 64:==============>                                           (2 + 6) / 8]
+
+                                                                                
+26/11/07 13:57:33 WARN TaskSetManager: Stage 66 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 66:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:34 WARN TaskSetManager: Stage 68 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 68:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:35 WARN TaskSetManager: Stage 70 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 70:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:36 WARN TaskSetManager: Stage 72 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 72:>                                                         (0 + 8) / 8]
+
+[Stage 72:====================================>                     (5 + 3) / 8]
+
+                                                                                
+26/11/07 13:57:37 WARN TaskSetManager: Stage 74 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 74:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:38 WARN TaskSetManager: Stage 76 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 76:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:39 WARN TaskSetManager: Stage 78 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 78:>                                                         (0 + 8) / 8]
+
+[Stage 78:=======>                                                  (1 + 7) / 8]
+
+                                                                                
+26/11/07 13:57:40 WARN TaskSetManager: Stage 80 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 80:>                                                         (0 + 8) / 8]
+
+[Stage 80:==============>                                           (2 + 6) / 8]
+
+                                                                                
+26/11/07 13:57:41 WARN TaskSetManager: Stage 82 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 82:>                                                         (0 + 8) / 8]
+
+                                                                                
+26/11/07 13:57:42 WARN TaskSetManager: Stage 84 contains a task of very large size (130026 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 84:>                                                         (0 + 8) / 8]
+
+                                                                                
+2026-11-07 13:57:44,506 [INFO]   local[8] con 8000000 filas -> 294.4 s
+
+[Stage 0:>                                                         (0 + 0) / 12]
+26/11/07 14:20:53 WARN TaskSetManager: Stage 0 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                         (0 + 1) / 12]
+
+[Stage 0:>                                                         (0 + 2) / 12]
+
+[Stage 0:>                                                         (0 + 3) / 12]
+
+[Stage 0:>                                                         (0 + 4) / 12]
+
+[Stage 0:>                                                         (0 + 6) / 12]
+
+[Stage 0:>                                                         (0 + 7) / 12]
+
+[Stage 0:>                                                         (0 + 8) / 12]
+
+[Stage 0:>                                                         (0 + 9) / 12]
+
+[Stage 0:>                                                        (0 + 10) / 12]
+
+[Stage 0:>                                                        (0 + 11) / 12]
+
+[Stage 0:>                                                        (0 + 12) / 12]
+
+[Stage 0:===========================================>              (9 + 3) / 12]
+
+[Stage 0:===============================================>         (10 + 2) / 12]
+
+[Stage 0:====================================================>    (11 + 1) / 12]
+
+                                                                                
+
+[Stage 3:>                                                         (0 + 0) / 12]
+26/11/07 14:21:55 WARN TaskSetManager: Stage 3 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                         (0 + 1) / 12]
+
+[Stage 3:>                                                         (0 + 2) / 12]
+
+[Stage 3:>                                                         (0 + 3) / 12]
+
+[Stage 3:>                                                         (0 + 4) / 12]
+
+[Stage 3:>                                                         (0 + 5) / 12]
+
+[Stage 3:>                                                         (0 + 6) / 12]
+
+[Stage 3:>                                                         (0 + 7) / 12]
+
+[Stage 3:>                                                         (0 + 8) / 12]
+
+[Stage 3:>                                                         (0 + 9) / 12]
+
+[Stage 3:>                                                        (0 + 10) / 12]
+
+[Stage 3:>                                                        (0 + 11) / 12]
+
+[Stage 3:>                                                        (0 + 12) / 12]
+
+[Stage 3:===========================================>              (9 + 3) / 12]
+
+[Stage 3:===============================================>         (10 + 2) / 12]
+
+[Stage 3:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:22:34 WARN TaskSetManager: Stage 6 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                         (0 + 8) / 12]
+
+[Stage 6:>                                                        (0 + 11) / 12]
+
+[Stage 6:>                                                        (0 + 12) / 12]
+
+[Stage 6:===========================================>              (9 + 3) / 12]
+
+[Stage 6:===============================================>         (10 + 2) / 12]
+
+[Stage 6:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:23:06 WARN TaskSetManager: Stage 9 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                        (0 + 11) / 12]
+
+[Stage 9:>                                                        (0 + 12) / 12]
+
+[Stage 9:==============>                                           (3 + 9) / 12]
+
+[Stage 9:===========================================>              (9 + 3) / 12]
+
+[Stage 9:===============================================>         (10 + 2) / 12]
+
+[Stage 9:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:23:37 WARN TaskSetManager: Stage 12 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                       (0 + 12) / 12]
+
+[Stage 12:===================>                                     (4 + 8) / 12]
+
+[Stage 12:==========================================>              (9 + 3) / 12]
+
+[Stage 12:==============================================>         (10 + 2) / 12]
+
+[Stage 12:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:24:08 WARN TaskSetManager: Stage 15 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                       (0 + 12) / 12]
+
+[Stage 15:===================>                                     (4 + 8) / 12]
+
+[Stage 15:=======================>                                 (5 + 7) / 12]
+
+[Stage 15:============================>                            (6 + 6) / 12]
+
+[Stage 15:=================================>                       (7 + 5) / 12]
+
+[Stage 15:======================================>                  (8 + 4) / 12]
+
+[Stage 15:==========================================>              (9 + 3) / 12]
+
+[Stage 15:==============================================>         (10 + 2) / 12]
+
+[Stage 15:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:25:07 WARN TaskSetManager: Stage 18 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                        (0 + 9) / 12]
+
+[Stage 18:>                                                       (0 + 12) / 12]
+
+[Stage 18:==============>                                          (3 + 9) / 12]
+
+[Stage 18:===================>                                     (4 + 8) / 12]
+
+[Stage 18:=======================>                                 (5 + 7) / 12]
+
+[Stage 18:============================>                            (6 + 6) / 12]
+
+[Stage 18:=================================>                       (7 + 5) / 12]
+
+[Stage 18:======================================>                  (8 + 4) / 12]
+
+[Stage 18:==========================================>              (9 + 3) / 12]
+
+[Stage 18:==============================================>         (10 + 2) / 12]
+
+[Stage 18:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:26:09 WARN TaskSetManager: Stage 20 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 20:>                                                        (0 + 9) / 12]
+
+[Stage 20:>                                                       (0 + 12) / 12]
+
+[Stage 20:=========>                                              (2 + 10) / 12]
+
+[Stage 20:===================>                                     (4 + 8) / 12]
+
+[Stage 20:=======================>                                 (5 + 7) / 12]
+
+[Stage 20:============================>                            (6 + 6) / 12]
+
+[Stage 20:=================================>                       (7 + 5) / 12]
+
+[Stage 20:======================================>                  (8 + 4) / 12]
+
+[Stage 20:==========================================>              (9 + 3) / 12]
+
+[Stage 20:==============================================>         (10 + 2) / 12]
+
+[Stage 20:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:27:14 WARN TaskSetManager: Stage 22 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 22:>                                                        (0 + 9) / 12]
+
+[Stage 22:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:15 WARN TaskSetManager: Stage 24 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 24:>                                                       (0 + 11) / 12]
+
+[Stage 24:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:17 WARN TaskSetManager: Stage 26 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 26:>                                                        (0 + 7) / 12]
+
+[Stage 26:>                                                       (0 + 11) / 12]
+
+[Stage 26:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:19 WARN TaskSetManager: Stage 28 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 28:>                                                        (0 + 4) / 12]
+
+[Stage 28:>                                                        (0 + 7) / 12]
+
+[Stage 28:>                                                        (0 + 9) / 12]
+
+[Stage 28:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:21 WARN TaskSetManager: Stage 30 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 30:>                                                        (0 + 4) / 12]
+
+[Stage 30:>                                                        (0 + 7) / 12]
+
+[Stage 30:>                                                       (0 + 10) / 12]
+
+[Stage 30:>                                                       (0 + 12) / 12]
+
+[Stage 31:======================================>                   (2 + 1) / 3]
+
+                                                                                
+26/11/07 14:27:29 WARN TaskSetManager: Stage 32 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 32:>                                                        (0 + 5) / 12]
+
+[Stage 32:>                                                        (0 + 8) / 12]
+
+[Stage 32:>                                                       (0 + 11) / 12]
+
+[Stage 32:>                                                       (0 + 12) / 12]
+
+[Stage 32:============================>                            (6 + 6) / 12]
+
+                                                                                
+26/11/07 14:27:31 WARN TaskSetManager: Stage 34 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 34:>                                                        (0 + 5) / 12]
+
+[Stage 34:>                                                        (0 + 8) / 12]
+
+[Stage 34:>                                                       (0 + 11) / 12]
+
+[Stage 34:>                                                       (0 + 12) / 12]
+
+[Stage 34:=================================>                       (7 + 5) / 12]
+
+                                                                                
+26/11/07 14:27:33 WARN TaskSetManager: Stage 36 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 36:>                                                        (0 + 5) / 12]
+
+[Stage 36:>                                                        (0 + 8) / 12]
+
+[Stage 36:>                                                       (0 + 10) / 12]
+
+[Stage 36:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:34 WARN TaskSetManager: Stage 38 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 38:>                                                        (0 + 5) / 12]
+
+[Stage 38:>                                                        (0 + 8) / 12]
+
+[Stage 38:>                                                       (0 + 10) / 12]
+
+[Stage 38:>                                                       (0 + 12) / 12]
+
+[Stage 38:===================>                                     (4 + 8) / 12]
+
+                                                                                
+26/11/07 14:27:36 WARN TaskSetManager: Stage 40 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 40:>                                                        (0 + 5) / 12]
+
+[Stage 40:>                                                        (0 + 8) / 12]
+
+[Stage 40:>                                                       (0 + 11) / 12]
+
+[Stage 40:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:38 WARN TaskSetManager: Stage 42 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 42:>                                                        (0 + 6) / 12]
+
+[Stage 42:>                                                        (0 + 9) / 12]
+
+[Stage 42:>                                                       (0 + 11) / 12]
+
+[Stage 42:>                                                       (0 + 12) / 12]
+
+[Stage 42:==========================================>              (9 + 3) / 12]
+
+                                                                                
+26/11/07 14:27:39 WARN TaskSetManager: Stage 44 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 44:>                                                        (0 + 4) / 12]
+
+[Stage 44:>                                                        (0 + 6) / 12]
+
+[Stage 44:>                                                        (0 + 9) / 12]
+
+[Stage 44:>                                                       (0 + 11) / 12]
+
+[Stage 44:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:41 WARN TaskSetManager: Stage 46 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 46:>                                                        (0 + 5) / 12]
+
+[Stage 46:>                                                        (0 + 8) / 12]
+
+[Stage 46:>                                                       (0 + 10) / 12]
+
+[Stage 46:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:43 WARN TaskSetManager: Stage 48 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 48:>                                                        (0 + 5) / 12]
+
+[Stage 48:>                                                        (0 + 7) / 12]
+
+[Stage 48:>                                                        (0 + 9) / 12]
+
+[Stage 48:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:45 WARN TaskSetManager: Stage 50 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 50:>                                                        (0 + 5) / 12]
+
+[Stage 50:>                                                        (0 + 8) / 12]
+
+[Stage 50:>                                                       (0 + 10) / 12]
+
+[Stage 50:>                                                       (0 + 12) / 12]
+
+[Stage 50:====>                                                   (1 + 11) / 12]
+
+                                                                                
+26/11/07 14:27:47 WARN TaskSetManager: Stage 52 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 52:>                                                        (0 + 5) / 12]
+
+[Stage 52:>                                                        (0 + 7) / 12]
+
+[Stage 52:>                                                        (0 + 9) / 12]
+
+[Stage 52:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:49 WARN TaskSetManager: Stage 54 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 54:>                                                        (0 + 4) / 12]
+
+[Stage 54:>                                                        (0 + 7) / 12]
+
+[Stage 54:>                                                        (0 + 9) / 12]
+
+[Stage 54:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:50 WARN TaskSetManager: Stage 56 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 56:>                                                        (0 + 4) / 12]
+
+[Stage 56:>                                                        (0 + 7) / 12]
+
+[Stage 56:>                                                        (0 + 9) / 12]
+
+[Stage 56:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:52 WARN TaskSetManager: Stage 58 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 58:>                                                        (0 + 5) / 12]
+
+[Stage 58:>                                                        (0 + 8) / 12]
+
+[Stage 58:>                                                       (0 + 10) / 12]
+
+[Stage 58:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:54 WARN TaskSetManager: Stage 60 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 60:>                                                        (0 + 5) / 12]
+
+[Stage 60:>                                                        (0 + 8) / 12]
+
+[Stage 60:>                                                       (0 + 11) / 12]
+
+[Stage 60:>                                                       (0 + 12) / 12]
+
+[Stage 60:==========================================>              (9 + 3) / 12]
+
+                                                                                
+26/11/07 14:27:56 WARN TaskSetManager: Stage 62 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 62:>                                                        (0 + 5) / 12]
+
+[Stage 62:>                                                        (0 + 7) / 12]
+
+[Stage 62:>                                                       (0 + 10) / 12]
+
+[Stage 62:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:58 WARN TaskSetManager: Stage 64 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 64:>                                                        (0 + 5) / 12]
+
+[Stage 64:>                                                        (0 + 7) / 12]
+
+[Stage 64:>                                                       (0 + 10) / 12]
+
+[Stage 64:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:27:59 WARN TaskSetManager: Stage 66 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 66:>                                                        (0 + 5) / 12]
+
+[Stage 66:>                                                        (0 + 8) / 12]
+
+[Stage 66:>                                                       (0 + 10) / 12]
+
+[Stage 66:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:28:01 WARN TaskSetManager: Stage 68 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 68:>                                                        (0 + 5) / 12]
+
+[Stage 68:>                                                        (0 + 7) / 12]
+
+[Stage 68:>                                                       (0 + 10) / 12]
+
+[Stage 68:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:28:03 WARN TaskSetManager: Stage 70 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 70:>                                                        (0 + 4) / 12]
+
+[Stage 70:>                                                        (0 + 6) / 12]
+
+[Stage 70:>                                                        (0 + 8) / 12]
+
+[Stage 70:>                                                       (0 + 11) / 12]
+
+[Stage 70:>                                                       (0 + 12) / 12]
+
+[Stage 70:==============================================>         (10 + 2) / 12]
+
+                                                                                
+26/11/07 14:28:05 WARN TaskSetManager: Stage 72 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 72:>                                                        (0 + 6) / 12]
+
+[Stage 72:>                                                        (0 + 8) / 12]
+
+[Stage 72:>                                                       (0 + 11) / 12]
+
+[Stage 72:>                                                       (0 + 12) / 12]
+
+[Stage 72:====>                                                   (1 + 11) / 12]
+
+                                                                                
+26/11/07 14:28:07 WARN TaskSetManager: Stage 74 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 74:>                                                        (0 + 5) / 12]
+
+[Stage 74:>                                                        (0 + 7) / 12]
+
+[Stage 74:>                                                       (0 + 10) / 12]
+
+[Stage 74:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:28:08 WARN TaskSetManager: Stage 76 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 76:>                                                        (0 + 5) / 12]
+
+[Stage 76:>                                                        (0 + 7) / 12]
+
+[Stage 76:>                                                       (0 + 10) / 12]
+
+[Stage 76:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:28:10 WARN TaskSetManager: Stage 78 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 78:>                                                        (0 + 5) / 12]
+
+[Stage 78:>                                                        (0 + 7) / 12]
+
+[Stage 78:>                                                       (0 + 10) / 12]
+
+[Stage 78:>                                                       (0 + 12) / 12]
+
+[Stage 78:====>                                                   (1 + 11) / 12]
+
+                                                                                
+26/11/07 14:28:12 WARN TaskSetManager: Stage 80 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 80:>                                                        (0 + 5) / 12]
+
+[Stage 80:>                                                        (0 + 8) / 12]
+
+[Stage 80:>                                                       (0 + 11) / 12]
+
+[Stage 80:>                                                       (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:28:14 WARN TaskSetManager: Stage 82 contains a task of very large size (128867 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 82:>                                                        (0 + 5) / 12]
+
+[Stage 82:>                                                        (0 + 7) / 12]
+
+[Stage 82:>                                                       (0 + 10) / 12]
+
+[Stage 82:>                                                       (0 + 12) / 12]
+
+[Stage 82:=========>                                              (2 + 10) / 12]
+
+                                                                                
+2026-11-07 14:28:16,762 [INFO]   local[12] con 12000000 filas -> 443.3 s
+2026-11-07 14:29:02,183 [INFO] Estimando punto de cruce sklearn vs. Spark-local por volumen de datos...
+26/11/07 14:29:21 WARN TaskSetManager: Stage 0 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                        (0 + 12) / 12]
+
+                                                                                
+26/11/07 14:29:34 WARN TaskSetManager: Stage 3 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                        (0 + 12) / 12]
+
+[Stage 3:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:29:46 WARN TaskSetManager: Stage 6 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                        (0 + 12) / 12]
+
+[Stage 6:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:29:59 WARN TaskSetManager: Stage 9 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                        (0 + 12) / 12]
+
+[Stage 9:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:30:13 WARN TaskSetManager: Stage 12 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                       (0 + 12) / 12]
+
+[Stage 12:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:30:29 WARN TaskSetManager: Stage 15 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 15:>                                                       (0 + 12) / 12]
+
+[Stage 15:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:30:43 WARN TaskSetManager: Stage 18 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 18:>                                                       (0 + 12) / 12]
+
+[Stage 18:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:30:57 WARN TaskSetManager: Stage 20 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 20:>                                                       (0 + 12) / 12]
+
+[Stage 20:===================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:31:10 WARN TaskSetManager: Stage 22 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:10 WARN TaskSetManager: Stage 24 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:11 WARN TaskSetManager: Stage 26 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:11 WARN TaskSetManager: Stage 28 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:11 WARN TaskSetManager: Stage 30 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:11 WARN TaskSetManager: Stage 32 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:12 WARN TaskSetManager: Stage 34 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:12 WARN TaskSetManager: Stage 36 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:12 WARN TaskSetManager: Stage 38 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 40 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 42 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 44 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 46 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 48 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:13 WARN TaskSetManager: Stage 50 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:14 WARN TaskSetManager: Stage 52 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:14 WARN TaskSetManager: Stage 54 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:14 WARN TaskSetManager: Stage 56 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:14 WARN TaskSetManager: Stage 58 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:15 WARN TaskSetManager: Stage 60 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:15 WARN TaskSetManager: Stage 62 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:15 WARN TaskSetManager: Stage 64 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:15 WARN TaskSetManager: Stage 66 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:15 WARN TaskSetManager: Stage 68 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:16 WARN TaskSetManager: Stage 70 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:16 WARN TaskSetManager: Stage 72 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:16 WARN TaskSetManager: Stage 74 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:16 WARN TaskSetManager: Stage 76 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:17 WARN TaskSetManager: Stage 78 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:17 WARN TaskSetManager: Stage 80 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:17 WARN TaskSetManager: Stage 82 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+26/11/07 14:31:17 WARN TaskSetManager: Stage 84 contains a task of very large size (1006 KiB). The maximum recommended task size is 1000 KiB.
+2026-11-07 14:31:18,979 [INFO]   n=100000 -> spark=117.2s
+26/11/07 14:33:36 WARN TaskSetManager: Stage 0 contains a task of very large size (10820 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 0:>                                                         (0 + 4) / 12]
+
+[Stage 0:>                                                         (0 + 6) / 12]
+
+[Stage 0:>                                                         (0 + 7) / 12]
+
+[Stage 0:>                                                         (0 + 8) / 12]
+
+[Stage 0:>                                                        (0 + 12) / 12]
+
+[Stage 0:==============>                                           (3 + 9) / 12]
+
+[Stage 0:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:33:52 WARN TaskSetManager: Stage 3 contains a task of very large size (10820 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 3:>                                                        (0 + 11) / 12]
+
+[Stage 3:>                                                        (0 + 12) / 12]
+
+[Stage 3:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:34:07 WARN TaskSetManager: Stage 6 contains a task of very large size (10820 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 6:>                                                        (0 + 12) / 12]
+
+[Stage 6:======================================>                   (8 + 4) / 12]
+
+[Stage 6:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:34:22 WARN TaskSetManager: Stage 9 contains a task of very large size (10820 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 9:>                                                        (0 + 12) / 12]
+
+[Stage 9:==============>                                           (3 + 9) / 12]
+
+[Stage 9:====================================================>    (11 + 1) / 12]
+
+                                                                                
+26/11/07 14:34:45 WARN TaskSetManager: Stage 12 contains a task of very large size (10820 KiB). The maximum recommended task size is 1000 KiB.
+
+[Stage 12:>                                                        (0 + 4) / 12]
+
+[Stage 12:>                                                       (0 + 11) / 12]
+
+[Stage 12:>                                                       (0 + 12) / 12]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<entorno_conda>\Lib\site-packages\pyspark\python\lib\pyspark.zip\pyspark\worker.py", line 1303, in <module>
+  File "<entorno_conda>\Lib\site-packages\pyspark\python\lib\pyspark.zip\pyspark\java_gateway.py", line 220, in local_connect_and_auth
+pyspark.errors.exceptions.base.PySparkRuntimeError: [CANNOT_OPEN_SOCKET] Can not open socket: ["tried to connect to ('127.0.0.1', 64149), but an error occurred: [WinError 10054] Se ha forzado la interrupci�n de una conexi�n existente por el host remoto"].
+26/11/07 14:34:58 ERROR Executor: Exception in task 4.0 in stage 12.0 (TID 56)
+org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.shuffle.ShuffleWriteProcessor.write(ShuffleWriteProcessor.scala:59)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:104)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:54)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 37 more
+26/11/07 14:34:58 WARN TaskSetManager: Lost task 4.0 in stage 12.0 (TID 56) (Donnys executor driver): org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.shuffle.ShuffleWriteProcessor.write(ShuffleWriteProcessor.scala:59)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:104)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:54)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 37 more
+
+26/11/07 14:34:58 ERROR TaskSetManager: Task 4 in stage 12.0 failed 1 times; aborting job
+
+[Stage 12:>                                                       (0 + 11) / 12]
+Traceback (most recent call last):
+  File "<raiz_proyecto>\src\benchmarking.py", line 174, in <module>
+    main()
+  File "<raiz_proyecto>\src\benchmarking.py", line 169, in main
+    crossover_point(con)
+  File "<raiz_proyecto>\src\benchmarking.py", line 137, in crossover_point
+    elapsed = _timed_spark_fit_lr("local[*]", df_n)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<raiz_proyecto>\src\benchmarking.py", line 40, in _timed_spark_fit_lr
+    fitted = pipe.fit(sdf)
+             ^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\ml\base.py", line 205, in fit
+    return self._fit(dataset)
+           ^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\ml\pipeline.py", line 134, in _fit
+    model = stage.fit(dataset)
+            ^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\ml\base.py", line 205, in fit
+    return self._fit(dataset)
+           ^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\ml\wrapper.py", line 381, in _fit
+    java_model = self._fit_java(dataset)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\ml\wrapper.py", line 378, in _fit_java
+    return self._java_obj.fit(dataset._jdf)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\py4j\java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\pyspark\errors\exceptions\captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "<entorno_conda>\Lib\site-packages\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o6347.fit.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 4 in stage 12.0 failed 1 times, most recent failure: Lost task 4.0 in stage 12.0 (TID 56) (Donnys executor driver): org.apache.spark.SparkException: Python worker failed to connect back.
+
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.shuffle.ShuffleWriteProcessor.write(ShuffleWriteProcessor.scala:59)
+
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:104)
+
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:54)
+
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+Caused by: java.net.SocketTimeoutException: Accept timed out
+
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+
+	... 37 more
+
+
+Driver stacktrace:
+
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+
+	at scala.Option.foreach(Option.scala:407)
+
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)
+
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+
+Caused by: org.apache.spark.SparkException: Python worker failed to connect back.
+
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+
+	at org.apache.spark.shuffle.ShuffleWriteProcessor.write(ShuffleWriteProcessor.scala:59)
+
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:104)
+
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:54)
+
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+Caused by: java.net.SocketTimeoutException: Accept timed out
+
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+
+	... 37 more
+
+
+2026-11-07 14:34:59,147 [INFO] Closing down clientserver connection
+CORRECTO: el proceso con PID 5632 (proceso secundario de PID 19160)
+ha sido terminado.
+CORRECTO: el proceso con PID 19160 (proceso secundario de PID 7500)
+ha sido terminado.
+CORRECTO: el proceso con PID 7500 (proceso secundario de PID 4496)
+ha sido terminado.
+CORRECTO: el proceso con PID 4496 (proceso secundario de PID 16484)
+ha sido terminado.
+CORRECTO: el proceso con PID 16484 (proceso secundario de PID 19408)
+ha sido terminado.

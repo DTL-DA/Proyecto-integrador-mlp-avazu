@@ -1,0 +1,96 @@
+{
+  "generado": "2026-11-07T17:34:19",
+  "total_filas": 40428967,
+  "particiones": [
+    {
+      "dia": 21,
+      "rol": "train",
+      "archivo": "processed/day=21/data_0.parquet",
+      "filas": 4122995,
+      "bytes": 179479985,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "10eb965c18549174ee46d388f9b9b0aba544ef08911c969f60ebfb5ed48bf0a0"
+    },
+    {
+      "dia": 22,
+      "rol": "train",
+      "archivo": "processed/day=22/data_0.parquet",
+      "filas": 5337126,
+      "bytes": 226711417,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "17cb8523ddb53fe00a230bb1c447f7e9298132bc18b2d655c2cee7bcc04f3098"
+    },
+    {
+      "dia": 23,
+      "rol": "train",
+      "archivo": "processed/day=23/data_0.parquet",
+      "filas": 3870752,
+      "bytes": 168076706,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "1b8d2580d070058c352263642a60d598d6844642273b191c618116a05a5560b4"
+    },
+    {
+      "dia": 24,
+      "rol": "train",
+      "archivo": "processed/day=24/data_0.parquet",
+      "filas": 3335302,
+      "bytes": 142599913,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "f9df5f9c7eda6ef93f6ab5b4c045b45d5f53aea669d73cb90651a56f117632e2"
+    },
+    {
+      "dia": 25,
+      "rol": "train",
+      "archivo": "processed/day=25/data_0.parquet",
+      "filas": 3363122,
+      "bytes": 145745105,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "29d2868cd7d0a19a611a4287780ffe34a0ed66457135b1ee582ee1fc1d7d69d9"
+    },
+    {
+      "dia": 26,
+      "rol": "train",
+      "archivo": "processed/day=26/data_0.parquet",
+      "filas": 3835892,
+      "bytes": 166978319,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "38edbb6e857c4d3ee1ccfa4a19ed4782625b44bf819d671ffa9bd49a86f80bad"
+    },
+    {
+      "dia": 27,
+      "rol": "train",
+      "archivo": "processed/day=27/data_0.parquet",
+      "filas": 3225010,
+      "bytes": 143577021,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "7f3fb8faf281677360dad9a9a88cbd3e43e7d5bf97e68545886c2747b3f67a32"
+    },
+    {
+      "dia": 28,
+      "rol": "train",
+      "archivo": "processed/day=28/data_0.parquet",
+      "filas": 5287222,
+      "bytes": 228416567,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "86ae1d0e008aab3293710d8dbcd7a7e3c2583a2eea85771ab037eddeb5b355a4"
+    },
+    {
+      "dia": 29,
+      "rol": "validacion",
+      "archivo": "processed/day=29/data_0.parquet",
+      "filas": 3832608,
+      "bytes": 167846307,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "0eaaa8893c60dfd6a05d681b1ee92b8953d80d70fa20751dc5baff2c1840d3ea"
+    },
+    {
+      "dia": 30,
+      "rol": "prueba",
+      "archivo": "processed/day=30/data_0.parquet",
+      "filas": 4218938,
+      "bytes": 179096142,
+      "modificado": "2026-11-05T21:37:32",
+      "sha256": "359b9068b917123ed898533d9b04759494c32961c4cb9a4ebbbfb0edeffa5bb7"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+format: jb-book
+root: book/00_resumen
+chapters:
+  - file: book/01_ficha_datos_y_preguntas
+  - file: book/02_eda
+  - file: book/03_protocolo_antifuga_y_preprocesamiento
+  - file: book/04_modelado_sklearn
+  - file: book/05_modelado_pyspark
+  - file: book/06_evaluacion_estadistica
+  - file: book/07_benchmarking
+  - file: book/08_interpretabilidad
+  - file: book/09_comparacion_resultados
+  - file: book/10_reflexion_critica
+  - file: book/11_anexo_reproducibilidad

@@ -1,0 +1,15 @@
+2026-11-07 15:38:30,128 [INFO] Umbral=0.2062; 6 FP y 6 FN seleccionados
+2026-11-07 15:38:30,128 [INFO] Solo sensibilidad de LIME (ancho de kernel x muestras perturbadas)...
+2026-11-07 15:39:18,056 [INFO]   sensibilidad LIME instancia 162046 lista
+2026-11-07 15:40:07,224 [INFO]   sensibilidad LIME instancia 425036 lista
+2026-11-07 15:40:54,134 [INFO]   sensibilidad LIME instancia 20447 lista
+2026-11-07 15:41:39,265 [INFO]   sensibilidad LIME instancia 108238 lista
+2026-11-07 15:42:24,755 [INFO]   sensibilidad LIME instancia 293206 lista
+2026-11-07 15:43:10,153 [INFO]   sensibilidad LIME instancia 222511 lista
+2026-11-07 15:43:53,919 [INFO]   sensibilidad LIME instancia 421018 lista
+2026-11-07 15:44:37,258 [INFO]   sensibilidad LIME instancia 357301 lista
+2026-11-07 15:45:20,706 [INFO]   sensibilidad LIME instancia 316607 lista
+2026-11-07 15:46:05,053 [INFO]   sensibilidad LIME instancia 33350 lista
+2026-11-07 15:46:47,965 [INFO]   sensibilidad LIME instancia 160755 lista
+2026-11-07 15:47:32,235 [INFO]   sensibilidad LIME instancia 179616 lista
+2026-11-07 15:47:32,235 [INFO] Sensibilidad de LIME lista

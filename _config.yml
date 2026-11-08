@@ -1,0 +1,32 @@
+title: "Proyecto Integrador 2.12 — MLP para click en anuncios móviles"
+author: "Donny Torres"
+logo: ""
+
+execute:
+  execute_notebooks: cache
+  timeout: 1200
+
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - amsmath
+
+latex:
+  latex_engine: xelatex
+
+repository:
+  url: https://github.com/DTL-DA/proyecto-integrador-mlp-avazu
+  branch: main
+
+html:
+  use_repository_button: true
+
+bibtex_bibfiles:
+  - book/references.bib
+
+only_build_toc_files: true
+
+sphinx:
+  config:
+    language: es
+    bibtex_reference_style: author_year

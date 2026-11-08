@@ -1,0 +1,13 @@
+indice_instancia,tipo_error,shap_top,jaccard_lime_vs_shap_media
+162046,FP,"[""app_id_te"", ""site_id_te"", ""site_domain_freq"", ""device_model_te"", ""site_domain_te""]",0.42857142857142855
+425036,FP,"[""app_id_te"", ""device_model_te"", ""site_id_te"", ""site_domain_freq"", ""device_ip_freq""]",0.25
+20447,FP,"[""app_id_te"", ""site_id_te"", ""site_domain_freq"", ""site_domain_te"", ""device_id_te""]",0.6666666666666666
+108238,FP,"[""app_id_te"", ""site_id_te"", ""site_domain_freq"", ""site_domain_te"", ""device_id_te""]",0.6666666666666666
+293206,FP,"[""app_id_te"", ""site_id_te"", ""site_domain_freq"", ""site_domain_te"", ""device_id_te""]",0.6666666666666666
+222511,FP,"[""app_id_te"", ""site_id_te"", ""site_domain_freq"", ""site_domain_te"", ""device_model_te""]",0.42857142857142855
+421018,FN,"[""device_ip_te"", ""app_id_te"", ""device_model_te"", ""site_id_te"", ""site_domain_te""]",0.6666666666666666
+357301,FN,"[""site_id_te"", ""device_ip_te"", ""site_domain_te"", ""device_model_te"", ""device_ip_freq""]",0.6666666666666666
+316607,FN,"[""site_id_te"", ""site_domain_te"", ""device_model_te"", ""site_domain_freq"", ""site_id_freq""]",0.42857142857142855
+33350,FN,"[""site_id_te"", ""site_domain_te"", ""device_model_te"", ""site_domain_freq"", ""site_id_freq""]",0.42857142857142855
+160755,FN,"[""app_id_te"", ""device_ip_te"", ""device_model_te"", ""site_id_te"", ""site_domain_te""]",0.6666666666666666
+179616,FN,"[""site_id_te"", ""site_domain_te"", ""device_ip_te"", ""device_model_te"", ""site_domain_freq""]",0.6666666666666666

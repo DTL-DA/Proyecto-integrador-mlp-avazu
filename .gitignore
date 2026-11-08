@@ -1,0 +1,35 @@
+# Datos crudos y procesados (se regeneran con src/data_prep.py)
+data/
+
+# Cachés intermedias reproducibles (se regeneran al correr los scripts)
+artifacts/spark/flat_cache/
+artifacts/spark/spark_checkpoints/
+artifacts/spark/_hadoop_home_stub/
+artifacts/benchmarking/stage_inputs/
+
+# Predicciones: solo se versionan las que lee el libro (capítulo 6, semilla 13);
+# el resto (unos 1,1 GB) se regenera con sklearn_pipeline.py y spark_pipeline.py
+artifacts/sklearn/predictions/*
+!artifacts/sklearn/predictions/*_tier2000000_seed13_*.npy
+artifacts/spark/predictions/*
+!artifacts/spark/predictions/*_seed13_p_test.npy
+!artifacts/spark/predictions/lr_seed13_y_test.npy
+artifacts/stats/*.npy
+
+# Spark y Jupyter
+spark-warehouse/
+derby.log
+metastore_db/
+.ipynb_checkpoints/
+.jupyter_cache/
+_build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Archivos personales de trabajo
+tarea 1 imagen.jpg
+
+# Configuración local de herramientas
+.claude/

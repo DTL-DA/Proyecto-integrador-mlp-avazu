@@ -1,0 +1,18 @@
+{
+  "sgd": {
+    "alpha": 3.096834430993882e-05,
+    "penalty": "l2",
+    "eta0": 0.005551040370682051
+  },
+  "histgb": {
+    "max_depth": 10,
+    "learning_rate": 0.1118281893933853,
+    "max_leaf_nodes": 43
+  },
+  "mlp": {
+    "hidden_layer_sizes": "50",
+    "alpha": 3.5110208381204986e-05,
+    "learning_rate_init": 0.0002970026472560325,
+    "batch_size": 512
+  }
+}

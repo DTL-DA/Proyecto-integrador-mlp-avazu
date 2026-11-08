@@ -1,0 +1,6 @@
+2026-11-07 17:18:00,301 [INFO]   seed=13 con_C_y_hora             roc_auc=0.7274 log_loss=0.4067 fit=33s
+2026-11-07 17:19:12,290 [INFO]   seed=29 con_C_y_hora             roc_auc=0.7264 log_loss=0.4073 fit=39s
+2026-11-07 17:20:23,087 [INFO]   seed=47 con_C_y_hora             roc_auc=0.7295 log_loss=0.4068 fit=41s
+2026-11-07 17:21:18,230 [INFO]   seed=71 con_C_y_hora             roc_auc=0.7253 log_loss=0.4084 fit=26s
+2026-11-07 17:22:20,996 [INFO]   seed=97 con_C_y_hora             roc_auc=0.7287 log_loss=0.4074 fit=33s
+2026-11-07 17:22:21,240 [INFO] Resumen de ablaciones listo en <raiz_proyecto>\artifacts\ablation

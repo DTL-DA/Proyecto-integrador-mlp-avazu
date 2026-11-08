@@ -1,0 +1,4 @@
+{
+  "sample_size_asociacion_psi": 2000000,
+  "nota": "Las medidas de asociacion y PSI usan una muestra aleatoria de 2000000 filas de train, no el dataset completo, por limite de RAM (16 GB). Las agregaciones de conteo/CTR si cubren el dataset completo via DuckDB fuera de memoria."
+}

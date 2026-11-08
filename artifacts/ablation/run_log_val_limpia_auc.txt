@@ -1,0 +1,6 @@
+2026-11-07 18:04:13,315 [INFO]   seed=13 ponderacion_balanceada_val_limpia_auc roc_auc=0.7143 log_loss=0.6255 fit=183s
+2026-11-07 18:05:47,772 [INFO]   seed=29 ponderacion_balanceada_val_limpia_auc roc_auc=0.7268 log_loss=0.6289 fit=58s
+2026-11-07 18:08:41,716 [INFO]   seed=47 ponderacion_balanceada_val_limpia_auc roc_auc=0.7166 log_loss=0.6334 fit=137s
+2026-11-07 18:10:27,194 [INFO]   seed=71 ponderacion_balanceada_val_limpia_auc roc_auc=0.7264 log_loss=0.6221 fit=68s
+2026-11-07 18:12:02,542 [INFO]   seed=97 ponderacion_balanceada_val_limpia_auc roc_auc=0.7252 log_loss=0.6120 fit=60s
+2026-11-07 18:12:03,097 [INFO] Resumen de ablaciones listo en <raiz_proyecto>\artifacts\ablation

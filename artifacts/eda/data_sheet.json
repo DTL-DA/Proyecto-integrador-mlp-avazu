@@ -1,0 +1,46 @@
+{
+  "dataset": "Avazu CTR Prediction",
+  "fuente": "https://www.kaggle.com/competitions/avazu-ctr-prediction",
+  "licencia": "Terminos de la competencia de Kaggle (uso academico/no comercial)",
+  "periodo": "21 a 30 de octubre de 2014 (10 dias, codificados yyMMddHH)",
+  "particion_temporal_declarada": {
+    "train_days": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "validation_day": 29,
+    "test_day": 30
+  },
+  "dias_presentes_en_parquet": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "n_filas": 40428967,
+  "tasa_base_click": 0.16980562476404604,
+  "tamano_csv_crudo_gb": 5.877714397385716,
+  "tamano_parquet_gb": 1.6284431163221598,
+  "hardware_usado": {
+    "ram_gb": 16,
+    "nucleos_logicos": 12,
+    "spark_modo": "local[*] (sin cluster real)"
+  },
+  "limitaciones": [
+    "El enunciado asume 32-64 GB de RAM; esta maquina tiene 16 GB, por lo que las muestras de scikit-learn y las grillas de PySpark se redujeron de forma declarada (ver sklearn_pipeline.py y spark_pipeline.py).",
+    "No hay cluster Spark real: el benchmarking de escalamiento se simula variando el numero de nucleos locales (local[1,2,4,8,12]).",
+    "device_id y device_ip tienen cardinalidad muy alta; se usan tecnicas de hashing/frequency encoding en vez de one-hot encoding directo."
+  ]
+}

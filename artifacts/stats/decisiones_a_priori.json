@@ -1,0 +1,11 @@
+{
+  "alpha": 0.05,
+  "metrica_primaria": "roc_auc",
+  "delta_equivalencia_auc": 0.01,
+  "unidad_independencia": "semilla (5)",
+  "correccion_multiple": "Holm por familia",
+  "umbral_mcnemar_spark": "tasa base de click en train",
+  "tasa_base_train": 0.17144169697765613,
+  "n_test_sklearn": 202511,
+  "n_test_spark": 4218938
+}

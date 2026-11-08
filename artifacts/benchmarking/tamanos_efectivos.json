@@ -1,0 +1,18 @@
+{
+  "fraccion_train": 0.8008471005455073,
+  "sklearn_tiers_nominal_a_efectivo": {
+    "100000": 80085,
+    "1000000": 800847,
+    "2000000": 1601694
+  },
+  "sklearn_validacion_efectiva_aprox": 189597,
+  "sklearn_prueba_efectiva_exacta": 202511,
+  "strong_scaling_efectivo_aprox": 1601694,
+  "weak_scaling_efectivo_aprox": {
+    "1": 800847,
+    "2": 1601694,
+    "4": 3203388,
+    "8": 6406777,
+    "12": 9610165
+  }
+}

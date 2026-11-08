@@ -1,0 +1,89 @@
+2026-11-06 21:09:01,338 [INFO] Muestreando validacion (dia 29) y prueba (dia 30), 2000000 filas fijas cada una...
+2026-11-06 21:10:20,961 [INFO] Muestreando tier de 1M filas para afinar sgd/histgb...
+2026-11-06 21:10:45,501 [INFO] sgd: parametros ya afinados (en best_params.json), se reusan.
+2026-11-06 21:10:45,501 [INFO] histgb: parametros ya afinados (en best_params.json), se reusan.
+2026-11-06 21:10:45,501 [INFO] mlp: parametros ya afinados (en best_params.json), se reusan.
+2026-11-06 21:10:45,501 [INFO] Muestreando tier=1000000, seed=13...
+2026-11-06 21:11:57,969 [INFO] Entrenando histgb | tier=1000000 | seed=13
+<entorno_conda>\Lib\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] El sistema no puede encontrar el archivo especificado
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "<entorno_conda>\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<entorno_conda>\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<entorno_conda>\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-06 21:12:05,416 [INFO]   -> [16/45] roc_auc=0.7270 pr_auc=0.3523 fit=5.4s predict=0.7s
+2026-11-06 21:12:05,416 [INFO] Entrenando mlp | tier=1000000 | seed=13
+2026-11-06 21:15:38,782 [INFO]   -> [17/45] roc_auc=0.7282 pr_auc=0.3527 fit=212.3s predict=0.2s
+2026-11-06 21:15:38,782 [INFO] Muestreando tier=1000000, seed=29...
+2026-11-06 21:17:14,651 [INFO] Entrenando sgd | tier=1000000 | seed=29
+2026-11-06 21:17:32,719 [INFO]   -> [18/45] roc_auc=0.7248 pr_auc=0.3481 fit=17.5s predict=0.0s
+2026-11-06 21:17:32,719 [INFO] Entrenando histgb | tier=1000000 | seed=29
+2026-11-06 21:17:41,928 [INFO]   -> [19/45] roc_auc=0.7264 pr_auc=0.3506 fit=7.2s predict=0.7s
+2026-11-06 21:17:41,928 [INFO] Entrenando mlp | tier=1000000 | seed=29
+2026-11-06 21:22:03,664 [INFO]   -> [20/45] roc_auc=0.7279 pr_auc=0.3521 fit=260.9s predict=0.2s
+2026-11-06 21:22:03,664 [INFO] Muestreando tier=1000000, seed=47...
+2026-11-06 21:23:19,425 [INFO] Entrenando sgd | tier=1000000 | seed=47
+2026-11-06 21:23:34,853 [INFO]   -> [21/45] roc_auc=0.7255 pr_auc=0.3500 fit=14.9s predict=0.0s
+2026-11-06 21:23:34,853 [INFO] Entrenando histgb | tier=1000000 | seed=47
+2026-11-06 21:23:43,245 [INFO]   -> [22/45] roc_auc=0.7271 pr_auc=0.3531 fit=6.1s predict=0.8s
+2026-11-06 21:23:43,247 [INFO] Entrenando mlp | tier=1000000 | seed=47
+2026-11-06 21:27:11,148 [INFO]   -> [23/45] roc_auc=0.7292 pr_auc=0.3544 fit=207.0s predict=0.2s
+2026-11-06 21:27:11,149 [INFO] Muestreando tier=1000000, seed=71...
+2026-11-06 21:28:38,270 [INFO] Entrenando sgd | tier=1000000 | seed=71
+2026-11-06 21:28:55,985 [INFO]   -> [24/45] roc_auc=0.7261 pr_auc=0.3500 fit=16.9s predict=0.1s
+2026-11-06 21:28:55,985 [INFO] Entrenando histgb | tier=1000000 | seed=71
+2026-11-06 21:29:06,527 [INFO]   -> [25/45] roc_auc=0.7288 pr_auc=0.3537 fit=8.6s predict=0.7s
+2026-11-06 21:29:06,527 [INFO] Entrenando mlp | tier=1000000 | seed=71
+2026-11-06 21:35:48,337 [INFO]   -> [26/45] roc_auc=0.7275 pr_auc=0.3497 fit=400.6s predict=0.2s
+2026-11-06 21:35:48,339 [INFO] Muestreando tier=1000000, seed=97...
+2026-11-06 21:37:06,918 [INFO] Entrenando sgd | tier=1000000 | seed=97
+2026-11-06 21:37:21,649 [INFO]   -> [27/45] roc_auc=0.7259 pr_auc=0.3499 fit=14.2s predict=0.0s
+2026-11-06 21:37:21,649 [INFO] Entrenando histgb | tier=1000000 | seed=97
+2026-11-06 21:37:28,176 [INFO]   -> [28/45] roc_auc=0.7284 pr_auc=0.3527 fit=4.9s predict=0.4s
+2026-11-06 21:37:28,176 [INFO] Entrenando mlp | tier=1000000 | seed=97
+2026-11-06 21:41:53,622 [INFO]   -> [29/45] roc_auc=0.7287 pr_auc=0.3534 fit=264.5s predict=0.2s
+2026-11-06 21:41:53,622 [INFO] Muestreando tier=2000000, seed=13...
+2026-11-06 21:44:31,211 [INFO] Entrenando sgd | tier=2000000 | seed=13
+2026-11-06 21:45:05,580 [INFO]   -> [30/45] roc_auc=0.7261 pr_auc=0.3502 fit=33.6s predict=0.0s
+2026-11-06 21:45:05,580 [INFO] Entrenando histgb | tier=2000000 | seed=13
+2026-11-06 21:45:25,356 [INFO]   -> [31/45] roc_auc=0.7286 pr_auc=0.3541 fit=16.9s predict=1.0s
+2026-11-06 21:45:25,356 [INFO] Entrenando mlp | tier=2000000 | seed=13
+2026-11-06 21:52:48,208 [INFO]   -> [32/45] roc_auc=0.7299 pr_auc=0.3559 fit=441.2s predict=0.4s
+2026-11-06 21:52:48,208 [INFO] Muestreando tier=2000000, seed=29...
+2026-11-06 21:54:59,776 [INFO] Entrenando sgd | tier=2000000 | seed=29
+2026-11-06 21:55:30,739 [INFO]   -> [33/45] roc_auc=0.7267 pr_auc=0.3506 fit=30.4s predict=0.0s
+2026-11-06 21:55:30,739 [INFO] Entrenando histgb | tier=2000000 | seed=29
+2026-11-06 21:55:42,476 [INFO]   -> [34/45] roc_auc=0.7291 pr_auc=0.3541 fit=9.5s predict=0.8s
+2026-11-06 21:55:42,476 [INFO] Entrenando mlp | tier=2000000 | seed=29
+2026-11-06 22:02:08,546 [INFO]   -> [35/45] roc_auc=0.7314 pr_auc=0.3573 fit=384.9s predict=0.3s
+2026-11-06 22:02:08,547 [INFO] Muestreando tier=2000000, seed=47...
+2026-11-06 22:04:48,664 [INFO] Entrenando sgd | tier=2000000 | seed=47
+2026-11-06 22:05:23,286 [INFO]   -> [36/45] roc_auc=0.7269 pr_auc=0.3513 fit=33.9s predict=0.0s
+2026-11-06 22:05:23,287 [INFO] Entrenando histgb | tier=2000000 | seed=47
+2026-11-06 22:05:48,696 [INFO]   -> [37/45] roc_auc=0.7293 pr_auc=0.3554 fit=22.2s predict=1.2s
+2026-11-06 22:05:48,697 [INFO] Entrenando mlp | tier=2000000 | seed=47
+2026-11-06 22:11:24,045 [INFO]   -> [38/45] roc_auc=0.7328 pr_auc=0.3582 fit=334.5s predict=0.2s
+2026-11-06 22:11:24,045 [INFO] Muestreando tier=2000000, seed=71...
+2026-11-06 22:13:08,807 [INFO] Entrenando sgd | tier=2000000 | seed=71
+2026-11-06 22:13:30,559 [INFO]   -> [39/45] roc_auc=0.7267 pr_auc=0.3516 fit=21.4s predict=0.0s
+2026-11-06 22:13:30,559 [INFO] Entrenando histgb | tier=2000000 | seed=71
+2026-11-06 22:13:43,560 [INFO]   -> [40/45] roc_auc=0.7287 pr_auc=0.3541 fit=11.4s predict=0.5s
+2026-11-06 22:13:43,560 [INFO] Entrenando mlp | tier=2000000 | seed=71
+2026-11-06 22:18:05,050 [INFO]   -> [41/45] roc_auc=0.7298 pr_auc=0.3550 fit=260.9s predict=0.1s
+2026-11-06 22:18:05,050 [INFO] Muestreando tier=2000000, seed=97...
+2026-11-06 22:19:43,653 [INFO] Entrenando sgd | tier=2000000 | seed=97
+2026-11-06 22:20:05,279 [INFO]   -> [42/45] roc_auc=0.7261 pr_auc=0.3495 fit=21.2s predict=0.0s
+2026-11-06 22:20:05,279 [INFO] Entrenando histgb | tier=2000000 | seed=97
+2026-11-06 22:20:19,712 [INFO]   -> [43/45] roc_auc=0.7284 pr_auc=0.3532 fit=12.7s predict=0.5s
+2026-11-06 22:20:19,712 [INFO] Entrenando mlp | tier=2000000 | seed=97
+2026-11-06 22:24:11,304 [INFO]   -> [44/45] roc_auc=0.7292 pr_auc=0.3537 fit=231.0s predict=0.1s
+2026-11-06 22:24:11,304 [INFO] Listo. Corridas guardadas en <raiz_proyecto>\artifacts\sklearn\runs.csv

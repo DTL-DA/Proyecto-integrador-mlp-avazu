@@ -1,0 +1,11 @@
+var_a,var_b,cramers_v
+banner_pos,site_category,0.27567167331331704
+banner_pos,app_category,0.17691118650982227
+banner_pos,device_type,0.17252015243771637
+banner_pos,device_conn_type,0.08426219253872173
+site_category,app_category,0.19787559426011397
+site_category,device_type,0.1794087397807793
+site_category,device_conn_type,0.2042536819193157
+app_category,device_type,0.1522817721683965
+app_category,device_conn_type,0.29896650544106135
+device_type,device_conn_type,0.13248285843867744

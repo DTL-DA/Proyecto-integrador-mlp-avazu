@@ -1,0 +1,19 @@
+2026-11-07 14:55:39,428 [INFO] Tasa base de click en train (umbral a priori para McNemar en Spark): 0.17144
+2026-11-07 14:57:01,027 [INFO] Agregados listos (n_test sklearn=202511, n_test spark=4218938)
+2026-11-07 14:57:01,175 [INFO] Comparaciones por semilla listas
+2026-11-07 14:57:11,464 [INFO]   DeLong/McNemar dentro de entorno, semilla 13 listos
+2026-11-07 14:57:19,380 [INFO]   DeLong/McNemar dentro de entorno, semilla 29 listos
+2026-11-07 14:57:26,893 [INFO]   DeLong/McNemar dentro de entorno, semilla 47 listos
+2026-11-07 14:57:34,388 [INFO]   DeLong/McNemar dentro de entorno, semilla 71 listos
+2026-11-07 14:57:41,333 [INFO]   DeLong/McNemar dentro de entorno, semilla 97 listos
+2026-11-07 14:57:41,333 [INFO] Re-evaluando MLP de sklearn (semilla 13) sobre el dia 30 completo...
+2026-11-07 14:57:49,450 [INFO]   re-evaluadas 500000 filas
+2026-11-07 14:57:56,789 [INFO]   re-evaluadas 1000000 filas
+2026-11-07 14:58:04,119 [INFO]   re-evaluadas 1500000 filas
+2026-11-07 14:58:11,969 [INFO]   re-evaluadas 2000000 filas
+2026-11-07 14:58:19,353 [INFO]   re-evaluadas 2500000 filas
+2026-11-07 14:58:26,479 [INFO]   re-evaluadas 3000000 filas
+2026-11-07 14:58:33,633 [INFO]   re-evaluadas 3500000 filas
+2026-11-07 14:58:40,758 [INFO]   re-evaluadas 4000000 filas
+2026-11-07 14:58:43,663 [INFO]   re-evaluadas 4218938 filas
+2026-11-07 14:58:46,854 [INFO] Pruebas estadisticas completas. Artifacts en <raiz_proyecto>\artifacts\stats

@@ -1,0 +1,43 @@
+2026-11-07 15:35:37,050 [INFO] Umbral=0.2062; 6 FP y 6 FN seleccionados
+2026-11-07 15:35:37,050 [INFO] LIME (12 instancias x 5 semillas)...
+2026-11-07 15:35:46,135 [INFO]   LIME instancia 162046 (FP) lista
+2026-11-07 15:35:55,014 [INFO]   LIME instancia 425036 (FP) lista
+2026-11-07 15:36:03,628 [INFO]   LIME instancia 20447 (FP) lista
+2026-11-07 15:36:12,442 [INFO]   LIME instancia 108238 (FP) lista
+2026-11-07 15:36:21,109 [INFO]   LIME instancia 293206 (FP) lista
+2026-11-07 15:36:29,949 [INFO]   LIME instancia 222511 (FP) lista
+2026-11-07 15:36:38,716 [INFO]   LIME instancia 421018 (FN) lista
+2026-11-07 15:36:47,425 [INFO]   LIME instancia 357301 (FN) lista
+2026-11-07 15:36:55,834 [INFO]   LIME instancia 316607 (FN) lista
+2026-11-07 15:37:04,722 [INFO]   LIME instancia 33350 (FN) lista
+2026-11-07 15:37:14,282 [INFO]   LIME instancia 160755 (FN) lista
+2026-11-07 15:37:23,692 [INFO]   LIME instancia 179616 (FN) lista
+2026-11-07 15:37:23,700 [INFO] SHAP (PermutationExplainer, background=100)...
+2026-11-07 15:37:32,895 [INFO]   SHAP instancia 162046 (FP) lista
+2026-11-07 15:37:33,032 [INFO]   SHAP instancia 425036 (FP) lista
+2026-11-07 15:37:33,161 [INFO]   SHAP instancia 20447 (FP) lista
+2026-11-07 15:37:33,280 [INFO]   SHAP instancia 108238 (FP) lista
+2026-11-07 15:37:33,404 [INFO]   SHAP instancia 293206 (FP) lista
+2026-11-07 15:37:33,525 [INFO]   SHAP instancia 222511 (FP) lista
+2026-11-07 15:37:33,655 [INFO]   SHAP instancia 421018 (FN) lista
+2026-11-07 15:37:33,790 [INFO]   SHAP instancia 357301 (FN) lista
+2026-11-07 15:37:33,932 [INFO]   SHAP instancia 316607 (FN) lista
+2026-11-07 15:37:34,054 [INFO]   SHAP instancia 33350 (FN) lista
+2026-11-07 15:37:34,199 [INFO]   SHAP instancia 160755 (FN) lista
+2026-11-07 15:37:34,316 [INFO]   SHAP instancia 179616 (FN) lista
+2026-11-07 15:37:34,336 [INFO] Permutation importance (200000 filas, 5 repeticiones)...
+2026-11-07 15:37:37,562 [INFO]   permutation importance site_id_freq: caida media 0.00220
+2026-11-07 15:37:40,078 [INFO]   permutation importance site_domain_freq: caida media 0.00613
+2026-11-07 15:37:42,241 [INFO]   permutation importance app_id_freq: caida media 0.00040
+2026-11-07 15:37:44,387 [INFO]   permutation importance app_domain_freq: caida media 0.00130
+2026-11-07 15:37:46,930 [INFO]   permutation importance device_id_freq: caida media 0.00174
+2026-11-07 15:37:49,091 [INFO]   permutation importance device_ip_freq: caida media 0.00401
+2026-11-07 15:37:51,255 [INFO]   permutation importance device_model_freq: caida media 0.00054
+2026-11-07 15:37:53,417 [INFO]   permutation importance site_id_te: caida media 0.04672
+2026-11-07 15:37:55,628 [INFO]   permutation importance site_domain_te: caida media 0.02300
+2026-11-07 15:37:57,817 [INFO]   permutation importance app_id_te: caida media 0.09253
+2026-11-07 15:37:59,976 [INFO]   permutation importance app_domain_te: caida media 0.00037
+2026-11-07 15:38:02,160 [INFO]   permutation importance device_id_te: caida media 0.00314
+2026-11-07 15:38:04,402 [INFO]   permutation importance device_ip_te: caida media 0.00585
+2026-11-07 15:38:06,569 [INFO]   permutation importance device_model_te: caida media 0.01423
+2026-11-07 15:38:06,596 [INFO] Interpretabilidad completa. Artifacts en <raiz_proyecto>\artifacts\interpretability
